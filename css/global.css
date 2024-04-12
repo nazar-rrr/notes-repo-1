@@ -4,13 +4,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-y: hidden;
 }
 
 body {
-
+    background-image: url(../img/background-gradient.svg);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    min-height: 500px;
 }
 
 .container {
-    max-width: 820px;
+   
     margin: auto;
+}
+
+:root {
+    --color-text: #ffffff;
+    --color-item-background: #000000;
+    --font-size-s: 21px;
+    --font-size-m: 31px;
+    --font-size-l: 41px;
+    --font-size-xl: 100px;
 }
