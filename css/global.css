@@ -4,17 +4,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-y: hidden;
+    transition: 0.2s;
 }
 
 body {
-    background-image: url(../img/background-gradient.svg);
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, #AD00FF 0%, #feb47b 60%, #ffefa1 100%);
 }
 
+
 .container {
+    max-width: 820px;
+    margin: auto;
+    padding: 0 40px 0 40px;
+}
+
+@media(min-width: 650px) {
+    body {
+        background-image: linear-gradient(to right, #AD00FF 0%, #feb47b 50%, #ffefa1 100%);
+    }
+
+    .container {
+        padding: 0 50px 0 50px;
+    }
 }
 
 :root {

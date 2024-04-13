@@ -1,36 +1,42 @@
-const theBody = document.body;
+const theBody = document.querySelector("body");
 const theHomePage = document.querySelector(".home-page");
 const theButton = document.querySelector(".home-page__button");
 
-const createToDoPage = () => {
-    const newContent = createNewContent('move-to-todo');
-    insertElementAtBeginning(newContent, theBody);
-    theButton.removeEventListener("click", createToDoPage);
+const toDoRendering = () => {
+    const toDoHeading = document.createElement("div");
+    toDoHeading.classList.add("todo-heading");
+    toDoHeading.innerHTML = `
+        <svg class="todo-page__heading--arrow" width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.02723e-07 17L27 2.27757L27 31.7224L2.02723e-07 17Z" fill="white" />
+        </svg>
+        <p class="todo-page__heading--article">To Do</p>
+    `;
+    theBody.appendChild(toDoHeading);
 }
 
-const createToDoArrow = () => {
-    const newContent = createNewContent('move-to-todo-arrow');
-    insertElementAtBeginning(newContent, theBody);
-    theButton.removeEventListener("click", createToDoArrow);
-}
-
-const createNewContent = (className) => {
-    const newContent = document.createElement('div');
-    newContent.innerHTML = `
-        <h2>New Content</h2>
-        <p>This is some new content added dynamically using JavaScript.</p>`;
-    newContent.classList.add(className);
-    return newContent;
-}
-
-const insertElementAtBeginning = (element, parent) => {
-    parent.insertBefore(element, parent.firstChild);
+const toDoItemsRendering = () => {
+    const toDoField = document.createElement("div");
+    toDoField.classList.add("todo-field");
+    toDoField.innerHTML = `
+    <div class="todo-field__vector">
+        <svg class="todo-field__vector" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 0V30M0 15L30 15" stroke="white" stroke-width="3"/>
+        </svg>
+    </div>
+    `;
+    theBody.appendChild(toDoField);
 }
 
 const removeHomePage = () => {
     theHomePage.remove();
 }
 
-theButton.addEventListener("click", createToDoPage);
-theButton.addEventListener("click", createToDoArrow);
-theButton.addEventListener("click", removeHomePage);
+const launchListeners = () => {
+    toDoRendering();
+    for (let i = 0; i < 3; i++) {
+        toDoItemsRendering();
+    }
+    removeHomePage();
+}
+
+theButton.addEventListener("click", launchListeners);
