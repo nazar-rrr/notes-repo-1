@@ -12,19 +12,16 @@ body {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    min-height: 500px;
 }
 
 .container {
-   
-    margin: auto;
 }
 
 :root {
     --color-text: #ffffff;
     --color-item-background: #000000;
-    --font-size-s: 21px;
-    --font-size-m: 31px;
-    --font-size-l: 41px;
+    --font-size-s: 20px;
+    --font-size-m: 30px;
+    --font-size-l: 40px;
     --font-size-xl: 100px;
 }
