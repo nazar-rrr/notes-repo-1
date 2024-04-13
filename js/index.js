@@ -1,4 +1,4 @@
 document.addEventListener('partialsLoaded', () => {
-    import('js/todo-page.js');
-    import('js/home-page.js');
+    import('./todo-page.js');
+    import('./home-page.js');
 })
