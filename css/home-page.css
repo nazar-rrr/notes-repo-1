@@ -1,90 +1,76 @@
-.home-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 0.2s;
 }
 
-.home-page {
-    width: var(--width-home-page);
-    height: var(--height-home-page);
-    font-weight: var(--font-bold);
+body {
+    background-image: linear-gradient(to right, #AD00FF -30%, #feb47b 60%, #ffefa1 100%);
 }
 
-.home-page__heading {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
+body::-webkit-scrollbar {
+    display: none;
 }
 
-.home-page__heading {
-    margin: var(--margin-home-page__heading);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-    text-shadow: var(--text-shadow-home-page__heading);
-    color: var(--color-text);
-}
-
-.home-page__heading-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.home-page__heading-button {
-    width: var(--width-home-page__heading-button);
-    height: var(--height-home-page__heading-button);
-    margin: var(--margin-home-page__heading-button);
-    font-size: var(--font-size-s);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text);
-    box-shadow: var(--box-shadow-home-page__heading-button);
-    background: var(--color-item-background);
-    transition: var(--transition);
-}
-
-.home-page__button--item {
-    scale: var(--scale-home-page__button--item);
-    margin: var(--margin-home-page__button--item);
-}
-
-.home-page__button--item:hover {
-    transform: var(--transform-home-page__button--item);
-    box-shadow: var(--box-shadow-home-page__button--item);
-}
-
-@media(min-width: 650px) {
-    .home-page__heading {
-        font-size: var(--font-size-xxl);
+@media (min-width: 650px) {
+    body {
+        background-image: linear-gradient(to right, #AD00FF -15%, #feb47b 50%, #ffefa1 100%);
     }
 
-    .home-page__heading-button {
-        width: var(--tablet-width-tablet-home-page__heading);
-        font-size: var(--font-size-s);
-    }
-
-    .home-page__button--item {
-        scale: var(--tablet-scale-home-page__button--item);
+    .container {
+        padding: 0 65px 0 65px;
     }
 }
 
-@media(min-width: 950px) {
-    .home-page__heading {
-        font-size: var(--font-size-xxxl);
-    }
+:root {
+    --color-text: #ffffff;
+    --color-item-background: #000000;
 
-    .home-page__heading-button {
-        width: var(--desktop-width-home-page__heading-button);
-        height: var(--desktop-height-home-page__button--item);
-        font-size: var(--font-size-m);
-    }
+    --font-size-xs: 20px;
+    --font-size-s: 23px;
+    --font-size-m: 25px;
+    --font-size-l: 30px;
+    --font-size-xl: 65px;
+    --font-size-xxl: 75px;
+    --font-size-xxxl: 95px;
 
-    .home-page__button--item {
-        scale: var(--desktop-scale-home-page__button--item);
-        margin: var(--desktop-margin-home-page__button--item);
-    }
+    --width-home-page: 100%;
+    --width-home-page__heading-button: 150px;
+    --tablet-width-tablet-home-page__heading: 165px;
+    --desktop-width-home-page__heading-button: 220px;
+
+    --height-home-page: 100vh;
+    --height-home-page__heading-button: 60px;
+    --desktop-height-home-page__button--item: 75px;
+
+    --transition: 0.2s;
+    --font-weight-bold: 700;
+
+    --margin-home-page__heading: 0 0 0 10px;
+    --margin-home-page__heading-button: 45px 0 0 0;
+    --margin-home-page__button--item: 0 0 0 15px;
+    --desktop-margin-home-page__button--item: 0 0 0 20px;
+
+    --text-shadow-home-page__heading: 5px 5px 50px #00000020;
+
+    --box-shadow-home-page__heading-button: 0px 5px 80px #00000055;
+    --box-shadow-home-page__button--item: 0px 10px 100px #0000009d;
+
+    --scale-home-page__button--item: 60%;
+    --tablet-scale-home-page__button--item: 65%;
+    --desktop-scale-home-page__button--item: 75%;
+
+    --transform-home-page__button--item: translateY(-5px) scale(1.03);
+
+
+
+
+
+
+
+
+
 }
