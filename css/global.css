@@ -8,9 +8,12 @@
 }
 
 body {
-    background-image: linear-gradient(to right, #AD00FF 0%, #feb47b 60%, #ffefa1 100%);
+    background-image: linear-gradient(to right, #AD00FF -30%, #feb47b 60%, #ffefa1 100%);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
 
 .container {
     max-width: 820px;
@@ -20,11 +23,11 @@ body {
 
 @media(min-width: 650px) {
     body {
-        background-image: linear-gradient(to right, #AD00FF 0%, #feb47b 50%, #ffefa1 100%);
+        background-image: linear-gradient(to right, #AD00FF -15%, #feb47b 50%, #ffefa1 100%);
     }
 
     .container {
-        padding: 0 50px 0 50px;
+        padding: 0 65px 0 65px;
     }
 }
 
