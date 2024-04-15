@@ -27,7 +27,7 @@
     75% {
         opacity: 0;
     }
-    
+
     100% {
         scale: 0.3;
         transform: translateX(-75%);
@@ -71,57 +71,67 @@ body::-webkit-scrollbar {
 
     --color-text: #ffffff;
     --color-item-background: #000000;
-    
+
     --transition: 0.2s;
 
     --home-page-appearing: pageAppear 0.5s ease forwards;
     --home-page-disappearing: pageDisappear 0.5s ease forwards;
-    
+
     --todo-page-appearing: pageAppear 0.5s ease forwards;
     --todo-page-disappearing: pageDisappear 0.5s ease forwards;
 
-    --width-home-page: 100%; 
+    --width-home-page: 100%;
     --width-home-page__heading-button: 150px;
     --tablet-width-tablet-home-page__heading: 165px;
     --desktop-width-home-page__heading-button: 220px;
-    
+
     --height-home-page: 100vh;
     --height-home-page__heading-button: 60px;
     --desktop-height-home-page__button--item: 75px;
     --height-tasks__field-container: 60px;
-    
-    
+
+
     --margin-home-page__heading: 0 0 0 10px;
     --margin-home-page__heading-button: 45px 0 0 0;
     --margin-home-page__heading-button--item: 0 0 0 10px;
     --desktop-margin-home-page__heading-button--item: 0 0 0 15px;
-    
-    
+
+
     --text-shadow-home-page__heading: 5px 5px 50px #00000020;
-    
+
     --box-shadow-home-page__heading-button: 0px 5px 80px #00000055;
     --hover-box-shadow-home-page__heading-button: 0px 20px 100px #00000085;
-    
+
     --scale-home-page__heading-button--item: 60%;
     --tablet-scale-home-page__heading-button--item: 65%;
     --desktop-scale-home-page__heading-button--item: 75%;
-    
+
     --transform-home-page__button--item: translateY(-5px) scale(1.03);
-    
 
 
 
-    --width-tasks__field-container: 820px;
+
+    --width-tasks__field-container: 840px;
     --width-field-container__item: 100%;
-    
-    --height-tasks__field-container: 60px;
-    
+    --width-todo-page-tasks: 100%;
+    --width-tasks__field-container: 100%;
+    --width-field-container__item: 100%;
+
+    --height-field-container__item: 60px;
+
     --margin-todo-page: 180px 0 0 0;
-    --todo-page__tasks-heading--button: 2px 15px 0 0;
+    --margin-tasks__field-container: 45px 0 0 0;
+    --margin-field-container__item: 0 20px 0 0;
+
+    --margin-change-text-size__detail: 0 20px 0 0;
+    --todo-page__tasks-heading--button: 2px 25px 0 -8px;
+
+    --border-field-container__item: 0px;
 
     --padding-todo-page: 0 40px;
 
     --text-shadow-todo-page__heading: 5px 5px 50px #00000020;
 
     --scale-todo-page__tasks-heading--button: 60%;
+    --scale-field-container__item--change-text-color: 1.1;
 }
