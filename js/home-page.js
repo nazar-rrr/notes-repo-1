@@ -7,106 +7,69 @@ const removeHomePage = () => {
 }
 
 const renderToDoPage = () => {
-     const createElements = (elementType, className) => {
-        const element = document.createElement(elementType);
-        element.setAttribute('class', className);
-        return element;
-    }
+    const theToDoPage = document.createElement('section');
+    theToDoPage.setAttribute('class', 'todo-page');
 
-    const theToDoPage = createElements('section', 'todo-page');
-    const toDoHeading = createElements('div', 'todo-page__heading');
-    const toDoHeadingArticle = createElements('p', 'todo-page__heading--article');
-    const toDoHeadingButton = createElements('div', 'todo-page__heading--button');
-    const toDoFieldContainer = createElements('div', 'todo-page__field-container');
-    const toDoFieldItem = createElements('textarea', 'field-container__item');
-    const toDoFieldEdit = createElements('div', 'field-container__item--edit');
-    const toDoFieldChangeFontSize = createElements('div', 'field-container__item--change-text-size');
-    const toDoFieldChangeColor = createElements('div', 'field-container__item--change-text-color');
-    const toDoFieldSetAsImportant = createElements('div', 'field-container__item--set-important');
-    const toDoAddFieldContainer = createElements('div', 'add-field__item--edit');
-    const toDoAddField = createElements('div', 'todo-page__add-field');
-    const toDoAddFieldArticle = createElements('div', 'todo-page__add-field');
-    const toDoAddFieldEdit = createElements('div', 'add-field__item--edit');
-    const toDoAddFieldChangeFontSize = createElements('div', 'add-field__item--change-text-size');
-    const toDoAddFieldChangeColor = createElements('div', 'add-field__item--change-text-color');
-    const toDoAddFieldSetAsImportant = createElements('div', 'add-field__item--set-important');
+    theToDoPage.innerHTML = `
+    <div class="todo-page__tasks">
+    <div class="todo-page__tasks-heading">
+        <svg class="todo-page__tasks-heading--button" width="36" height="34" viewBox="0 0 36 34" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 17L27 2.27757L27 31.7224L0 17Z" fill="white" />
+        </svg>
+        <p class="todo-page__tasks-heading--article">To Do</p>
+    </div>
+    <div class="tasks__field-container">
+    <div class="field-container__item--edit">Edit</div>
+        <textarea class="field-container__item"></textarea>
+        <div class="field-container__item--change-text-size">
+            <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 13L-1.14193e-06 25.1244L-8.1987e-08 0.875644L21 13Z" fill="white" />
+            </svg>
+        </div>
+        <div class="field-container__item--change-text-color">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="10" fill="white" />
+            </svg>
+        </div>
+        <div class="field-container__item--set-important">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="20" height="20" fill="white" />
+            </svg>
+        </div>
+    </div>
+</div>
+<div class="todo-page__add-tasks">
+    <div class="todo-page__add-tasks--heading">
+        <p class="add-tasks__heading">Give New Task</p>
+        <div class="add-tasks__change-text-size">
+            <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 13L-1.14193e-06 25.1244L-8.1987e-08 0.875644L21 13Z" fill="white" />
+            </svg>
+        </div>
+        <div class="add-tasks__change-text-color">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="10" fill="white" />
+            </svg>
+        </div>
+        <div class="add-tasks__set-important">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="20" height="20" fill="white" />
+            </svg>
+        </div>
+    </div>
+    <textarea class="add-tasks__field-container" placeholder="Apply Text"></textarea>
+</div>`;
 
-    toDoHeadingButton.innerHTML = `
-      <svg class="todo-page__heading--button" width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2.02723e-07 17L27 2.27757L27 31.7224L2.02723e-07 17Z" fill="white" />
-      </svg>
-    `;
-    toDoHeadingArticle.innerHTML = `
-      To Do
-    `;
-
-    toDoFieldEdit.innerHTML = `
-      Edit
-    ` ;
-    toDoFieldChangeFontSize.innerHTML = `
-      <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 13L-1.14193e-06 25.1244L-8.1987e-08 0.875644L21 13Z" fill="white"/>
-      </svg>
-    `;
-    toDoFieldChangeColor.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="10" fill="white"/>
-      </svg>
-    `;
-    toDoFieldSetAsImportant.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="20" height="20" fill="white"/>
-      </svg>
-    `;
-
-    toDoAddFieldArticle.innerHTML = `
-      Give New Task
-    `
-    toDoAddFieldEdit.innerHTML = `
-      Edit
-    ` ;
-    toDoAddFieldChangeFontSize.innerHTML = `
-      <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 13L-1.14193e-06 25.1244L-8.1987e-08 0.875644L21 13Z" fill="white"/>
-      </svg>
-    `;
-    toDoAddFieldChangeColor.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="10" fill="white"/>
-      </svg>
-    `;
-    toDoAddFieldSetAsImportant.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="20" height="20" fill="white"/>
-      </svg>
-    `;
-
-    theToDoPage.appendChild(toDoHeading);
-    theToDoPage.appendChild(toDoFieldContainer);
-    theToDoPage.appendChild(toDoAddFieldContainer);
-
-    toDoHeading.appendChild(toDoHeadingButton);
-    toDoHeading.appendChild(toDoHeadingArticle);
-
-    toDoFieldContainer.appendChild(toDoFieldItem);
-    toDoFieldContainer.appendChild(toDoFieldEdit);
-    toDoFieldContainer.appendChild(toDoFieldChangeFontSize);
-    toDoFieldContainer.appendChild(toDoFieldChangeColor);
-    toDoFieldContainer.appendChild(toDoFieldSetAsImportant);
-
-    toDoAddFieldContainer.appendChild(toDoAddField);
-    toDoAddFieldContainer.appendChild(toDoAddFieldEdit);
-    toDoAddFieldContainer.appendChild(toDoAddFieldArticle);
-    toDoAddFieldContainer.appendChild(toDoAddFieldChangeFontSize);
-    toDoAddFieldContainer.appendChild(toDoAddFieldChangeColor);
-    toDoAddFieldContainer.appendChild(toDoAddFieldSetAsImportant);
-
-    theBody.appendChild(toDoFieldContainer);
+    theBody.appendChild(theToDoPage);
 }
 
 const launchListeners = () => {
-    removeHomePage();
-    renderToDoPage()
+    theHomePage.classList.add('home-page__disappear');
+    setTimeout(function () {
+        removeHomePage();
+        renderToDoPage();
+    }, 300)
 }
 
 moveToTheToDoPage.addEventListener('click', launchListeners);
