@@ -4,7 +4,12 @@
     align-items: center;
 }
 
+.todo-page__disappear {
+    animation: var(--todo-page-disappearing)
+}
+
 .todo-page {
+    animation: var(--todo-page-appearing);
     margin: var(--margin-todo-page);
     padding: var(--padding-todo-page);
 }

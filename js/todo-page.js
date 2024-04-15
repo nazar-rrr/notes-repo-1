@@ -1,9 +1,9 @@
 const theBody = document.querySelector('body');
 const theToDoPage = document.querySelector('.todo-page');
-const moveToTheHomePage = document.querySelector('.todo-page__heading--button');
+const moveToTheHomePage = document.querySelector('.todo-page__tasks-heading--button');
 
 const removeToDoPage = () => {
-  theToDoPage.remove();
+    theToDoPage.remove();
 }
 
 const renderHomePage = () => {
@@ -20,6 +20,8 @@ const renderHomePage = () => {
         <svg class="home-page__heading-button--item" width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 11L0.750001 21.3923L0.750002 0.607695L18 11Z" fill="white"/></svg>
     </div>
    </section>`;
+
+    theBody.appendChild(theHomePage);
 }
 
 const launchListeners = () => {
@@ -28,6 +30,6 @@ const launchListeners = () => {
       removeToDoPage();
       renderHomePage();
     }, 500)
-}
+  }
 
 moveToTheHomePage.addEventListener('click', launchListeners);

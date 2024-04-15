@@ -1,6 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
 
-@keyframes homePageAppear {
+@keyframes pageAppear {
     0% {
         scale: 0.3;
         opacity: 0;
@@ -9,7 +9,6 @@
 
     75% {
         opacity: 1;
-
     }
 
     100% {
@@ -18,7 +17,7 @@
     }
 }
 
-@keyframes homePageDisappear {
+@keyframes pageDisappear {
     0% {
         scale: 1;
         opacity: 1;
@@ -27,7 +26,6 @@
 
     75% {
         opacity: 0;
-        
     }
     
     100% {
@@ -76,8 +74,11 @@ body::-webkit-scrollbar {
     
     --transition: 0.2s;
 
-    --home-page-appearing: homePageAppear 0.5s ease forwards;
-    --home-page-disappearing: homePageDisappear 0.5s ease forwards;
+    --home-page-appearing: pageAppear 0.5s ease forwards;
+    --home-page-disappearing: pageDisappear 0.5s ease forwards;
+    
+    --todo-page-appearing: pageAppear 0.5s ease forwards;
+    --todo-page-disappearing: pageDisappear 0.5s ease forwards;
 
     --width-home-page: 100%; 
     --width-home-page__heading-button: 150px;
