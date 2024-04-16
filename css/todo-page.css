@@ -1,4 +1,6 @@
 .todo-page {
+    margin: 180px 0 0 0;
+    padding: 0 40px;
     animation: var(--todo-page-appearing);
 }
 
@@ -8,16 +10,46 @@
 
 .todo-page__heading-button {
     cursor: pointer;
-
 }
 
 .todo-page__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .todo-page__container {
     margin: auto;
     max-width: 820px;
+}
+
+.todo-page__tasks-heading {
+    color: var(--color-text);
+    font-size: 31px;
+}
+
+
+.tasks__field-container {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.tasks__field-container {
+    margin: 45px 0 0 0;
+}
+
+.field-container__item {
+    width: 100%;
+    border: 0px;
+    height: 60px;
+    background: #000000;
+}
+
+.field-container__item,
+.field-container__item--edit,
+.field-container__item--change-text-size,
+.field-container__item--change-text-color,
+.field-container__item--set-important {
+    margin: 0 20px 0 0;
 }
