@@ -1,3 +1,17 @@
+@keyframes tasksFieldContainerAappear  {
+        0% {
+            scale: 0.3;
+            opacity: 0;
+            transform: translateX(15%);
+        }
+    
+        100% {
+    
+            scale: 1;
+            transform: translateX(0%);
+        }
+    }
+
 .todo-page {
     margin: 180px 0 0 0;
     padding: 0 40px;
@@ -6,6 +20,14 @@
 
 .todo-page__disappear {
     animation: var(--todo-page-disappearing);
+}
+
+.hidden {
+    display: none;
+}
+
+.tasks__field-container {
+    animation: tasksFieldContainerDisappear 0.5s ease forwards;
 }
 
 .todo-page__heading-button {
@@ -19,7 +41,7 @@
 
 .todo-page__container {
     margin: auto;
-    max-width: 820px;
+    max-width: 840px;
 }
 
 .todo-page__tasks-heading {
@@ -30,9 +52,13 @@
 
 .tasks__field-container {
     display: flex;
-    cursor: pointer;
     align-items: center;
     justify-content: center;
+}
+
+.field-container__item--edit {
+    animation: tasksFieldContainerAppear 0.5s ease forwards;
+
 }
 
 .tasks__field-container {
@@ -44,6 +70,17 @@
     border: 0px;
     height: 60px;
     background: #000000;
+    cursor: pointer;
+}
+
+.tasks__field-container:hover {
+    scale: 1.1;
+    cursor: pointer;
+
+}
+
+.field-container__item {
+    box-shadow: 0px 20px 100px #00000085;
 }
 
 .field-container__item,
@@ -51,5 +88,6 @@
 .field-container__item--change-text-size,
 .field-container__item--change-text-color,
 .field-container__item--set-important {
+    color: white;
     margin: 0 20px 0 0;
 }

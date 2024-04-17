@@ -34,6 +34,17 @@
     }
 }
 
+@keyframes tasksFieldContainerDisappear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -89,7 +100,6 @@ body::-webkit-scrollbar {
     --height-home-page__heading-button: 60px;
     --desktop-height-home-page__button--item: 75px;
     --height-tasks__field-container: 60px;
-
 
     --margin-home-page__heading: 0 0 0 10px;
     --margin-home-page__heading-button: 45px 0 0 0;
