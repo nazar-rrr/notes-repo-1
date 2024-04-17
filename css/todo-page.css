@@ -1,29 +1,32 @@
-@keyframes tasksFieldContainerAappear  {
-        0% {
-            scale: 0.3;
-            opacity: 0;
-            transform: translateX(15%);
-        }
-    
-        100% {
-    
-            scale: 1;
-            transform: translateX(0%);
-        }
+@keyframes tasksFieldContainerAappear {
+    0% {
+        scale: 0.3;
+        opacity: 0;
+        transform: translateX(15%);
     }
 
+    100% {
+
+        scale: 1;
+        transform: translateX(0%);
+    }
+}
+
 .todo-page {
-    margin: 180px 0 0 0;
-    padding: 0 40px;
-    animation: var(--todo-page-appearing);
+    margin: 180px auto 0 auto;
+    max-width: 840px;
+}
+
+.hidden {
+    display: none;
 }
 
 .todo-page__disappear {
     animation: var(--todo-page-disappearing);
 }
 
-.hidden {
-    display: none;
+.todo-page__appear {
+    animation: var(--todo-page-appearing);
 }
 
 .tasks__field-container {
@@ -31,7 +34,9 @@
 }
 
 .todo-page__heading-button {
+    position: absolute;
     cursor: pointer;
+    scale: 70%;
 }
 
 .todo-page__container {
@@ -47,6 +52,7 @@
 .todo-page__tasks-heading {
     color: var(--color-text);
     font-size: 31px;
+    margin: 0 0 0 55px;
 }
 
 
@@ -91,3 +97,4 @@
     color: white;
     margin: 0 20px 0 0;
 }
+
