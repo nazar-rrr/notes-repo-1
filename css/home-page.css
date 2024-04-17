@@ -12,9 +12,14 @@
     animation: var(--home-page-appearing);
 }
 
+.home-page__appear {
+    animation: var(--home-page-appearing);
+}
+
 .home-page__disappear {
     animation: var(--home-page-disappearing);
 }
+
 
 .home-page__heading {
     text-transform: uppercase;
