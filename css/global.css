@@ -22,11 +22,11 @@
         scale: 1;
         transform: translateX(0);
     }
-    
+
     75% {
         opacity: 0;
     }
-    
+
     100% {
         scale: 0.3;
         opacity: 0;
@@ -44,6 +44,85 @@
     }
 }
 
+@keyframes fieldContainerItemEditAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fieldContainerItemEditDisappear {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes fieldContainerItemEditAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fieldContainerItemsAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fieldContainerItemsDisappear {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
 
 * {
     margin: 0;
