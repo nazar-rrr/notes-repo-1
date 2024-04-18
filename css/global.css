@@ -1,5 +1,23 @@
 @import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
 
+@keyframes mainNavigationAppear {
+    0% {
+        scale: 0.5;
+        height: 100%;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        scale: 1;
+        transform: translate(0);
+    }
+}
+
 @keyframes pageAppear {
     0% {
         scale: 0.3;
@@ -16,7 +34,6 @@
         transform: translateX(0);
     }
 }
-
 @keyframes pageDisappear {
     0% {
         scale: 1;

@@ -1,6 +1,6 @@
 .todo-page {
     margin: 180px auto 0 auto;
-    max-width: 910px;
+    padding: 0 50px;
 }
 
 .todo-page__disappear {
@@ -11,20 +11,26 @@
     animation: var(--todo-page-appearing);
 }
 
-.todo-page__heading-button {
-    left: -30px;
+.todo-page__tasks-heading-button {
+    left: 10px;
     position: absolute;
     cursor: pointer;
     scale: 70%;
 }
 
 .todo-page__tasks-heading {
+    display: flex;
     color: var(--color-text);
     font-size: 31px;
 }
 
+.todo-page__tasks-heading--article {
+    margin: 0 0 0 10px;
+
+}
+
 .todo-page__tasks {
-    width: 840px;
+    max-width: 840px;
     color: var(--color-text);
     font-size: 31px;
     margin: auto;
@@ -45,7 +51,9 @@
 }
 
 .field-container__items {
+    margin: 0 0 0 20px;
     display: flex;
+    flex-direction: column;
 }
 
 .hidden {
@@ -54,7 +62,7 @@
 
 
 .field-container__item {
-    width: 840px;
+    width: 100%;
     border: 0px;
     height: 100%;
     background: #000000;
@@ -98,7 +106,7 @@
 }
 
 .field-container__item--change-text-size {
-    margin: 3px 20px 0 20px;
+    margin: 3px 20px 0 0;
 }
 
 .field-container__item--change-text-size:hover,
