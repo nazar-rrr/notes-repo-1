@@ -24,11 +24,6 @@
     font-size: 31px;
 }
 
-.todo-page__tasks-heading--article {
-    margin: 0 0 0 10px;
-
-}
-
 .todo-page__tasks {
     max-width: 840px;
     color: var(--color-text);
