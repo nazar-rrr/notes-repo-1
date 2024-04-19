@@ -30,6 +30,10 @@
     transition: 0.2s;
 }
 
+
+.main-navigation__change-text-size,
+.main-navigation__change-text-color,
+.main-navigation__set-important,
 .main-navigation__statistics-page,
 .main-navigation__todo-page,
 .main-navigation__home-page {
@@ -39,6 +43,10 @@
     justify-content: center;
 }
 
+
+.main-navigation__change-text-size,
+.main-navigation__change-text-color,
+.main-navigation__set-important,
 .main-navigation__statistics-page,
 .main-navigation__todo-page,
 .main-navigation__home-page {
@@ -46,12 +54,18 @@
     color: white;
 }
 
+.main-navigation__change-text-size--vector,
+.main-navigation__change-text-color--vector,
+.main-navigation__set-important--vector,
 .main-navigation__todo-page--vector,
 .main-navigation__home-page--vector,
 .main-navigation__statistics-page--vector {
     margin: 0 0 9px 0;
 }
 
+.main-navigation__change-text-size--article,
+.main-navigation__change-text-color-article,
+.main-navigation__set-important--article,
 .main-navigation__todo-page--article,
 .main-navigation__home-page--article,
 .main-navigation__statistics-page--article {
@@ -59,10 +73,15 @@
     transition: 0.2s;
 }
 
+.main-navigation__set-important--article,
 .main-navigation__statistics-page--article {
     box-shadow: 0 0 500px 0 #00000075;
 }
 
+
+.main-navigation__change-text-size--vector:hover,
+.main-navigation__change-text-color--vector:hover,
+.main-navigation__set-important--vector:hover,
 .main-navigation__todo-page--vector:hover,
 .main-navigation__home-page--vector:hover,
 .main-navigation__statistics-page--vector:hover {
@@ -71,6 +90,7 @@
     cursor: pointer;
 }
 
+.main-navigation__change-text-size--vector:hover,
 .main-navigation__home-page--vector:hover {
     transform: none;
 }
@@ -101,6 +121,12 @@
 }
 
 @media(min-width: 950px) {
+    .main-navigation__container {
+        padding: 0 45px;
+    }
+}
+
+@media(min-width: 1250px) {
     .main-navigation__button {
         height: 180px;
         width: 6px;
@@ -115,34 +141,72 @@
     }
 
     .main-navigation__container {
-        flex-direction: column
+        flex-direction: column;
     }
 
     .main-navigation__container {
         height: 100%;
         left: 0px;
-        padding: 290px 0;
-        border-top-left-radius: 0px;
-        border-bottom-right-radius: 30px;
+        padding: 320px 95px;
+        border-radius: 0px;
+        border-radius: 0px;
+        background-image: linear-gradient(to right, #AD00FF -30%, #feb47b 60%, #ffefa1 100%);
+        box-shadow: 0 0 500px #00000075;
     }
 
+    .main-navigation__change-text-size,
+    .main-navigation__change-text-color,
+    .main-navigation__set-important,
+    .main-navigation__home-page,
+    .main-navigation__todo-page,
+    .main-navigation__statistics-page {
+        margin: 0 auto 0 0;
+        flex-direction: row;
+    }
+
+
+    .main-navigation__change-text-size--vector,
+    .main-navigation__change-text-color--vector,
+    .main-navigation__set-important--vector,
+    .main-navigation__home-page--vector,
+    .main-navigation__todo-page--vector,
+    .main-navigation__statistics-page--vector {
+        margin: 0 20px 0 0;
+    }
+
+    .main-navigation__change-text-size--vector:hover,
+    .main-navigation__change-text-color--vector:hover,
+    .main-navigation__set-important--vector:hover,
     .main-navigation__home-page--vector:hover,
     .main-navigation__todo-page--vector:hover,
-    .main-navigation__statistics-page--vetor:hover {
+    .main-navigation__statistics-page--vector:hover {
         cursor: pointer;
         box-shadow: 0 0 50px 0 #00000060;
     }
 
+
+    .main-navigation__change-text-size--article,
+    .main-navigation__change-text-color-article,
+    .main-navigation__set-important--article,
+    .main-navigation__home-page--article,
+    .main-navigation__todo-page--article,
+    .main-navigation__statistics-page--article {
+        font-size: 15px;
+    }
+
+    .main-navigation__change-text-size:hover,
     .main-navigation__home-page:hover {
-        margin: 0 0 50px 0;
+        margin: 0 auto 50px 0;
     }
 
+    .main-navigation__change-text-color:hover,
     .main-navigation__todo-page:hover {
-        margin: 50px 0 50px 0;
+        margin: 50px auto 50px 0;
     }
 
+    .main-navigation__set-important:hover,
     .main-navigation__statistics-page:hover {
-        margin: 50px 0 0 0;
+        margin: 50px auto 0 0;
     }
 
     .main-navigation__container--appear {

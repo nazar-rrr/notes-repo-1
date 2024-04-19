@@ -10,10 +10,10 @@ const manipulateMainNav = () => {
         if (window.innerWidth <= 650) {
             theButton.style.bottom = '51%';
         }
-        else if (window.innerWidth >= 650 && window.innerWidth <= 950) {
+        else if (window.innerWidth >= 650 && window.innerWidth <= 1250) {
             theButton.style.bottom = '33.7%';
         }
-        else if (window.innerWidth >= 950) {
+        else if (window.innerWidth >= 1250) {
             theButton.style.left = '26%';
         }
 
@@ -27,12 +27,13 @@ const manipulateMainNav = () => {
         theMainNavContainer.classList.add('main-navigation__container--disappear')
         setTimeout(() => {
             theMainNav.classList.add('hidden');
-        }, 200)
+        }, 300)
 
-        if (window.innerWidth >= 950) {
+        if (window.innerWidth >= 1250) {
             theButton.style.left = '15px';
         }
         else {
+            theButton.style.left = 'calc(50% - 90px)';
             theButton.style.bottom = '10px';
         }
     }
