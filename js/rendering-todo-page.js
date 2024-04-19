@@ -1,5 +1,6 @@
 const theHomePageButton = document.querySelector('.home-page__heading-button');
 const theHomePage = document.querySelector('.home-page');
+const theMainNavigationButton = document.querySelector('.main-navigation__todo-page--vector');
 const theToDoPage = document.querySelector('.todo-page');
 
 const removeHomePage = () => {
@@ -19,7 +20,7 @@ const manipulatePages = () => {
     setTimeout(() => {
         renderToDoPage();
     }, 500)
-
 }
 
 theHomePageButton.addEventListener('click', manipulatePages)
+theMainNavigationButton.addEventListener('click', manipulatePages)

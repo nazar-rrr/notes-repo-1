@@ -1,5 +1,5 @@
 const theToDoPage = document.querySelector('.todo-page');
-const theToDoPageButton = document.querySelector('.todo-page__tasks-heading-button');
+const theToDoPageButton = document.querySelector('.main-navigation__home-page--vector');
 const theHomePage = document.querySelector('.home-page');
 
 const removeToDoPage = () => {

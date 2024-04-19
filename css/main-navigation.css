@@ -13,6 +13,7 @@
 .main-navigation__container {
     position: absolute;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
@@ -20,7 +21,7 @@
 .main-navigation__container {
     width: 100%;
     flex: 1;
-    padding: 0 20px;
+    padding: 20px 0;
     bottom: 0px;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
@@ -41,24 +42,41 @@
 .main-navigation__statistics-page,
 .main-navigation__todo-page,
 .main-navigation__home-page {
-    font-size: 11px;
+    font-size: 13px;
     color: white;
 }
 
 .main-navigation__todo-page--vector,
 .main-navigation__home-page--vector,
 .main-navigation__statistics-page--vector {
-    margin: 0 0 7px 0;
+    margin: 0 0 9px 0;
 }
 
 .main-navigation__todo-page--article,
 .main-navigation__home-page--article,
 .main-navigation__statistics-page--article {
     text-shadow: 0px 0px 35px #00000075;
+    transition: 0.2s;
+}
+
+.main-navigation__statistics-page--article {
+    text-shadow: 0px 0px 35px #00000095;
 }
 
 .main-navigation__container:hover {
     height: 120px;
+}
+
+.main-navigation__todo-page--vector:hover,
+.main-navigation__home-page--vector:hover,
+.main-navigation__statistics-page--vector:hover {
+    scale: 1.1;
+    transform: rotate(-90deg);
+    cursor: pointer;
+} 
+
+.main-navigation__home-page--vector:hover {
+    transform: none;
 }
 
 .main-navigation__button {

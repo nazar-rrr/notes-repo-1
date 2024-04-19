@@ -1,4 +1,7 @@
 const theButton = document.querySelector('.main-navigation__button')
+const theHomePageButton = document.querySelector('.main-navigation__home-page--vector')
+const theToDoButtonButton = document.querySelector('.main-navigation__todo-page--vector')
+const theStatisticsPageButton = document.querySelector('.main-navigation__statistics-page--vector')
 const theMainNav = document.querySelector('.main-navigation')
 const theMainNavContainer = document.querySelector('.main-navigation__container')
 
@@ -20,3 +23,6 @@ const manipulateMainNav = () => {
 }
 
 theButton.addEventListener('click', manipulateMainNav);
+theHomePageButton.addEventListener('click', manipulateMainNav);
+theToDoButtonButton.addEventListener('click', manipulateMainNav);
+theStatisticsPageButton.addEventListener('click', manipulateMainNav);

@@ -5,17 +5,16 @@
         opacity: 0;
         height: 0;
     }
-
+    
     100% {
-        height: 180px;
+        height: 50%;
     }
 }
-
 @keyframes mainNavigationDisappear {
     0% {
-        height: 180px;
+        height: 50%;
     }
-
+    
     100% {
         opacity: 0;
         height: 0;
@@ -158,7 +157,6 @@
 
 body {
     background-image: linear-gradient(to right, #AD00FF -30%, #feb47b 60%, #ffefa1 100%);
-    overflow: hidden;
 }
 
 body::-webkit-scrollbar {
