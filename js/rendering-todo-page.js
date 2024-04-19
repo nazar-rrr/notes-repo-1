@@ -1,6 +1,6 @@
 const theHomePageButton = document.querySelector('.home-page__heading-button');
 const theHomePage = document.querySelector('.home-page');
-const theMainNavigationButton = document.querySelector('.main-navigation__todo-page--vector');
+const theMainNavigationButton = document.querySelector('.main-navigation__todo-page');
 const theToDoPage = document.querySelector('.todo-page');
 
 const removeHomePage = () => {
