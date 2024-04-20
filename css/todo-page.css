@@ -1,6 +1,6 @@
 .todo-page {
     margin: 180px auto 0 auto;
-    padding: 0 50px;
+    padding: 0 40px;
 }
 
 .todo-page__disappear {
@@ -21,14 +21,28 @@
 .todo-page__tasks-heading {
     display: flex;
     color: var(--color-text);
-    font-size: 31px;
+    font-size: 29px;
 }
 
+.todo-page__add-tasks,
 .todo-page__tasks {
     max-width: 840px;
     color: var(--color-text);
     font-size: 31px;
     margin: auto;
+}
+
+.todo-page__add-tasks {
+    margin: 60px auto 0 auto;
+}
+
+.tasks__field-container--appear {
+    animation: tasksFieldContainerAppear 0.2s ease forwards;
+
+}
+
+.tasks__field-container--disappear {
+    animation: tasksFieldContainerDisppear 0.2s ease forwards;
 }
 
 .add-tasks__field-container,
@@ -39,6 +53,7 @@
     transition: 0.2s;
 }
 
+.add-tasks__field-container,
 .tasks__field-container {
     position: relative;
     display: flex;
@@ -46,7 +61,8 @@
     justify-content: center;
     height: 105px;
     width: 100%;
-    padding: 45px 0 0 0;
+    padding: 40px 0 0 0;
+    transition: 0.2s;
 }
 
 .field-container__item--add {
@@ -56,30 +72,36 @@
     margin: 10px;
 }
 
-.field-container__item--add {
-    cursor: pointer;
-}
-
+.field-container__add-item,
 .field-container__item {
     width: 100%;
-    border: 0px;
     height: 100%;
+    padding: 20px 50px 2px 30px;
+    border: 0px;
     background: #000000;
     transition: 0.2s;
 }
 
+.add-tasks__field-container:hover,
 .tasks__field-container:hover {
-    scale: 1.1;
+    scale: 1.05;
 }
 
+.field-container__add-item,
 .field-container__item {
     box-shadow: 0px 20px 75px #00000075;
-    color: #fff;
+    color: #ffffffe1;
+    font-size: 15px;
 }
 
-.field-container__item::placeholder {
+.add-tasks__field-container {
+    height: 120px;
+}
+
+.field-container__add-item::placeholder {
     position: absolute;
     top: 50%;
+    left: 80px;
     transform: translate(-50%, -50%);
     text-align: center;
     text-transform: uppercase;
@@ -87,12 +109,18 @@
     font-size: 15px;
 }
 
+.field-container__add-item::-webkit-scrollbar,
 .field-container__item::-webkit-scrollbar {
     display: none;
 }
 
-.field-container__item:hover {
+.field-container__item:hover,
+.field-container__add-item:hover {
     box-shadow: 0px 20px 100px #000000b6;
+}
+
+.field-container__add-item:hover {
+    height: 90px;
 }
 
 .field-container__item--edit-appear {
@@ -141,4 +169,16 @@
     font-size: 15px;
 }
 
-@media(min-width: 650px) {}
+@media(min-width: 650px) {
+    .todo-page {
+        padding: 0 60px;
+    }
+}
+
+@media(min-width: 1250px) {
+
+    .todo-page__add-tasks,
+    .todo-page__tasks {
+        font-size: 35px;
+    }
+}

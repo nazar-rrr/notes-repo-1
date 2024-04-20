@@ -79,13 +79,23 @@
     }
 }
 
-@keyframes tasksFieldContainerDisappear {
+@keyframes tasksFieldContainerAppear {
     0% {
-        opacity: 0;
+        max-width: 0px;
     }
 
     100% {
-        opacity: 1;
+        max-width: 840px;
+    }
+}
+
+@keyframes tasksFieldContainerDisappear {
+    0% {
+        max-width: 840px;
+    }
+    
+    100% {
+        max-width: 0px;
     }
 }
 

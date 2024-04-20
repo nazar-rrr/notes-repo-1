@@ -7,7 +7,7 @@
 }
 
 .main-navigation__container--appear {
-    animation: mainNavigationAppear 0.2s ease forwards;
+    animation: mainNavigationAppear 0.3s ease forwards;
 }
 
 .main-navigation__container {
@@ -103,7 +103,7 @@
     width: 180px;
     height: 6px;
     background: #00000038;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .main-navigation__button:hover {
