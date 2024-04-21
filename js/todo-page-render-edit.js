@@ -1,10 +1,13 @@
+import { tasksAddition } from "./todo-page";
+
 const theButton = document.querySelectorAll('.tasks__field-container');
 const theAddButton = document.querySelectorAll('.add-tasks__field-container');
 
 theButton.forEach(button => {
+    tasksAddition()
     const fieldContainerItems = button.querySelector('.tasks__field-container--items');
     const fieldContainerItemEdit = button.querySelector('.tasks__field-container--item-edit');
-
+    
     const renderFieldContainerItemEdit = () => {
         fieldContainerItemEdit.classList.remove('hidden');
         fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-disappear');

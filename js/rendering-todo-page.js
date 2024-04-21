@@ -5,6 +5,7 @@ const theToDoPage = document.querySelector('.todo-page');
 const theToDoPageTasksFieldContainer = document.querySelector('.tasks__field-container');
 
 const removeHomePage = () => {
+    theHomePage.classList.remove('home-page__appear');
     theHomePage.classList.add('home-page__disappear');
     setTimeout(() => {
         theHomePage.classList.add('hidden');
@@ -13,11 +14,8 @@ const removeHomePage = () => {
 
 const renderToDoPage = () => {
     theToDoPage.classList.remove('hidden');
-    theToDoPageTasksFieldContainer.classList.remove('tasks__field-container-appeaar')
+    theToDoPage.classList.remove('todo-page__disappear');
     theToDoPage.classList.add('todo-page__appear');
-    setTimeout(() => {
-        theToDoPageTasksFieldContainer.classList.add('tasks__field-container--appear')
-    }, 200)
 }
 
 const manipulatePages = () => {
@@ -29,3 +27,4 @@ const manipulatePages = () => {
 
 theHomePageButton.addEventListener('click', manipulatePages)
 theMainNavigationButton.addEventListener('click', manipulatePages)
+
