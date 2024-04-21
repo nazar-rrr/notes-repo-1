@@ -5,11 +5,11 @@ const addTasksFieldContainerItemContent = addTasksFieldContainerItem.textContent
 
 let tasksArray = [];
 
-export const tasksAddition = () => {
+const tasksAddition = () => {
     const tasksFieldContainer = document.createElement('div');
     tasksFieldContainer.classList.add('tasks__field-container');
     tasksFieldContainer.innerHTML = `
-        <div class="tasks__field-container--item-edit hidden">Edit</div>
+        <div class="tasks__field-container--item-edit">Edit</div>
         <textarea class="tasks__field-container--item" readonly></textarea>
         <div class="tasks__field-container--items hidden">
             <div class="tasks__field-container--item--change-text-size">
@@ -34,12 +34,14 @@ export const tasksAddition = () => {
 
     toDoPageTasks.appendChild(tasksFieldContainer);
     tasksArray.push(addTasksFieldContainerItemContent);
+
 }
 
+theButton.addEventListener('click', tasksAddition)
 
 
 const tasksRemoving = () => {
 
 }
 
-theButton.addEventListener('click', tasksAddition)
+

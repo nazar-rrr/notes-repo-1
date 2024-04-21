@@ -53,6 +53,68 @@ theAddButton.forEach(button => {
 });
 
 
+// Array to store tasks
+let tasks = [];
 
+// Function to render tasks
+function renderTasks() {
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = '';
 
+    tasks.forEach((task, index) => {
+        const todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = task.completed;
+        checkbox.addEventListener('change', () => toggleTask(index));
+
+        const textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.value = task.text;
+        textInput.addEventListener('change', (event) => updateTaskText(index, event.target.value));
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = '❌';
+        deleteButton.addEventListener('click', () => deleteTask(index));
+
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(textInput);
+        todoItem.appendChild(deleteButton);
+
+        todoList.appendChild(todoItem);
+    });
+}
+
+// Function to add a new task
+function addTask() {
+    const newTaskInput = document.getElementById('new-task');
+    const newText = newTaskInput.value.trim();
+    if (newText !== '') {
+        tasks.push({ text: newText, completed: false });
+        newTaskInput.value = '';
+        renderTasks();
+    }
+}
+
+// Function to toggle task completion status
+function toggleTask(index) {
+    tasks[index].completed = !tasks[index].completed;
+    renderTasks();
+}
+
+// Function to update task text
+function updateTaskText(index, newText) {
+    tasks[index].text = newText;
+}
+
+// Function to delete a task
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    renderTasks();
+}
+
+// Initial rendering
+renderTasks();
 
