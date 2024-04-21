@@ -1,8 +1,3 @@
-.todo-page {
-    margin: 180px auto 0 auto;
-    padding: 0 40px;
-}
-
 .todo-page__disappear {
     animation: var(--todo-page-disappearing);
 }
@@ -11,163 +6,155 @@
     animation: var(--todo-page-appearing);
 }
 
-.todo-page__tasks-heading-button {
-    left: 10px;
-    position: absolute;
-    cursor: pointer;
-    scale: 70%;
+.tasks__field-container--item-edit-appear,
+.add-tasks__field-container--item-vector-appear {
+    animation: fieldContainerItemEditAppear 0.3s ease forwards;
 }
 
-.todo-page__tasks-heading {
+.tasks__field-container--item-edit-disappear,
+.add-tasks__field-container--item-vector-disappear {
+    animation: fieldContainerItemEditDisappear 0.3s ease forwards;
+}
+
+.tasks__field-container--items-appear {
+    animation: fieldContainerItemsAppear 0.3s ease forwards;
+}
+
+.tasks__field-container--items-disappear {
+    animation: fieldContainerItemsDisappear 0.3s ease forwards;
+}
+
+.todo-page {
+    margin: 180px auto 0 auto;
+    padding: 0 40px;
+}
+
+.todo-page__tasks,
+.todo-page__add-tasks {
     display: flex;
-    color: var(--color-text);
-    font-size: 29px;
+    flex-direction: column;
+    margin: auto;
 }
 
-.todo-page__add-tasks,
-.todo-page__tasks {
+.todo-page__tasks,
+.todo-page__add-tasks {
     max-width: 840px;
-    color: var(--color-text);
-    font-size: 31px;
-    margin: auto;
 }
 
 .todo-page__add-tasks {
     margin: 60px auto 0 auto;
 }
 
-.tasks__field-container--appear {
-    animation: tasksFieldContainerAppear 0.2s ease forwards;
-
+.todo-page__tasks-heading,
+.todo-page__add-tasks-heading {
+    font-size: 29px;
+    color: white;
 }
 
-.tasks__field-container--disappear {
-    animation: tasksFieldContainerDisppear 0.2s ease forwards;
-}
-
-.add-tasks__field-container,
-.tasks__field-container {
+.tasks__field-container,
+.add-tasks__field-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s;
 }
 
-.add-tasks__field-container,
-.tasks__field-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.tasks__field-container,
+.add-tasks__field-container {
     height: 105px;
     width: 100%;
-    padding: 40px 0 0 0;
+    padding: 45px 0 0 0;
     transition: 0.2s;
 }
 
-.field-container__item--add {
-    position: absolute;
-    top: 47px;
-    left: 30px;
-    margin: 10px;
-}
-
-.field-container__add-item,
-.field-container__item {
+.tasks__field-container--item,
+.add-tasks__field-container--item {
     width: 100%;
     height: 100%;
     padding: 20px 50px 2px 30px;
+    margin: 0 20px 0 0;
     border: 0px;
     background: #000000;
     transition: 0.2s;
-}
-
-.add-tasks__field-container:hover,
-.tasks__field-container:hover {
-    scale: 1.05;
-}
-
-.field-container__add-item,
-.field-container__item {
     box-shadow: 0px 20px 75px #00000075;
     color: #ffffffe1;
     font-size: 15px;
 }
 
-.add-tasks__field-container {
-    height: 120px;
-}
-
-.field-container__add-item::placeholder {
-    position: absolute;
-    top: 50%;
-    left: 80px;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 700;
+.tasks__field-container--item-edit {
     font-size: 15px;
 }
 
-.field-container__add-item::-webkit-scrollbar,
-.field-container__item::-webkit-scrollbar {
-    display: none;
+.tasks__field-container--items {
+    display: flex;
 }
 
-.field-container__item:hover,
-.field-container__add-item:hover {
-    box-shadow: 0px 20px 100px #000000b6;
-}
-
-.field-container__add-item:hover {
-    height: 90px;
-}
-
-.field-container__item--edit-appear {
-    animation: fieldContainerItemEditAppear 0.3s ease forwards;
-}
-
-.field-container__item--edit-disappear {
-    animation: fieldContainerItemEditDisappear 0.3s ease forwards;
-}
-
-.field-container__items-appear {
-    animation: fieldContainerItemsAppear 0.3s ease forwards;
-}
-
-.field-container__items-disappear {
-    animation: fieldContainerItemsDisappear 0.3s ease forwards;
-}
-
-.field-container__item--edit,
-.field-container__item--change-text-size,
-.field-container__item--change-text-color,
-.field-container__item--set-important {
+.tasks__field-container--item-edit,
+.add-tasks__field-container--item-vector,
+.tasks__field-container--item--change-text-size,
+.tasks__field-container--item--change-text-color,
+.tasks__field-container--item--set-important {
     color: white;
     margin: 0 20px 0 0;
 }
 
-.field-container__item--change-text-size {
-    margin: 3px 20px 0 0;
+.tasks__field-container--item--change-text-size {
+    margin: -3px 20px 0 0;
 }
 
-.field-container__item--change-text-size:hover,
-.field-container__item--change-text-color:hover,
-.field-container__item--set-important:hover,
-.field-container__item--edit:hover {
-    text-shadow: 0px 20px 50px #00000093;
-    cursor: pointer;
+.tasks__field-container--item::-webkit-scrollbar,
+.add-tasks__field-container--item::-webkit-scrollbar {
+    display: none;
 }
 
-.field-container__item--change-text-size:hover,
-.field-container__item--set-important:hover {
+.tasks__field-container:hover,
+.add-tasks__field-container:hover {
+    scale: 1.05;
+}
+
+.tasks__field-container--item:hover,
+.add-tasks__field-container--item:hover {
+    box-shadow: 0px 20px 100px #000000b6;
+}
+
+.add-tasks__field-container:hover {
+    height: 135px;
+}
+
+.add-tasks__field-container--item::placeholder {
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.add-tasks__field-container--item::placeholder {
+    top: 50%;
+    left: 80px;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.tasks__field-container--item--change-text-size:hover,
+.tasks__field-container--item--set-important:hover {
     transform: rotate(-90deg);
 }
 
-
-.field-container__item--edit {
-    font-size: 15px;
+.tasks__field-container--item-edit:hover,
+.add-tasks__field-container--item-vector:hover,
+.tasks__field-container--item--change-text-size:hover,
+.tasks__field-container--item--change-text-color:hover,
+.tasks__field-container--item--set-important:hover {
+    cursor: pointer;
 }
+
+.tasks__field-container--item-edit:hover,
+.add-tasks__field-container--item-vector:hover,
+.tasks__field-container--item--change-text-size:hover,
+.tasks__field-container--item--change-text-color:hover,
+.tasks__field-container--item--set-important:hover {
+    text-shadow: 0px 20px 50px #00000093;
+}
+
 
 @media(min-width: 650px) {
     .todo-page {
@@ -175,10 +162,16 @@
     }
 }
 
+@media(min-width: 900px) {
+    .todo-page {
+        padding: 0;
+    }
+}
+
 @media(min-width: 1250px) {
 
-    .todo-page__add-tasks,
-    .todo-page__tasks {
-        font-size: 35px;
+    .todo-page__tasks-heading,
+    .todo-page__add-tasks-heading {
+        font-size: 31px;
     }
 }

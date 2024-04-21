@@ -1,26 +1,27 @@
-const theButtons = document.querySelectorAll('.tasks__field-container');
+const theButton = document.querySelectorAll('.tasks__field-container');
+const theAddButton = document.querySelectorAll('.add-tasks__field-container');
 
-theButtons.forEach(button => {
-    const fieldContainerItems = button.querySelector('.field-container__items');
-    const fieldContainerItemEdit = button.querySelector('.field-container__item--edit');
+theButton.forEach(button => {
+    const fieldContainerItems = button.querySelector('.tasks__field-container--items');
+    const fieldContainerItemEdit = button.querySelector('.tasks__field-container--item-edit');
 
     const renderFieldContainerItemEdit = () => {
         fieldContainerItemEdit.classList.remove('hidden');
-        fieldContainerItemEdit.classList.remove('field-container__item--edit-disappear');
-        fieldContainerItemEdit.classList.add('field-container__item--edit-appear');
+        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-disappear');
+        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-appear');
     };
 
     const removeFieldContainerItemEdit = () => {
-        fieldContainerItemEdit.classList.remove('field-container__item--edit-appear');
-        fieldContainerItemEdit.classList.add('field-container__item--edit-disappear');
+        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-appear');
+        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-disappear');
         setTimeout(() => {
             fieldContainerItemEdit.classList.add('hidden');
         }, 300);
 
-        if (fieldContainerItems.classList.contains('field-container__items-appear')) {
-            fieldContainerItems.classList.remove('field-container__items-appear');
+        if (fieldContainerItems.classList.contains('tasks__field-container--items-appear')) {
+            fieldContainerItems.classList.remove('tasks__field-container--items-appear');
         }
-        fieldContainerItems.classList.add('field-container__items-disappear');
+        fieldContainerItems.classList.add('tasks__field-container--items-disappear');
         setTimeout(() => {
             fieldContainerItems.classList.add('hidden');
         }, 300);
@@ -29,3 +30,29 @@ theButtons.forEach(button => {
     button.addEventListener('mouseover', renderFieldContainerItemEdit);
     button.addEventListener('mouseleave', removeFieldContainerItemEdit);
 });
+
+theAddButton.forEach(button => {
+    const fieldContainerItemEdit = button.querySelector('.add-tasks__field-container--item-vector');
+
+    const renderFieldContainerItemEdit = () => {
+        fieldContainerItemEdit.classList.remove('hidden');
+        fieldContainerItemEdit.classList.remove('add-tasks__field-container--item-vector-disappear');
+        fieldContainerItemEdit.classList.add('add-tasks__field-container--item-vector-appear');
+    };
+
+    const removeFieldContainerItemEdit = () => {
+        fieldContainerItemEdit.classList.remove('add-tasks__field-container--item-vector-appear');
+        fieldContainerItemEdit.classList.add('add-tasks__field-container--item-vector-disappear');
+        setTimeout(() => {
+            fieldContainerItemEdit.classList.add('hidden');
+        }, 300);
+    };
+
+    button.addEventListener('mouseover', renderFieldContainerItemEdit);
+    button.addEventListener('mouseleave', removeFieldContainerItemEdit);
+});
+
+
+
+
+

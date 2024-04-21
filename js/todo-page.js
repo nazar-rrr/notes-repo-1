@@ -1,123 +1,98 @@
-const form = document.querySelector('#form');
-const taskInput = document.querySelector('#taskInput');
-const tasksList = document.querySelector('#tasksList');
-const emptyList = document.querySelector('#emptyList');
+const theButton = document.querySelector('.add-tasks__field-container--item-vector')
+const toDoPageTasks = document.querySelector('.todo-page__tasks');
+const addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
+const addTasksFieldContainerItemContent = addTasksFieldContainerItem.textContent;
 
-let tasks = [];
+let tasksArray = [];
 
-if (localStorage.getItem('tasks')) {
-    tasks = JSON.parse(localStorage.getItem('tasks'))
-}
+const tasksAddition = () => {
+    const tasksFieldContainer = document.createElement('div');
+    tasksFieldContainer.classList.add('tasks__field-container');
+    tasksFieldContainer.innerHTML = `
+        <div class="tasks__field-container--item-edit hidden">Edit</div>
+        <textarea class="tasks__field-container--item" readonly></textarea>
+        <div class="tasks__field-container--items hidden">
+            <div class="tasks__field-container--item--change-text-size">
+                <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 13L-1.14193e-06 25.1244L-8.1987e-08 0.875644L21 13Z" fill="white" />
+                </svg>
+            </div>
+            <div class="tasks__field-container--item--change-text-color">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="10" fill="white" />
+                </svg>
+            </div>
+            <div class="tasks__field-container--item--set-important">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="20" height="20" fill="white" />
+                </svg>
+            </div>
+        </div>`;
 
-tasks.forEach(function(task) {
-    const cssClass = task.done ? 'task-title task-title--done' : 'task-title';
+    const tasksFieldContainerItem = tasksFieldContainer.querySelector('.tasks__field-container--item-edit');
+    tasksFieldContainerItem.textContent = addTasksFieldContainerItemContent;
 
-    const taskHTML = `
-    <li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
-		<span class="${cssClass}">${task.text}</span>
-		<div class="task-item__buttons">
-			<button type="button" data-action="done" class="btn-action">
-				<img src="./img/tick.svg" alt="Done" width="18" height="18">
-			</button>
-			<button type="button" data-action="delete" class="btn-action">
-				<img src="./img/cross.svg" alt="Done" width="18" height="18">
-			</button>
-		</div>
-	</li>
-    `
-
-    tasksList.insertAdjacentHTML('beforeend', taskHTML);
-})
-
-form.addEventListener('submit', addTask);
-tasksList.addEventListener('click', deleteTask);
-tasksList.addEventListener('click', doneTask);
-
-
-function addTask (event) {
-    event.preventDefault();
-
-    const taskText = taskInput.value
-
-    const newTask = {
-        id: Date.now(),
-        text: taskText,
-        done: false
-    };
-
-    tasks.push(newTask);
+    toDoPageTasks.appendChild(tasksFieldContainer);
+    tasksArray.push(addTasksFieldContainerItemContent);
+    const theFirstButton = document.querySelectorAll('.tasks__field-container');
+    const theAddButton = document.querySelectorAll('.add-tasks__field-container');
     
-    SaveToLocaleStorage();
-
-    const cssClass = newTask.done ? 'task-title task-title--done' : 'task-title';
-
-    const taskHTML = `
-    <li id="${newTask.id}" class="list-group-item d-flex justify-content-between task-item">
-		<span class="${cssClass}">${newTask.text}</span>
-		<div class="task-item__buttons">
-			<button type="button" data-action="done" class="btn-action">
-				<img src="./img/tick.svg" alt="Done" width="18" height="18">
-			</button>
-			<button type="button" data-action="delete" class="btn-action">
-				<img src="./img/cross.svg" alt="Done" width="18" height="18">
-			</button>
-		</div>
-	</li>
-    `
-
-    tasksList.insertAdjacentHTML('beforeend', taskHTML);
-
-    taskInput.value = "";
-    taskInput.focus();
-
-    if (tasksList.children.length > 1) {
-        emptyList.classList.add('none');
-    }
-}
-
-function deleteTask(event) {    
-    if (event.target.dataset.action !== 'delete') return;
-
-    const prenNode = event.target.closest('.list-group-item');
-
-    const id = Number(prenNode.id);
-
-    const index = tasks.findIndex((tasks) => tasks.id === id);
-
-    SaveToLocaleStorage();
-
-    tasks.splice(index, 1);
+    theFirstButton.forEach(button => {
+        const fieldContainerItems = button.querySelector('.tasks__field-container--items');
+        const fieldContainerItemEdit = button.querySelector('.tasks__field-container--item-edit');
     
-    prenNode.remove();
+        const renderFieldContainerItemEdit = () => {
+            fieldContainerItemEdit.classList.remove('hidden');
+            fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-disappear');
+            fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-appear');
+        };
+    
+        const removeFieldContainerItemEdit = () => {
+            fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-appear');
+            fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-disappear');
+            setTimeout(() => {
+                fieldContainerItemEdit.classList.add('hidden');
+            }, 300);
+    
+            if (fieldContainerItems.classList.contains('tasks__field-container--items-appear')) {
+                fieldContainerItems.classList.remove('tasks__field-container--items-appear');
+            }
+            fieldContainerItems.classList.add('tasks__field-container--items-disappear');
+            setTimeout(() => {
+                fieldContainerItems.classList.add('hidden');
+            }, 300);
+        };
+    
+        button.addEventListener('mouseover', renderFieldContainerItemEdit);
+        button.addEventListener('mouseleave', removeFieldContainerItemEdit);
+    });
+    
+    theAddButton.forEach(button => {
+        const fieldContainerItemEdit = button.querySelector('.add-tasks__field-container--item-vector');
+    
+        const renderFieldContainerItemEdit = () => {
+            fieldContainerItemEdit.classList.remove('hidden');
+            fieldContainerItemEdit.classList.remove('add-tasks__field-container--item-vector-disappear');
+            fieldContainerItemEdit.classList.add('add-tasks__field-container--item-vector-appear');
+        };
+    
+        const removeFieldContainerItemEdit = () => {
+            fieldContainerItemEdit.classList.remove('add-tasks__field-container--item-vector-appear');
+            fieldContainerItemEdit.classList.add('add-tasks__field-container--item-vector-disappear');
+            setTimeout(() => {
+                fieldContainerItemEdit.classList.add('hidden');
+            }, 300);
+        };
+    
+        button.addEventListener('mouseover', renderFieldContainerItemEdit);
+        button.addEventListener('mouseleave', removeFieldContainerItemEdit);
+    });
+}
 
-    if (tasksList.children.length === 1) {
-        emptyList.classList.remove('none');
-    }
+
+
+const tasksRemoving = () => {
 
 }
 
-function doneTask(event) {
-    if (event.target.dataset.action !== 'done') return;
-
-    const perentNode = event.target.closest('.list-group-item');
-
-    const id = Number(perentNode.id);
-
-    const task = tasks.find(function (task) {
-        if (task.id === id) {
-            return true
-        }
-    })
-
-    task.done = !task.done;
-
-    SaveToLocaleStorage();
-
-    const taskTitle = perentNode.querySelector('.task-title');
-    taskTitle.classList.toggle('task-title--done');
-
-}
-
-function SaveToLocaleStorage() {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+theButton.addEventListener('click', tasksAddition)

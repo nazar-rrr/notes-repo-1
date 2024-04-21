@@ -1,5 +1,5 @@
-const theButtons = document.querySelectorAll('.field-container__item--edit');
-const fieldContainerItems = document.querySelector('.field-container__items');
+const theButtons = document.querySelectorAll('.tasks__field-container--item-edit');
+const fieldContainerItems = document.querySelector('.tasks__field-container--items');
 
 const theMainNavContainer = document.querySelector('.main-navigation__container');
 const theMainNav = document.querySelector('.main-navigation');
@@ -60,18 +60,18 @@ const showMainNav = () => {
 };
 
 const showFieldContainer = () => {
-    if (fieldContainerItems.classList.contains('field-container__items-disappear')) {
-        fieldContainerItems.classList.remove('field-container__items-disappear');
+    if (fieldContainerItems.classList.contains('tasks__field-container--items-disappear')) {
+        fieldContainerItems.classList.remove('tasks__field-container--items-disappear');
     }
     fieldContainerItems.classList.remove('hidden');
-    fieldContainerItems.classList.add('field-container__items-appear');
+    fieldContainerItems.classList.add('tasks__field-container--items-appear');
 };
 
 const hideFieldContainer = () => {
-    if (fieldContainerItems.classList.contains('field-container__items-appear')) {
-        fieldContainerItems.classList.remove('field-container__items-appear');
+    if (fieldContainerItems.classList.contains('tasks__field-container--items-appear')) {
+        fieldContainerItems.classList.remove('tasks__field-container--items-appear');
     }
-    fieldContainerItems.classList.add('field-container__items-disappear');
+    fieldContainerItems.classList.add('tasks__field-container--items-disappear');
     setTimeout(() => {
         fieldContainerItems.classList.add('hidden');
     }, 300);
