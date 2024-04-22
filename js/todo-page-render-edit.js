@@ -28,6 +28,9 @@ const renderTasksFieldContainerItem = (event) => {
     }
 };
 
+
+
+
 const renderTasksFieldContainerItemEdit = (element) => {
     const fieldContainerItemEdit = element.querySelector('.tasks__field-container--item-edit');
     fieldContainerItemEdit.classList.remove('hidden', 'tasks__field-container--item-edit-disappear');

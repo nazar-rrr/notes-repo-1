@@ -1,11 +1,11 @@
 const theButton = document.querySelector('.add-tasks__field-container--item-vector');
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
-const addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
-const addTasksFieldContainerItemContent = addTasksFieldContainerItem.textContent;
+let addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
 
 let tasksArray = [];
 
 const tasksAddition = () => {
+    let addTasksFieldContainerItemContent = addTasksFieldContainerItem.value.trim();
     let toDoPageTasksHeading = document.querySelector('.todo-page__tasks-heading');
 
     if (!toDoPageTasksHeading) {
@@ -40,6 +40,7 @@ const tasksAddition = () => {
     
     toDoPageTasks.appendChild(tasksFieldContainer);
     tasksArray.push(addTasksFieldContainerItemContent);
+    addTasksFieldContainerItem.value = ' ';
 };
 
 theButton.addEventListener('click', tasksAddition);

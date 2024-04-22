@@ -11,8 +11,18 @@ const changeTextSize = document.querySelector('.main-navigation__change-text-siz
 const changeTextColor = document.querySelector('.main-navigation__change-text-color');
 const setImportant = document.querySelector('.main-navigation__set-important');
 
+const renderTasksFieldContainerItemEditFunctionality = (event) => {
+    const target = event.target;
+    if (target.matches('.tasks__field-container--item-edit')) {
+         const tasksFieldContainerItem = target.querySelector('.tasks__field-container--item')
+    tasksFieldContainerItem.removeAttribute('readonly')
+        }
+};
+
+
+
 const manipulateFieldContainerItems = () => {
-    const isMobile = window.innerWidth <= 950;
+    const isMobile = window.innerWidth <= 1250;
 
     if (isMobile) {
         const isMainNavHidden = theMainNav.classList.contains('hidden');
