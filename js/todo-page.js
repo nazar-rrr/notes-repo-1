@@ -18,8 +18,8 @@ const tasksAddition = () => {
     const tasksFieldContainer = document.createElement('div');
     tasksFieldContainer.classList.add('tasks__field-container');
     tasksFieldContainer.innerHTML = `
-        <div class="tasks__field-container--item-edit hidden">Edit</div>
-        <textarea class="tasks__field-container--item" readonly>${addTasksFieldContainerItemContent}</textarea>
+        <div class="tasks__field-container--item-edit hidden">Delete</div>
+        <textarea class="tasks__field-container--item">${addTasksFieldContainerItemContent}</textarea>
         <div class="tasks__field-container--items hidden">
             <div class="tasks__field-container--item--change-text-size">
                 <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">

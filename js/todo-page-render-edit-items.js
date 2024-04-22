@@ -11,16 +11,6 @@ const changeTextSize = document.querySelector('.main-navigation__change-text-siz
 const changeTextColor = document.querySelector('.main-navigation__change-text-color');
 const setImportant = document.querySelector('.main-navigation__set-important');
 
-const renderTasksFieldContainerItemEditFunctionality = (event) => {
-    const target = event.target;
-    if (target.matches('.tasks__field-container--item-edit')) {
-         const tasksFieldContainerItem = target.querySelector('.tasks__field-container--item')
-    tasksFieldContainerItem.removeAttribute('readonly')
-        }
-};
-
-
-
 const manipulateFieldContainerItems = () => {
     const isMobile = window.innerWidth <= 1250;
 
@@ -86,6 +76,8 @@ const hideFieldContainer = () => {
         fieldContainerItems.classList.add('hidden');
     }, 300);
 };
+
+
 
 theButtons.forEach(button => {
     button.addEventListener('click', manipulateFieldContainerItems);

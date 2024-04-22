@@ -11,6 +11,10 @@
     animation: fieldContainerItemEditAppear 0.3s ease forwards;
 }
 
+.itemDisappear {
+    animation: itemDisappear 0.5s ease forwards;
+}
+
 .tasks__field-container--item-edit-disappear,
 .add-tasks__field-container--item-vector-disappear {
     animation: fieldContainerItemEditDisappear 0.3s ease forwards;
@@ -52,6 +56,7 @@
 }
 
 .todo-page__tasks-heading {
+    animation: pageAppear 0.7s ease forwards;
     margin: 0 0 45px 0;
 }
 
@@ -64,6 +69,7 @@
 
 .tasks__field-container,
 .add-tasks__field-container {
+    animation: itemAppear 0.5s ease forwards;
     height: 105px;
     width: 100%;
     padding: 45px 0 0 0;
