@@ -1,35 +1,4 @@
-const theButton = document.querySelectorAll('.tasks__field-container');
 const theAddButton = document.querySelectorAll('.add-tasks__field-container');
-
-theButton.forEach(button => {
-    const fieldContainerItems = button.querySelector('.tasks__field-container--items');
-    const fieldContainerItemEdit = button.querySelector('.tasks__field-container--item-edit');
-
-    const renderFieldContainerItemEdit = () => {
-        fieldContainerItemEdit.classList.remove('hidden');
-        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-disappear');
-        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-appear');
-    };
-
-    const removeFieldContainerItemEdit = () => {
-        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-appear');
-        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-disappear');
-        setTimeout(() => {
-            fieldContainerItemEdit.classList.add('hidden');
-        }, 300);
-
-        if (fieldContainerItems.classList.contains('tasks__field-container--items-appear')) {
-            fieldContainerItems.classList.remove('tasks__field-container--items-appear');
-        }
-        fieldContainerItems.classList.add('tasks__field-container--items-disappear');
-        setTimeout(() => {
-            fieldContainerItems.classList.add('hidden');
-        }, 300);
-    };
-
-    button.addEventListener('mouseover', renderFieldContainerItemEdit);
-    button.addEventListener('mouseleave', removeFieldContainerItemEdit);
-});
 
 theAddButton.forEach(button => {
     const fieldContainerItemEdit = button.querySelector('.add-tasks__field-container--item-vector');
@@ -52,7 +21,29 @@ theAddButton.forEach(button => {
     button.addEventListener('mouseleave', removeFieldContainerItemEdit);
 });
 
+const renderTasksFieldContainerItem = (event) => {
+    const target = event.target;
+    if (target.matches('.tasks__field-container')) {
+        renderTasksFieldContainerItemEdit(target);
+    }
+};
 
+const renderTasksFieldContainerItemEdit = (element) => {
+    const fieldContainerItemEdit = element.querySelector('.tasks__field-container--item-edit');
+    fieldContainerItemEdit.classList.remove('hidden', 'tasks__field-container--item-edit-disappear');
+    fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-appear');
+};
 
+const removeTasksFieldContainerItem = () => {
+    const fieldContainerItemEdits = document.querySelectorAll('.tasks__field-container--item-edit');
+    fieldContainerItemEdits.forEach(fieldContainerItemEdit => {
+        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-appear');
+        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-disappear');
+        setTimeout(() => {
+            fieldContainerItemEdit.classList.add('hidden');
+        }, 300);
+    });
+};
 
-
+document.addEventListener('mouseover', renderTasksFieldContainerItem);
+document.addEventListener('mouseleave', removeTasksFieldContainerItem);

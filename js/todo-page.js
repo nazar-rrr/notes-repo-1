@@ -1,4 +1,4 @@
-const theButton = document.querySelector('.add-tasks__field-container--item-vector')
+const theButton = document.querySelector('.add-tasks__field-container--item-vector');
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
 const addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
 const addTasksFieldContainerItemContent = addTasksFieldContainerItem.textContent;
@@ -6,11 +6,20 @@ const addTasksFieldContainerItemContent = addTasksFieldContainerItem.textContent
 let tasksArray = [];
 
 const tasksAddition = () => {
+    let toDoPageTasksHeading = document.querySelector('.todo-page__tasks-heading');
+
+    if (!toDoPageTasksHeading) {
+        toDoPageTasksHeading = document.createElement('div');
+        toDoPageTasksHeading.classList.add('todo-page__tasks-heading');
+        toDoPageTasksHeading.innerHTML = '<p class="todo-page__tasks-heading--article">To Do</p>';
+        toDoPageTasks.appendChild(toDoPageTasksHeading);
+    }
+
     const tasksFieldContainer = document.createElement('div');
     tasksFieldContainer.classList.add('tasks__field-container');
     tasksFieldContainer.innerHTML = `
-        <div class="tasks__field-container--item-edit">Edit</div>
-        <textarea class="tasks__field-container--item" readonly></textarea>
+        <div class="tasks__field-container--item-edit hidden">Edit</div>
+        <textarea class="tasks__field-container--item" readonly>${addTasksFieldContainerItemContent}</textarea>
         <div class="tasks__field-container--items hidden">
             <div class="tasks__field-container--item--change-text-size">
                 <svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,20 +37,13 @@ const tasksAddition = () => {
                 </svg>
             </div>
         </div>`;
-
-    const tasksFieldContainerItem = tasksFieldContainer.querySelector('.tasks__field-container--item-edit');
-    tasksFieldContainerItem.textContent = addTasksFieldContainerItemContent;
-
+    
     toDoPageTasks.appendChild(tasksFieldContainer);
     tasksArray.push(addTasksFieldContainerItemContent);
+};
 
-}
-
-theButton.addEventListener('click', tasksAddition)
-
+theButton.addEventListener('click', tasksAddition);
 
 const tasksRemoving = () => {
-
-}
-
-
+   
+};
