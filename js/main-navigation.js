@@ -1,9 +1,8 @@
-const theButton = document.querySelector('.main-navigation__button')
-const theHomePageButton = document.querySelector('.main-navigation__home-page--vector')
-const theToDoPageButton = document.querySelector('.main-navigation__todo-page--vector')
-const theStatisticsPageButton = document.querySelector('.main-navigation__statistics-page--vector')
+const theButton = document.querySelector('.button-navigation')
+const theHomePageButton = document.querySelector('.main-navigation__button--home-page__vector')
+const theToDoPageButton = document.querySelector('.main-navigation__button--todo-page__vector')
+const theStatisticsPageButton = document.querySelector('.main-navigation__button--statistics-page__vector')
 const theMainNav = document.querySelector('.main-navigation')
-const theMainNavContainer = document.querySelector('.main-navigation__container')
 
 const manipulateMainNav = () => {
     if (theMainNav.classList.contains('hidden')) {
@@ -18,13 +17,13 @@ const manipulateMainNav = () => {
         }
 
         theMainNav.classList.remove('hidden');
-        theMainNavContainer.classList.remove('main-navigation__container--disappear')
-        theMainNavContainer.classList.add('main-navigation__container--appear')
+        theMainNav.classList.remove('main-navigation__disappear')
+        theMainNav.classList.add('main-navigation__appear')
     }
 
     else {
-        theMainNavContainer.classList.remove('main-navigation__container--appear')
-        theMainNavContainer.classList.add('main-navigation__container--disappear')
+        theMainNav.classList.remove('main-navigation__appear')
+        theMainNav.classList.add('main-navigation__disappear')
         setTimeout(() => {
             theMainNav.classList.add('hidden');
         }, 300)

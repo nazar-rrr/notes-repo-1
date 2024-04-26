@@ -327,3 +327,22 @@ body::-webkit-scrollbar {
     --scale-todo-page__tasks-heading--button: 60%;
     --scale-field-container__item--change-text-color: 1.1;
 }
+
+:root {
+    --button-radius: 6px;
+    --button-width: 180px;
+    --button-height: 6px;
+    --button-bg-color: #00000038;
+    --button-hover-height: 230px;
+    --button-hover-top: calc(50% - 115px);
+    --navigation-padding-mobile: 20px;
+    --navigation-padding-desktop: 45px;
+    --navigation-border-radius-mobile: 30px;
+    --navigation-border-radius-desktop: 0px;
+    --navigation-box-shadow: 0 0 500px 0 #00000075;
+    --navigation-bg-gradient: linear-gradient(to right, #AD00FF -30%, #feb47b 60%, #ffefa1 100%);
+    --navigation-bg-box-shadow: 0 0 500px #00000075;
+    --navigation-bg-box-shadow-hover: 0 0 50px 0 #00000060;
+    --button-margin-desktop: 0 auto 0 0;
+    --button-margin-mobile: 0 auto 50px 0;
+  }
