@@ -2,7 +2,6 @@ const theHomePageButton = document.querySelector('.home-page__heading-button');
 const theHomePage = document.querySelector('.home-page');
 const theMainNavigationButton = document.querySelector('.main-navigation__button--todo-page__vector');
 const theToDoPage = document.querySelector('.todo-page');
-const theToDoPageTasksFieldContainer = document.querySelector('.tasks__field-container');
 
 const removeHomePage = () => {
     theHomePage.classList.remove('home-page__appear');
