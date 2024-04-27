@@ -1,7 +1,6 @@
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
-const theAddButton = document.querySelectorAll('.add-tasks__field-container');
 
-renderTasksFieldContainerItem = (event) => {
+const renderTasksFieldContainerItem = (event) => {
     const target = event.target;
     if (target.matches('.tasks__field-container')) {
         renderTasksFieldContainerItemEdit(target);
@@ -55,3 +54,8 @@ document.addEventListener('click', renderFunctionality);
 document.addEventListener('mouseover', renderTasksFieldContainerItem);
 document.addEventListener('mouseleave', removeTasksFieldContainerItem);
 
+
+
+theButtons.forEach(button => {
+    button.addEventListener('click', manipulateFieldContainerItems);
+});

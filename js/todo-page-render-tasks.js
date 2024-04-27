@@ -16,7 +16,7 @@ const tasksAddition = () => {
     }
 
     const tasksFieldContainer = document.createElement('div');
-    tasksFieldContainer.classList.add('tasks__container');
+    tasksFieldContainer.classList.add('tasks__field-container');
     tasksFieldContainer.innerHTML = `
         <div class="tasks__field-container--item-edit hidden">Delete</div>
         <textarea class="tasks__field-container--item">${addTasksFieldContainerItemContent}</textarea>
@@ -44,7 +44,3 @@ const tasksAddition = () => {
 };
 
 theButton.addEventListener('click', tasksAddition);
-
-const tasksRemoving = () => {
-   
-};
