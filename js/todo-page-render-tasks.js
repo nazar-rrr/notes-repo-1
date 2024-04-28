@@ -1,10 +1,10 @@
 const theButton = document.querySelector('.add-tasks__field-container--item-vector');
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
-let addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
 
 let tasksArray = [];
 
-const tasksAddition = () => {
+const addingTasks = () => {
+    let addTasksFieldContainerItem = document.querySelector('.add-tasks__field-container--item');
     let addTasksFieldContainerItemContent = addTasksFieldContainerItem.value.trim();
     let toDoPageTasksHeading = document.querySelector('.todo-page__tasks-heading');
 
@@ -37,10 +37,34 @@ const tasksAddition = () => {
                 </svg>
             </div>
         </div>`;
-    
+
     toDoPageTasks.appendChild(tasksFieldContainer);
     tasksArray.push(addTasksFieldContainerItemContent);
     addTasksFieldContainerItem.value = ' ';
 };
 
-theButton.addEventListener('click', tasksAddition);
+const tasksRemoving = (event) => {
+    if (event.target.matches('.tasks__field-container--item-edit')) {
+        const tasksEditButtonItem = event.target;
+        const tasksContainer = event.target.closest('.tasks__field-container');
+
+        tasksEditButtonItem.classList.remove('tasks__field-container--item-edit-appear');
+        tasksEditButtonItem.classList.add('tasks__field-container--item-edit-disappear');
+        setTimeout(() => {
+            tasksEditButtonItem.classList.add('hidden');
+        }, 200);
+
+        setTimeout(() => {
+            tasksContainer.classList.add('hidden');
+        }, 300);
+        setTimeout(() => {
+            tasksContainer.setAttribute('class', 'itemDisappear')
+        }, 200)
+        setTimeout(() => {
+            toDoPageTasks.removeChild(tasksContainer);
+        }, 800)
+    }
+}
+
+theButton.addEventListener('click', addingTasks);
+document.addEventListener('click', tasksRemoving);
