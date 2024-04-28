@@ -1,61 +1,22 @@
-const toDoPageTasks = document.querySelector('.todo-page__tasks');
-
-const renderTasksFieldContainerItem = (event) => {
-    const target = event.target;
-    if (target.matches('.tasks__field-container')) {
-        renderTasksFieldContainerItemEdit(target);
+const renderTasksEditButtonItem = (event) => {
+    if (event.target.matches('.tasks__field-container')) {
+        const tasksEditButtonItem = event.target.querySelector('.tasks__field-container--item-edit');
+        tasksEditButtonItem.classList.remove('hidden');
+        tasksEditButtonItem.classList.remove('tasks__field-container--item-edit-disappear');
+        tasksEditButtonItem.classList.add('tasks__field-container--item-edit-appear');
     }
-};
+}
 
-const renderTasksFieldContainerItemEdit = (element) => {
-    const renderFunctionality = (event) => {
-        if (event.target.matches('.tasks__field-container')) {
-            const tasksFieldContainerItemEdit = document.querySelector('.tasks__field-container--item-edit');
-            tasksFieldContainerItemEdit.removeAttribute('readonly')
-        }
-    };
-
-    document.addEventListener('click', renderFunctionality)
-    const fieldContainerItemEdit = element.querySelector('.tasks__field-container--item-edit');
-    fieldContainerItemEdit.classList.remove('hidden', 'tasks__field-container--item-edit-disappear');
-    fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-appear');
-};
-
-const removeTasksFieldContainerItem = () => {
-    const fieldContainerItemEdits = document.querySelectorAll('.tasks__field-container--item-edit');
-    fieldContainerItemEdits.forEach(fieldContainerItemEdit => {
-        fieldContainerItemEdit.classList.remove('tasks__field-container--item-edit-appear');
-        fieldContainerItemEdit.classList.add('tasks__field-container--item-edit-disappear');
+const removeTasksEditButtonItem = (event) => {
+    const tasksEditButtonItem = document.querySelectorAll('.tasks__field-container--item-edit');
+    tasksEditButtonItem.forEach(buttonItem => {
+        buttonItem.classList.remove('tasks__field-container--item-edit-appear');
+        buttonItem.classList.add('tasks__field-container--item-edit-disappear');
         setTimeout(() => {
-            fieldContainerItemEdit.classList.add('hidden');
+            buttonItem.classList.add('hidden');
         }, 300);
-    });
-};
+    })
+}
 
-
-const renderFunctionality = (event) => {
-    if (event.target.matches('.tasks__field-container--item-edit')) {
-        const itemToRemove = event.target.closest('.tasks__field-container');
-        if (itemToRemove) {
-            removeTasksFieldContainerItem();
-            setTimeout(() => {
-                itemToRemove.setAttribute('class', 'itemDisappear')
-            }, 200)
-            setTimeout(() => {
-                toDoPageTasks.removeChild(itemToRemove);
-            }, 800)
-        }
-    }
-};
-
-document.addEventListener('click', renderFunctionality);
-
-
-document.addEventListener('mouseover', renderTasksFieldContainerItem);
-document.addEventListener('mouseleave', removeTasksFieldContainerItem);
-
-
-
-theButtons.forEach(button => {
-    button.addEventListener('click', manipulateFieldContainerItems);
-});
+document.addEventListener('mouseover', renderTasksEditButtonItem);
+document.addEventListener('mouseleave', removeTasksEditButtonItem);

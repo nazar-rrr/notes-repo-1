@@ -1,5 +1,6 @@
 const tasksAddButton = document.querySelector('.add-tasks__field-container');
 const tasksAddButtonItem = document.querySelector('.add-tasks__field-container--item-vector');
+
 const renderTasksAddButtonItem = () => {
     tasksAddButtonItem.classList.remove('hidden');
     tasksAddButtonItem.classList.remove('add-tasks__field-container--item-vector-disappear');
