@@ -1,33 +1,3 @@
-.todo-page__disappear {
-    animation: var(--todo-page-disappearing);
-}
-
-.todo-page__appear {
-    animation: var(--todo-page-appearing);
-}
-
-.tasks__field-container--item-edit-appear,
-.add-tasks__field-container--item-vector-appear {
-    animation: fieldContainerItemEditAppear 0.3s ease forwards;
-}
-
-.itemDisappear {
-    animation: itemDisappear 0.5s ease forwards;
-}
-
-.tasks__field-container--item-edit-disappear,
-.add-tasks__field-container--item-vector-disappear {
-    animation: fieldContainerItemEditDisappear 0.3s ease forwards;
-}
-
-.tasks__field-container--items-appear {
-    animation: fieldContainerItemsAppear 0.3s ease forwards;
-}
-
-.tasks__field-container--items-disappear {
-    animation: fieldContainerItemsDisappear 0.3s ease forwards;
-}
-
 .todo-page {
     margin: 180px auto 0 auto;
     padding: 0 40px;
@@ -55,20 +25,50 @@
     color: white;
 }
 
+.todo-page__disappear {
+    animation: var(--todo-page-disappearing);
+}
+
+.todo-page__appear {
+    animation: var(--todo-page-appearing);
+}
+
+.tasks__item--edit-appear,
+.add-tasks__item--vector-appear {
+    animation: fieldContainerItemEditAppear 0.3s ease forwards;
+}
+
+.itemDisappear {
+    animation: itemDisappear 0.5s ease forwards;
+}
+
+.tasks__item--edit-disappear,
+.add-tasks__item--vector-disappear {
+    animation: fieldContainerItemEditDisappear 0.3s ease forwards;
+}
+
+.tasks__item--container-vector-appear {
+    animation: fieldContainerItemsAppear 0.3s ease forwards;
+}
+
+.tasks__item--container-vector-disappear {
+    animation: fieldContainerItemsDisappear 0.3s ease forwards;
+}
+
 .todo-page__tasks-heading {
     animation: pageAppear 0.7s ease forwards;
     margin: 0 0 45px 0;
 }
 
-.tasks__field-container,
-.add-tasks__field-container {
+.tasks__item,
+.add-tasks__item {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.tasks__field-container,
-.add-tasks__field-container {
+.tasks__item,
+.add-tasks__item {
     animation: itemAppear 0.5s ease forwards;
     height: 105px;
     width: 100%;
@@ -76,12 +76,12 @@
     transition: 0.2s;
 }
 
-.tasks__field-container {
+.tasks__item {
     padding: 0 0 45px 0;
 }
 
-.tasks__field-container--item,
-.add-tasks__field-container--item {
+.tasks__item--field,
+.add-tasks__item--field {
     width: 100%;
     height: 100%;
     padding: 20px 50px 2px 30px;
@@ -93,53 +93,53 @@
     font-size: 15px;
 }
 
-.tasks__field-container--item-edit {
+.tasks__item--edit {
     font-size: 15px;
 }
 
-.tasks__field-container--items {
+.tasks__item--container-vector {
     display: flex;
 }
 
-.tasks__field-container--item-edit,
-.add-tasks__field-container--item-vector,
-.tasks__field-container--item--change-text-size,
-.tasks__field-container--item--change-text-color,
-.tasks__field-container--item--set-important {
+.tasks__item--edit,
+.add-tasks__item--vector,
+.container-vector__item--change-text-size,
+.container-vector__item--change-text-color,
+.container-vector__item--set-important {
     color: white;
     margin: 0 20px 0 0;
 }
 
-.tasks__field-container--item--change-text-size {
+.container-vector__item--change-text-size {
     margin: -3px 20px 0 0;
 }
 
-.tasks__field-container--item::-webkit-scrollbar,
-.add-tasks__field-container--item::-webkit-scrollbar {
+.tasks__item--field::-webkit-scrollbar,
+.add-tasks__item--field::-webkit-scrollbar {
     display: none;
 }
 
-.tasks__field-container:hover,
-.add-tasks__field-container:hover {
+.tasks__item:hover,
+.add-tasks__item:hover {
     scale: 1.05;
 }
 
-.tasks__field-container--item:hover,
-.add-tasks__field-container--item:hover {
+.tasks__item:hover,
+.add-tasks__item:hover {
     box-shadow: 0px 20px 100px #000000b6;
 }
 
-.add-tasks__field-container:hover {
+.add-tasks__item:hover {
     height: 135px;
 }
 
-.add-tasks__field-container--item::placeholder {
+.add-tasks__item::placeholder {
     position: absolute;
     text-align: center;
     text-transform: uppercase;
 }
 
-.add-tasks__field-container--item::placeholder {
+.add-tasks__item::placeholder {
     top: 50%;
     left: 80px;
     transform: translate(-50%, -50%);
@@ -147,24 +147,24 @@
     font-size: 15px;
 }
 
-.tasks__field-container--item--change-text-size:hover,
-.tasks__field-container--item--set-important:hover {
+.container-vector__item--change-text-size:hover,
+.container-vector__item--change-text-color:hover {
     transform: rotate(-90deg);
 }
 
-.tasks__field-container--item-edit:hover,
-.add-tasks__field-container--item-vector:hover,
-.tasks__field-container--item--change-text-size:hover,
-.tasks__field-container--item--change-text-color:hover,
-.tasks__field-container--item--set-important:hover {
+.tasks__item--edit:hover,
+.add-tasks__item--edit:hover,
+.container-vector__item--change-text-size:hover,
+.container-vector__item--change-text-color:hover,
+.container-vector__item--set-important:hover {
     cursor: pointer;
 }
 
-.tasks__field-container--item-edit:hover,
-.add-tasks__field-container--item-vector:hover,
-.tasks__field-container--item--change-text-size:hover,
-.tasks__field-container--item--change-text-color:hover,
-.tasks__field-container--item--set-important:hover {
+.tasks__item--edit:hover,
+.add-tasks__item--edit:hover,
+.container-vector__item--change-text-size:hover,
+.container-vector__item--change-text-color:hover,
+.container-vector__item--set-important:hover {
     text-shadow: 0px 20px 50px #00000093;
 }
 

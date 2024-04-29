@@ -16,7 +16,7 @@ const addingTasks = () => {
     }
 
     const tasksFieldContainer = document.createElement('div');
-    tasksFieldContainer.classList.add('tasks__field-container');
+    tasksFieldContainer.classList.add('tasks__item');
     tasksFieldContainer.innerHTML = `
         <div class="tasks__field-container--item-edit hidden">Delete</div>
         <textarea class="tasks__field-container--item">${addTasksFieldContainerItemContent}</textarea>
@@ -43,7 +43,7 @@ const addingTasks = () => {
     addTasksFieldContainerItem.value = ' ';
 };
 
-const tasksRemoving = (event) => {
+const removingTasks = (event) => {
     if (event.target.matches('.tasks__field-container--item-edit')) {
         const tasksEditButtonItem = event.target;
         const tasksContainer = event.target.closest('.tasks__field-container');
@@ -52,14 +52,13 @@ const tasksRemoving = (event) => {
         tasksEditButtonItem.classList.add('tasks__field-container--item-edit-disappear');
         setTimeout(() => {
             tasksEditButtonItem.classList.add('hidden');
-        }, 200);
-
-        setTimeout(() => {
-            tasksContainer.classList.add('hidden');
         }, 300);
         setTimeout(() => {
-            tasksContainer.setAttribute('class', 'itemDisappear')
-        }, 200)
+            tasksContainer.setAttribute('class', 'tasksFieldContainerDisappear')
+        }, 300);
+        setTimeout(() => {
+            tasksContainer.classList.add('hidden');
+        }, 890)
         setTimeout(() => {
             toDoPageTasks.removeChild(tasksContainer);
         }, 800)
@@ -67,4 +66,4 @@ const tasksRemoving = (event) => {
 }
 
 theButton.addEventListener('click', addingTasks);
-document.addEventListener('click', tasksRemoving);
+document.addEventListener('click', removingTasks);
