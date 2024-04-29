@@ -246,10 +246,10 @@
     }
 
     .main-navigation__appear {
-        animation: mainNavigationAppear-950px 0.3s ease forwards;
+        animation: mainNavigationAppear-1250px 0.3s ease forwards;
     }
 
     .main-navigation__disappear {
-        animation: mainNavigationDisappear-950px 0.3s ease forwards;
+        animation: mainNavigationDisappear-1250px 0.3s ease forwards;
     }
 }
