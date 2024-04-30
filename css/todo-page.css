@@ -154,9 +154,8 @@
 }
 
 .vectors-container__item--set-important {
-    margin: 0 20px 0 20px;
+    margin: 0 20px 0 0;
 }
-
 
 .tasks__item--edit:hover,
 .add-tasks__item--vector:hover,
