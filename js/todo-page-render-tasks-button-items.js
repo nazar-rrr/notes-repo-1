@@ -1,41 +1,36 @@
 const manipulateTasksButtonItems = (event) => {
     if (event.target.matches('.tasks__item--edit')) {
-        const button = event.target;
-        const parentTask = button.closest('.tasks__item');
+        const tasksItem = event.target.closest('.tasks__item');
         
-        const itemSetImportant = parentTask.querySelector('.vectors-container__item--set-important');
-        const itemChangeTextSize = parentTask.querySelector('.vectors-container__item--change-text-size');
-        const itemDelete = parentTask.querySelector('.vectors-container__item--delete');
+        const itemSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
+        const itemChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
+        const itemDelete = tasksItem.querySelector('.vectors-container__item--delete');
 
-        const toggleVisibility = (element, action, className) => {
-            element.classList[action](className);
-        };
-
-        const toggleClassList = (element, action, className) => {
+         const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
         };
 
         if (itemSetImportant.classList.contains('hidden') && itemChangeTextSize.classList.contains('hidden') && itemDelete.classList.contains('hidden')) {
-            toggleClassList(itemSetImportant, 'remove', 'item--vectors-container-disappear');
-            toggleClassList(itemChangeTextSize, 'remove', 'item--vectors-container-disappear');
-            toggleClassList(itemDelete, 'remove', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemSetImportant, 'remove', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemChangeTextSize, 'remove', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemDelete, 'remove', 'item--vectors-container-disappear');
 
-            toggleVisibility(itemSetImportant, 'remove', 'hidden');
-            toggleVisibility(itemDelete, 'remove', 'hidden');
-            toggleVisibility(itemChangeTextSize, 'remove', 'hidden');
+            renderVectorContainerItems(itemSetImportant, 'remove', 'hidden');
+            renderVectorContainerItems(itemDelete, 'remove', 'hidden');
+            renderVectorContainerItems(itemChangeTextSize, 'remove', 'hidden');
 
-            toggleClassList(itemSetImportant, 'add', 'item--vectors-container-appear');
-            toggleClassList(itemChangeTextSize, 'add', 'item--vectors-container-appear');
-            toggleClassList(itemDelete, 'add', 'item--vectors-container-appear');
+            renderVectorContainerItems(itemSetImportant, 'add', 'item--vectors-container-appear');
+            renderVectorContainerItems(itemChangeTextSize, 'add', 'item--vectors-container-appear');
+            renderVectorContainerItems(itemDelete, 'add', 'item--vectors-container-appear');
         } else {
-            toggleClassList(itemSetImportant, 'add', 'item--vectors-container-disappear');
-            toggleClassList(itemChangeTextSize, 'add', 'item--vectors-container-disappear');
-            toggleClassList(itemDelete, 'add', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemSetImportant, 'add', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemChangeTextSize, 'add', 'item--vectors-container-disappear');
+            renderVectorContainerItems(itemDelete, 'add', 'item--vectors-container-disappear');
 
             setTimeout(() => {
-                toggleVisibility(itemSetImportant, 'add', 'hidden');
-                toggleVisibility(itemDelete, 'add', 'hidden');
-                toggleVisibility(itemChangeTextSize, 'add', 'hidden');
+                renderVectorContainerItems(itemSetImportant, 'add', 'hidden');
+                renderVectorContainerItems(itemDelete, 'add', 'hidden');
+                renderVectorContainerItems(itemChangeTextSize, 'add', 'hidden');
             }, 300);
         }
     }
