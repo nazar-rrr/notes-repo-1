@@ -176,71 +176,51 @@
         box-shadow: var(--navigation-bg-box-shadow);
     }
 
-    .main-navigation__button--change-text-size,
-    .main-navigation__button--change-text-color,
-    .main-navigation__button--set-important,
     .main-navigation__button--home-page,
     .main-navigation__button--todo-page,
     .main-navigation__button--statistics-page {
         flex-direction: row;
     }
 
-    .main-navigation__button--change-text-size,
-    .main-navigation__button--change-text-color,
-    .main-navigation__button--set-important,
     .main-navigation__button--home-page,
     .main-navigation__button--todo-page,
     .main-navigation__button--statistics-page {
         margin: var(--button-margin-desktop);
     }
 
-    .main-navigation__button--change-text-size__vector,
-    .main-navigation__button--change-text-color__vector,
-    .main-navigation__button--set-important__vector,
     .main-navigation__button--home-page__vector,
     .main-navigation__button--todo-page__vector,
     .main-navigation__button--statistics-page__vector {
         margin: 0 20px 0 0;
     }
 
-    .main-navigation__button--change-text-size__vector:hover,
-    .main-navigation__button--change-text-color__vector:hover,
-    .main-navigation__button--set-important__vector:hover,
     .main-navigation__button--home-page__vector:hover,
     .main-navigation__button--todo-page__vector:hover,
     .main-navigation__button--statistics-page__vector:hover {
         cursor: pointer;
     }
 
-    .main-navigation__button--change-text-size__vector:hover,
-    .main-navigation__button--change-text-color__vector:hover,
-    .main-navigation__button--set-important__vector:hover,
+
     .main-navigation__button--home-page__vector:hover,
     .main-navigation__button--todo-page__vector:hover,
     .main-navigation__button--statistics-page__vector:hover {
         box-shadow: var(--navigation-bg-box-shadow-hover);
     }
 
-    .main-navigation__button--change-text-size__article,
-    .main-navigation__button--change-text-color__article,
-    .main-navigation__button--set-important__article,
     .main-navigation__button--home-page__article,
     .main-navigation__button--todo-page__article,
     .main-navigation__button--statistics-page__article {
         font-size: 15px;
     }
 
-    .main-navigation__button--change-text-size:hover,
     .main-navigation__button--home-page:hover {
         margin: var(--button-margin-mobile);
     }
 
-    .main-navigation__button--change-text-color:hover,
     .main-navigation__button--todo-page:hover {
         margin: var(--button-margin-mobile);
     }
 
-    .main-navigation__button--set-important:hover,
     .main-navigation__button--statistics-page:hover {
         margin: var(--button-margin-desktop);
     }
