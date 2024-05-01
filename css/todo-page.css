@@ -6,7 +6,6 @@
     animation: var(--todo-page-appearing);
 }
 
-
 .tasks__item--edit-appear,
 .add-tasks__item--vector-appear {
     animation: tasksItemEditAppear 0.3s ease forwards;

@@ -38,45 +38,58 @@ const addingTasks = () => {
         
         toDoPageTasks.appendChild(tasksItem);
         tasksArray.push(addTasksItemContent);
-        git  
         addTasksItem.value = '';
 };
 
 const removingTasks = (event) => {
-    if (event.target.classList.contains('item--delete')) {
-        const tasksItem = event.target.closest('.tasks__item');
-        if (tasksItem) {
-            const itemVectorsContainer = tasksItem.querySelector('.vectors-container__item--delete');
-            if (itemVectorsContainer.classList.contains('tasks__item--vectors-container-appear')) {
-                itemVectorsContainer.classList.remove('tasks__item--vectors-container-appear');
-            }
-            itemVectorsContainer.classList.add('tasks__item--vectors-container-disappear');
-            setTimeout(() => {
-                itemVectorsContainer.classList.add('hidden');
-            }, 300);
+    if (event.target.matches('.vectors-container__item--delete')) {
+        const itemDelete = event.target;
+        const itemSetImportant = itemDelete.querySelector('.vectors-container__item--set-important');
+        const itemChangeTextSize = itemDelete.querySelector('.vectors-container__item--change-text-size');
 
-            const tasksEditButtonItem = tasksItem.querySelector('.tasks__item--edit');
-            if (tasksEditButtonItem.classList.contains('tasks__item--edit-appear')) {
-                tasksEditButtonItem.classList.remove('tasks__item--edit-appear');
-            }
-            tasksEditButtonItem.classList.add('tasks__item--edit-disappear');
-            setTimeout(() => {
-                tasksEditButtonItem.classList.add('hidden');
-            }, 300);
+        const tasksItem = itemDelete.querySelector('.tasks__item');
+        const tasksEditItemButton = itemDelete.querySelector('.tasks__item--edit');
 
-            setTimeout(() => {
-                tasksItem.setAttribute('class', 'tasks__item-disappear');
-            }, 300);
-            setTimeout(() => {
-                tasksItem.classList.add('hidden');
-            }, 890);
+        const renderVectorContainerItems = (element, action, className) => {
+            element.classList[action](className);
+        };
 
-            setTimeout(() => {
-                toDoPageTasks.removeChild(tasksItem);
-            }, 800);
+        if (itemSetImportant.classList.contains('item--vectors-container-appear') && itemChangeTextSize.classList.contains('item--vectors-container-appear') && itemDelete.classList.contains('item--vectors-container-appear')) {
+            renderVectorContainerItems(itemSetImportant, 'remove', 'item--vectors-container-appear');
+            renderVectorContainerItems(itemChangeTextSize, 'remove', 'item--vectors-container-appear');
+            renderVectorContainerItems(itemDelete, 'remove', 'item--vectors-container-appear');
+
         }
+        renderVectorContainerItems(itemSetImportant, 'add', 'item--vectors-container-disappear');
+        renderVectorContainerItems(itemChangeTextSize, 'add', 'item--vectors-container-disappear');
+        renderVectorContainerItems(itemDelete, 'add', 'item--vectors-container-disappear');
+        setTimeout(() => {
+            renderVectorContainerItems(itemSetImportant, 'add', 'hidden');
+            renderVectorContainerItems(itemDelete, 'add', 'hidden');
+            renderVectorContainerItems(itemChangeTextSize, 'add', 'hidden');
+        }, 300);
+
+        if (tasksEditItemButton.classList.contains('tasks__item--edit-appear')) {
+            tasksEditItemButton.classList.remove('tasks__item--edit-appear');
+        }
+        tasksEditItemButton.classList.add('tasks__item--edit-disappear');
+        setTimeout(() => {
+            tasksEditItemButton.classList.add('hidden');
+        }, 300);
+
+        setTimeout(() => {
+            tasksItem.setAttribute('class', 'tasks__item-disappear');
+        }, 300);
+        setTimeout(() => {
+            tasksItem.classList.add('hidden');
+        }, 890);
+
+        setTimeout(() => {
+            toDoPageTasks.removeChild(tasksItem);
+        }, 800)
     }
 };
+
 
 theButton.addEventListener('click', addingTasks);
 document.addEventListener('click', removingTasks);
