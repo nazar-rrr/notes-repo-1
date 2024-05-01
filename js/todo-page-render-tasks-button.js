@@ -1,11 +1,15 @@
+const renderVectorContainerItems = (element, action, className) => {
+    element.classList[action](className);
+};
+
 const renderTasksEditButtonItem = (event) => {
     if (event.target.matches('.tasks__item')) {
         const tasksEditButtonItem = event.target.querySelector('.tasks__item--edit');
         tasksEditButtonItem.classList.remove('hidden');
-        tasksEditButtonItem.classList.remove('tasks__item--edit-disappear');
-        tasksEditButtonItem.classList.add('tasks__item--edit-appear');
+        renderVectorContainerItems(tasksEditButtonItem, 'remove', 'tasks__item--edit-disappear');
+        renderVectorContainerItems(tasksEditButtonItem, 'add', 'tasks__item--edit-appear');
     }
-}
+};
 
 const removeTasksEditButtonItem = (event) => {
     const tasksEditButtonItem = document.querySelectorAll('.tasks__item--edit');
@@ -13,10 +17,8 @@ const removeTasksEditButtonItem = (event) => {
 
     vectorsContainerItems.forEach(item => {
         if (!item.classList.contains('hidden')) {
-            if (item.classList.contains('item--vectors-container-appear')) {
-                item.classList.remove('item--vectors-container-appear');
-            }
-            item.classList.add('item--vectors-container-disappear');
+            renderVectorContainerItems(item, 'remove', 'item--vectors-container-appear');
+            renderVectorContainerItems(item, 'add', 'item--vectors-container-disappear');
             setTimeout(() => {
                 item.classList.add('hidden');
             }, 300);
@@ -24,8 +26,8 @@ const removeTasksEditButtonItem = (event) => {
     });
 
     tasksEditButtonItem.forEach(buttonItem => {
-        buttonItem.classList.remove('tasks__item--edit-appear');
-        buttonItem.classList.add('tasks__item--edit-disappear');
+        renderVectorContainerItems(buttonItem, 'remove', 'tasks__item--edit-appear');
+        renderVectorContainerItems(buttonItem, 'add', 'tasks__item--edit-disappear');
         setTimeout(() => {
             buttonItem.classList.add('hidden');
         }, 300);

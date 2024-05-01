@@ -1,12 +1,12 @@
 const manipulateTasksButtonItems = (event) => {
     if (event.target.matches('.tasks__item--edit')) {
         const tasksItem = event.target.closest('.tasks__item');
-        
+
         const itemSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
         const itemChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
         const itemDelete = tasksItem.querySelector('.vectors-container__item--delete');
 
-         const renderVectorContainerItems = (element, action, className) => {
+        const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
         };
 
