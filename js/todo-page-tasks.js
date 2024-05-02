@@ -1,14 +1,27 @@
 const theButton = document.querySelector('.add-tasks__item--vector');
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
+const addTasksItem = document.querySelector('.add-tasks__item--field');
 
-let tasksArray = [];
+let addTasksItemContent = addTasksItem.value.trim();
+let tasksHeading = document.querySelector('.todo-page__tasks--heading');
+
+const tasksArray = [];
+
+const manipulateTasksHeading = () => {
+    if (tasksArray.length === 0) {
+        setTimeout(() => {
+            tasksHeading.setAttribute('class', 'todo-page__tasks--heading-disappear');
+            setTimeout(() => {
+                tasksHeading.classList.add('hidden');
+            }, 700)
+        }, 600)
+    } else {
+        tasksHeading.classList.remove('hidden');
+    }
+};
 
 const addingTasks = () => {
-    let addTasksItem = document.querySelector('.add-tasks__item--field');
-    let addTasksItemContent = addTasksItem.value.trim();
-    let tasksHeading = document.querySelector('.todo-page__tasks--heading');
-
-    if (!tasksHeading) {
+    if (tasksArray.length === 0) {
         tasksHeading = document.createElement('div');
         tasksHeading.classList.add('todo-page__tasks--heading');
         tasksHeading.innerHTML = '<p>To Do</p>';
@@ -37,19 +50,22 @@ const addingTasks = () => {
         </div>`;
 
     toDoPageTasks.appendChild(tasksItem);
-    tasksArray.push(addTasksItemContent);
+    tasksArray.push(tasksItem);
     addTasksItem.value = '';
+
+    manipulateTasksHeading();
 };
 
 const removingTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
         const tasksItem = event.target.closest('.tasks__item');
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-        let tasksHeading = document.querySelector('.todo-page__tasks--heading');
 
         const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
         const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
         const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
+
+        tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
 
         const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
@@ -108,6 +124,8 @@ const removingTasks = (event) => {
                 toDoPageTasks.removeChild(tasksItem);
             }, 500);
         }, 300);
+
+        manipulateTasksHeading();
     };
 };
 
