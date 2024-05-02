@@ -2,7 +2,7 @@ const theButton = document.querySelector('.add-tasks__item--vector');
 const toDoPageTasks = document.querySelector('.todo-page__tasks');
 const addTasksItem = document.querySelector('.add-tasks__item--field');
 
-let addTasksItemContent = addTasksItem.value.trim();
+let addTasksItemContent = '';
 let tasksHeading = document.querySelector('.todo-page__tasks--heading');
 
 const tasksArray = [];
@@ -21,6 +21,8 @@ const manipulateTasksHeading = () => {
 };
 
 const addingTasks = () => {
+    addTasksItemContent = addTasksItem.value.trim();
+
     if (tasksArray.length === 0) {
         tasksHeading = document.createElement('div');
         tasksHeading.classList.add('todo-page__tasks--heading');
