@@ -13,23 +13,15 @@ const manipulateMainNav = () => {
 };
 
 const renderMainNav = () => {
-    let buttonPosition = '';
     if (window.innerWidth <= 650) {
-        buttonPosition = '51%';
-    } else if (window.innerWidth >= 650 && window.innerWidth <= 1250) {
-        buttonPosition = '33.7%';
-    } else if (window.innerWidth >= 1250) {
-        buttonPosition = '26%';
+        theButton.style.bottom = '51%';
     }
-
-    if (window.innerWidth >= 1250) {
-        theButton.style.left = '15px';
-    } else {
-        theButton.style.left = 'calc(50% - 90px)';
-        theButton.style.bottom = '10px';
+    else if (window.innerWidth >= 650 && window.innerWidth <= 1250) {
+        theButton.style.bottom = '33.7%';
     }
-
-    theButton.style.bottom = buttonPosition;
+    else if (window.innerWidth >= 1250) {
+        theButton.style.left = '26%';
+    }
 
     renderVectorContainerItems(theMainNav, 'remove', 'hidden');
     renderVectorContainerItems(theMainNav, 'remove', 'main-navigation__disappear');
