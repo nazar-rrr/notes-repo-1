@@ -24,6 +24,14 @@
     animation: pageDisappear 0.7s ease forwards;
 }
 
+.item--vectors-container-appear {
+    animation: itemVectorsContainerAppear 0.3s ease forwards;
+}
+
+.item--vectors-container-disappear {
+    animation: itemVectorsContainerDisappear 0.3s ease forwards;
+}
+
 .tasks__item--vectors-container-appear {
     animation: itemVectorsContainerAppear 0.3s ease forwards;
 }
@@ -104,9 +112,6 @@
 .tasks__item--vectors-container {
     display: flex;
 }
-.tasks__item--vectors-container {
-    margin: 0 0 0 20px;
-}
 
 .tasks__item--vectors-container-appeared {
     position: absolute;
@@ -149,14 +154,6 @@
 .vectors-container__item--set-important {
     color: white;
     margin: 0 23px 0 0;
-}
-
-.vectors-container__item--delete {
-    margin: -2px 23px 0 0;
-}
-
-.vectors-container__item--change-text-size {
-    margin: -2px 23px 0 0;
 }
 
 .tasks__item--field::-webkit-scrollbar,
@@ -247,10 +244,7 @@
         margin: 0 23px 0 0;
     }
 
-    .vectors-container__item--delete {
-        margin: -2px 23px 0 0;
-    }
-
+    .vectors-container__item--delete,
     .vectors-container__item--change-text-size {
         margin: -2px 23px 0 0;
     }
