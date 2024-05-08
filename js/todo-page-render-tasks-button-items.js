@@ -1,7 +1,7 @@
 const manipulateTasksButtonItems = (event) => {
     if (event.target.matches('.tasks__item--edit')) {
         const theBody = document.querySelector('body');
-        const theToPage = document.querySelector('.todo-page');
+        const theMainNav = document.querySelector('.main-navigation');
 
         const tasksItem = event.target.closest('.tasks__item');
         const tasksItemVectorsContainer = tasksItem.querySelector('.tasks__item--vectors-container');
@@ -19,18 +19,23 @@ const manipulateTasksButtonItems = (event) => {
         };
 
         if (window.innerWidth <= 650) {
-            if (tasksItemVectorsContainer.classList.contains('item--vectors-container-disappear')) {
-                renderVectorContainerItems(tasksItemVectorsContainer, 'tasks__item--vectors-container-disappear');
+            if (tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-diappear')) {
+                renderVectorContainerItems(tasksItemVectorsContainer, 'remove', 'tasks__vectors-container__item-disappear');
             }
 
+            renderVectorContainerItems(itemSetImportant, 'remove', 'hidden');
+            renderVectorContainerItems(itemDelete, 'remove', 'hidden');
+            renderVectorContainerItems(itemChangeTextSize, 'remove', 'hidden');
             renderVectorContainerItems(itemSetImportantArticle, 'remove', 'hidden');
             renderVectorContainerItems(itemChangeTextSizeArticle, 'remove', 'hidden');
             renderVectorContainerItems(itemDeleteArticle, 'remove', 'hidden');
 
-            renderVectorContainerItems(tasksItemVectorsContainer, 'add', 'item--vectors-container-appear');
-            renderVectorContainerItems(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-appeared');
+            renderVectorContainerItems(tasksItemVectorsContainer, 'remove', 'hidden');
 
-            theBody.insertBefore(tasksItemVectorsContainer, theToPage);
+            renderVectorContainerItems(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-appear');
+            renderVectorContainerItems(tasksItemVectorsContainer, 'add', 'tasks__vectors-container__item-appeared');
+
+            theBody.insertBefore(tasksItemVectorsContainer, theMainNav);
         } else if (window.innerWidth >= 650 && window.innerWidth <= 950) {
 
 
@@ -40,30 +45,30 @@ const manipulateTasksButtonItems = (event) => {
             }
 
             if (itemSetImportant.classList.contains('hidden') && itemChangeTextSize.classList.contains('hidden') && itemDelete.classList.contains('hidden')) {
-                if (itemSetImportant.classList.contains('item--vectors-container-disappear') && itemChangeTextSize.classList.contains('item--vectors-container-disappear') && itemDelete.classList.contains('item--vectors-container-disappear')) {
-                    renderVectorContainerItems(itemSetImportant, 'remove', 'item--vectors-container-disappear');
-                    renderVectorContainerItems(itemChangeTextSize, 'remove', 'item--vectors-container-disappear');
-                    renderVectorContainerItems(itemDelete, 'remove', 'item--vectors-container-disappear');
+                if (itemSetImportant.classList.contains('vectors-container__item-disappear') && itemChangeTextSize.classList.contains('vectors-container__item-disappear') && itemDelete.classList.contains('vectors-container__item-disappear')) {
+                    renderVectorContainerItems(itemSetImportant, 'remove', 'vectors-container__item-disappear');
+                    renderVectorContainerItems(itemChangeTextSize, 'remove', 'vectors-container__item-disappear');
+                    renderVectorContainerItems(itemDelete, 'remove', 'vectors-container__item-disappear');
                 }
                 else {
                     renderVectorContainerItems(itemSetImportant, 'remove', 'hidden');
                     renderVectorContainerItems(itemDelete, 'remove', 'hidden');
                     renderVectorContainerItems(itemChangeTextSize, 'remove', 'hidden');
 
-                    renderVectorContainerItems(itemSetImportant, 'add', 'item--vectors-container-appear');
-                    renderVectorContainerItems(itemChangeTextSize, 'add', 'item--vectors-container-appear');
-                    renderVectorContainerItems(itemDelete, 'add', 'item--vectors-container-appear');
+                    renderVectorContainerItems(itemSetImportant, 'add', 'vectors-container__item-appear');
+                    renderVectorContainerItems(itemChangeTextSize, 'add', 'vectors-container__item-appear');
+                    renderVectorContainerItems(itemDelete, 'add', 'vectors-container__item-appear');
                 }
             } else {
-                if (itemSetImportant.classList.contains('item--vectors-container-appear') && itemChangeTextSize.classList.contains('item--vectors-container-appear') && itemDelete.classList.contains('item--vectors-container-appear')) {
-                    renderVectorContainerItems(itemSetImportant, 'remove', 'item--vectors-container-appear');
-                    renderVectorContainerItems(itemChangeTextSize, 'remove', 'item--vectors-container-appear');
-                    renderVectorContainerItems(itemDelete, 'remove', 'item--vectors-container-appear');
+                if (itemSetImportant.classList.contains('vectors-container__item-appear') && itemChangeTextSize.classList.contains('vectors-container__item-appear') && itemDelete.classList.contains('vectors-container__item-appear')) {
+                    renderVectorContainerItems(itemSetImportant, 'remove', 'vectors-container__item-appear');
+                    renderVectorContainerItems(itemChangeTextSize, 'remove', 'vectors-container__item-appear');
+                    renderVectorContainerItems(itemDelete, 'remove', 'vectors-container__item-appear');
                 }
                 else {
-                    renderVectorContainerItems(itemSetImportant, 'add', 'item--vectors-container-disappear');
-                    renderVectorContainerItems(itemChangeTextSize, 'add', 'item--vectors-container-disappear');
-                    renderVectorContainerItems(itemDelete, 'add', 'item--vectors-container-disappear');
+                    renderVectorContainerItems(itemSetImportant, 'add', 'vectors-container__item-disappear');
+                    renderVectorContainerItems(itemChangeTextSize, 'add', 'vectors-container__item-disappear');
+                    renderVectorContainerItems(itemDelete, 'add', 'vectors-container__item-disappear');
 
                     setTimeout(() => {
                         renderVectorContainerItems(itemSetImportant, 'add', 'hidden');

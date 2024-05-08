@@ -35,7 +35,7 @@ const addingTasks = () => {
     tasksItem.innerHTML = `
         <div class="tasks__item--edit hidden">Edit</div>
         <textarea class="tasks__item--field">${addTasksItemContent}</textarea>
-        <div class="tasks__item--vectors-container">
+        
         <div class="vectors-container__item--set-important hidden">
         <svg class="item--set-important" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect class="item--set-important__button" width="20" height="20" fill="white" />
@@ -54,7 +54,7 @@ const addingTasks = () => {
         </svg>
         <p class="item--delete__article hidden">Delete</p> 
         </div>
-        </div>`;
+        `;
 
     toDoPageTasks.appendChild(tasksItem);
     tasksArray.push(tasksItem);

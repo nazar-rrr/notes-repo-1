@@ -24,20 +24,20 @@
     animation: pageDisappear 0.7s ease forwards;
 }
 
-.item--vectors-container-appear {
+.vectors-container__item-appear {
     animation: itemVectorsContainerAppear 0.3s ease forwards;
 }
 
-.item--vectors-container-disappear {
+.vectors-container__item-disappear {
     animation: itemVectorsContainerDisappear 0.3s ease forwards;
 }
 
 .tasks__item--vectors-container-appear {
-    animation: itemVectorsContainerAppear 0.3s ease forwards;
+    animation: tasksItemVectorsContainerAppear 0.3s ease forwards;
 }
 
 .tasks__item--vectors-container-disappear {
-    animation: itemVectorsContainerDisappear 0.3s ease forwards;
+    animation: tasksItemVectorsContainerDisappear 0.3s ease forwards;
 }
 
 .todo-page {
