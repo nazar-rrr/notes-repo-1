@@ -2,26 +2,29 @@ const theToDoPage = document.querySelector('.todo-page');
 const theToDoPageButton = document.querySelector('.main-navigation__button--home-page__vector');
 const theHomePage = document.querySelector('.home-page');
 
+const renderVectorContainerItems = (element, action, className) => {
+    element.classList[action](className);
+};
+
 const removeToDoPage = () => {
-    theToDoPage.classList.remove('todo-page__appear');
-    theToDoPage.classList.add('todo-page__disappear');
+    renderVectorContainerItems(theToDoPage, 'remove', 'todo-page__appear');
+    renderVectorContainerItems(theToDoPage, 'add', 'todo-page__disappear');
     setTimeout(() => {
-        theToDoPage.classList.add('hidden');
-    }, 500)
-}
+        renderVectorContainerItems(theToDoPage, 'add', 'hidden');
+    }, 500);
+};
 
 const renderHomePage = () => {
-    theHomePage.classList.remove('home-page__disappear');
-    theHomePage.classList.remove('hidden');
-    theHomePage.classList.add('home-page__appear');
-}
+    renderVectorContainerItems(theHomePage, 'remove', 'home-page__disappear');
+    renderVectorContainerItems(theHomePage, 'remove', 'hidden');
+    renderVectorContainerItems(theHomePage, 'add', 'home-page__appear');
+};
 
 const manipulatePages = () => {
     removeToDoPage();
     setTimeout(() => {
         renderHomePage();
-    }, 500)
+    }, 500);
+};
 
-}
-
-theToDoPageButton.addEventListener('click', manipulatePages)
+theToDoPageButton.addEventListener('click', manipulatePages);

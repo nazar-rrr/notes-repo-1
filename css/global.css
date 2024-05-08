@@ -134,10 +134,33 @@
     }
 }
 
-@keyframes tasksItemEditAppear {
+@keyframes tasksItemVectorsContainerAppear {
     0% {
         opacity: 0;
-        transform: translateX(100%);
+        height: 0;
+    }
+
+    100% {
+        height: 50%;
+    }
+}
+
+@keyframes tasksItemVectorsContainerDisappear {
+    0% {
+        height: 50%;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+    }
+}
+
+
+@keyframes vectorsContainerItemAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
     }
 
     75% {
@@ -146,39 +169,23 @@
 
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(100%);
     }
 }
 
-@keyframes tasksItemContainerVectorAppear {
+@keyframes vectorsContainerItemDisappear {
     0% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+
+    75% {
         opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes tasksItemContainerVectorDisappear {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    50% {
-        opacity: 0.3;
     }
 
     100% {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
 

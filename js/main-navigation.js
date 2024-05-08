@@ -1,10 +1,12 @@
 const theButton = document.querySelector('.button-navigation');
-
 const theMainNav = document.querySelector('.main-navigation');
-
 const theHomePageButton = document.querySelector('.main-navigation__button--home-page__vector');
 const theToDoPageButton = document.querySelector('.main-navigation__button--todo-page__vector');
 const theStatisticsPageButton = document.querySelector('.main-navigation__button--statistics-page__vector');
+
+const renderVectorContainerItems = (element, action, className) => {
+    element.classList[action](className);
+};
 
 const manipulateMainNav = () => {
     theMainNav.classList.contains('hidden') ? renderMainNav() : removeMainNav();
@@ -21,30 +23,29 @@ const renderMainNav = () => {
         theButton.style.left = '26%';
     }
 
-    theMainNav.classList.remove('hidden');
-    theMainNav.classList.remove('main-navigation__disappear');
-    theMainNav.classList.add('main-navigation__appear');
-}
+    renderVectorContainerItems(theMainNav, 'remove', 'hidden');
+    renderVectorContainerItems(theMainNav, 'remove', 'main-navigation__disappear');
+    renderVectorContainerItems(theMainNav, 'add', 'main-navigation__appear');
+};
 
 const removeMainNav = () => {
     if (window.innerWidth >= 1250) {
         theButton.style.left = '15px';
-    }
-    else {
+    } else {
         theButton.style.left = 'calc(50% - 90px)';
         theButton.style.bottom = '10px';
     }
 
-    theMainNav.classList.remove('main-navigation__appear');
-    theMainNav.classList.add('main-navigation__disappear');
+    renderVectorContainerItems(theMainNav, 'remove', 'main-navigation__appear');
+    renderVectorContainerItems(theMainNav, 'add', 'main-navigation__disappear');
 
     setTimeout(() => {
-        theMainNav.classList.add('hidden');
-    }, 300)
-}
+        renderVectorContainerItems(theMainNav, 'add', 'hidden');
+    }, 300);
+};
 
 theButton.addEventListener('click', manipulateMainNav);
-
 theHomePageButton.addEventListener('click', manipulateMainNav);
 theToDoPageButton.addEventListener('click', manipulateMainNav);
 theStatisticsPageButton.addEventListener('click', manipulateMainNav);
+

@@ -6,7 +6,6 @@
     animation: var(--todo-page-appearing);
 }
 
-
 .tasks__item--edit-appear,
 .add-tasks__item--vector-appear {
     animation: tasksItemEditAppear 0.3s ease forwards;
@@ -18,15 +17,27 @@
 }
 
 .tasks__item-disappear {
-    animation: tasksItemDisappear 0.3s ease forwards;
+    animation: tasksItemDisappear 0.5s ease forwards;
 }
 
-.tasks__item--container-vector-appear {
-    animation: tasksItemContainerVectorAppear 0.3s ease forwards;
+.todo-page__tasks--heading-disappear {
+    animation: pageDisappear 0.7s ease forwards;
 }
 
-.tasks__item--container-vector-disappear {
-    animation: tasksItemContainerVectorDisappear 0.3s ease forwards;
+.vectors-container__item-appear {
+    animation: itemVectorsContainerAppear 0.3s ease forwards;
+}
+
+.vectors-container__item-disappear {
+    animation: itemVectorsContainerDisappear 0.3s ease forwards;
+}
+
+.tasks__item--vectors-container-appear {
+    animation: tasksItemVectorsContainerAppear 0.3s ease forwards;
+}
+
+.tasks__item--vectors-container-disappear {
+    animation: tasksItemVectorsContainerDisappear 0.3s ease forwards;
 }
 
 .todo-page {
@@ -47,7 +58,7 @@
 }
 
 .todo-page__add-tasks {
-    margin: 60px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 .todo-page__tasks--heading,
@@ -55,7 +66,6 @@
     font-size: 29px;
     color: white;
 }
-
 
 .todo-page__tasks--heading {
     animation: pageAppear 0.7s ease forwards;
@@ -92,28 +102,58 @@
     transition: 0.2s;
     box-shadow: 0px 20px 75px #00000075;
     color: #ffffffe1;
-    font-size: 15px;
+    font-size: 15.7px;
 }
 
 .tasks__item--edit {
     font-size: 15px;
 }
 
-.tasks__item--container-vector {
+.tasks__item--vectors-container {
     display: flex;
+}
+
+.tasks__item--vectors-container-appeared {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    flex: 1;
+    padding: var(--navigation-padding-mobile);
+    bottom: 0px;
+    border-top-right-radius: var(--navigation-border-radius-mobile);
+    border-top-left-radius: var(--navigation-border-radius-mobile);
+    box-shadow: var(--navigation-box-shadow);
+    background-image: var(--navigation-bg-gradient);
+    transition: 0.2s;
+}
+
+.tasks__item--vectors-container-appeared {
+    width: 100%;
+    flex: 1;
+    padding: var(--navigation-padding-mobile);
+    bottom: 0px;
+    border-top-right-radius: var(--navigation-border-radius-mobile);
+    border-top-left-radius: var(--navigation-border-radius-mobile);
+    box-shadow: var(--navigation-box-shadow);
+    background-image: var(--navigation-bg-gradient);
+    transition: 0.2s;
+}
+
+.tasks__item--edit,
+.add-tasks__item--vector {
+    margin: 0 23px 0 0;
 }
 
 .tasks__item--edit,
 .add-tasks__item--vector,
-.container-vector__item--change-text-size,
-.container-vector__item--change-text-color,
-.container-vector__item--set-important {
+.vectors-container__item--change-text-size,
+.vectors-container__item--delete,
+.vectors-container__item--set-important {
     color: white;
-    margin: 0 20px 0 0;
-}
-
-.container-vector__item--change-text-size {
-    margin: -3px 20px 0 0;
+    margin: 0 23px 0 0;
 }
 
 .tasks__item--field::-webkit-scrollbar,
@@ -128,7 +168,7 @@
 
 .tasks__item--field:hover,
 .add-tasks__item--field:hover {
-    box-shadow: 0px 20px 100px #000000b6;
+    box-shadow: 0px 30px 100px #000000b6;
 }
 
 .add-tasks__item:hover {
@@ -149,25 +189,33 @@
     font-size: 15px;
 }
 
-.container-vector__item--change-text-size:hover,
-.container-vector__item--change-text-color:hover {
-    transform: rotate(-90deg);
+.vectors-container__item--set-important {
+    margin: 0 20px 0 0;
 }
 
 .tasks__item--edit:hover,
 .add-tasks__item--vector:hover,
-.container-vector__item--change-text-size:hover,
-.container-vector__item--change-text-color:hover,
-.container-vector__item--set-important:hover {
+.vectors-container__item--change-text-size:hover,
+.vectors-container__item--delete:hover,
+.vectors-container__item--set-important:hover {
     cursor: pointer;
 }
 
-.tasks__item--edit:hover,
+.tasks__item--edit:hover {
+    text-shadow: 0px 0px 50px #00000075;
+}
+
 .add-tasks__item--vector:hover,
-.container-vector__item--change-text-size:hover,
-.container-vector__item--change-text-color:hover,
-.container-vector__item--set-important:hover {
-    box-shadow: 0px 20px 50px #0000003b;
+.item--change-text-size:hover,
+.item--set-important:hover,
+.item--delete:hover {
+    transform: rotate(90deg);
+    filter: drop-shadow(0px 20px 50px #00000075)
+}
+
+.add-tasks__item--vector:hover,
+.item--change-text-size:hover {
+    transform: none;
 }
 
 @media(min-width: 650px) {
@@ -187,5 +235,17 @@
     .todo-page__tasks--heading,
     .todo-page__add-tasks--heading {
         font-size: 31px;
+    }
+
+    .vectors-container__item--change-text-size,
+    .vectors-container__item--delete,
+    .vectors-container__item--set-important {
+        color: white;
+        margin: 0 23px 0 0;
+    }
+
+    .vectors-container__item--delete,
+    .vectors-container__item--change-text-size {
+        margin: -2px 23px 0 0;
     }
 }
