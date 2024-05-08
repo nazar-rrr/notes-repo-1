@@ -7,4 +7,3 @@ document.addEventListener('partialsLoaded', () => {
     import('./todo-page-render-tasks-button-items.js');
     import('./main-navigation.js');
 })
-

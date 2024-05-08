@@ -48,3 +48,4 @@ theButton.addEventListener('click', manipulateMainNav);
 theHomePageButton.addEventListener('click', manipulateMainNav);
 theToDoPageButton.addEventListener('click', manipulateMainNav);
 theStatisticsPageButton.addEventListener('click', manipulateMainNav);
+
