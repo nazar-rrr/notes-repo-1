@@ -17,7 +17,7 @@ const manipulateTasksButtonItems = (event) => {
 
         let theButtonBottom = theButton.style.bottom;
 
-        const itemContainerExist = containerItemSetImportant.classList.contains('hidden') && containerItemChangeTextSize.classList.contains('hidden') && containerItemDelete.classList.contains('hidden');
+        const itemContainerExist = tasksItemVectorsContainer.classList.contains('hidden');
 
         const itemContainerAnimationExist = containerItemSetImportant.classList.contains('vectors-container__item-appear') && containerItemChangeTextSize.classList.contains('vectors-container__item-appear') && containerItemDelete.classList.contains('vectors-container__item-appear');
         const itemContainerAnimationUnexist = containerItemSetImportant.classList.contains('vectors-container__item-disappear') && containerItemChangeTextSize.classList.contains('vectors-container__item-disappear') && containerItemDelete.classList.contains('vectors-container__item-disappear');
@@ -30,9 +30,11 @@ const manipulateTasksButtonItems = (event) => {
 
         const manipulateMainButton = () => {
             if (window.innerWidth <= 650) {
-                theButtonBottom = '51%';
-            } else {
-                theButtonBottom = '33.7%';
+                theButton.style.bottom = '51%';
+            } else if (window.innerWidth >= 650 && window.innerWidth <= 1250) {
+                theButton.style.bottom = '33.7%';
+            } else if (itemContainerExist) {
+                theButton.style.bottom = '15px'
             }
         };
 
@@ -69,9 +71,11 @@ const manipulateTasksButtonItems = (event) => {
             manipulateItemClasses(containerItemChangeTextSize, 'remove', 'hidden');
             manipulateItemClasses(containerItemDelete, 'remove', 'hidden');
 
-            manipulateItemClasses(containerItemSetImportant, 'add', 'vectors-container__item-appear');
-            manipulateItemClasses(containerItemChangeTextSize, 'add', 'vectors-container__item-appear');
-            manipulateItemClasses(containerItemDelete, 'add', 'vectors-container__item-appear');
+            if (window.innerWidth >= 1250) {
+                manipulateItemClasses(containerItemSetImportant, 'add', 'vectors-container__item-appear');
+                manipulateItemClasses(containerItemChangeTextSize, 'add', 'vectors-container__item-appear');
+                manipulateItemClasses(containerItemDelete, 'add', 'vectors-container__item-appear');
+            }
         };
 
         const removeVectorContainerItems = () => {
@@ -89,7 +93,6 @@ const manipulateTasksButtonItems = (event) => {
                 manipulateItemClasses(containerItemChangeTextSize, 'add', 'hidden');
                 manipulateItemClasses(containerItemDelete, 'add', 'hidden');
             }, 300);
-
         };
 
         const renderVectorContainerItemArticles = () => {
@@ -104,24 +107,29 @@ const manipulateTasksButtonItems = (event) => {
             manipulateItemClasses(containerItemDeleteArticle, 'add', 'hidden');
         };
 
-        const manipulateVectorContainerFunctions = () => {
-            manipulateMainButton();
+        const renderContainer = () => {
+            renderTasksItemVectorsContainer();
+            renderVectorContainerItems();
 
-            if (itemContainerExist) {
-                renderTasksItemVectorsContainer();
-                renderVectorContainerItems();
-                if (window.innerWidth <= 1250) {
-                    renderVectorContainerItemArticles();
-                }
-            } else {
-                removeTasksItemVectorsContainer();
-                removeVectorContainerItems();
-                if (containerItemArticleExist) {
-                    removeVectorContainerItemArticles();
-                }
+            if (window.innerWidth <= 1250) {
+                renderVectorContainerItemArticles();
             }
         };
-        
+
+        const removeContainer = () => {
+            removeTasksItemVectorsContainer();
+            removeVectorContainerItems();
+
+            if (containerItemArticleExist) {
+                removeVectorContainerItemArticles();
+            }
+        };
+
+        const manipulateVectorContainerFunctions = () => {
+            manipulateMainButton();
+            itemContainerExist ? renderContainer() : removeContainer();
+        };
+
         const positioningVectorContainer = () => {
             if (window.innerWidth <= 1250) {
                 theBody.insertBefore(tasksItemVectorsContainer, theMainNav);

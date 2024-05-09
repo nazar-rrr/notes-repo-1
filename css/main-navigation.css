@@ -12,10 +12,6 @@
     transition: 0.3s;
 }
 
-.hidden {
-    display: none !important;
-}
-
 .main-navigation__disappear {
     animation: mainNavigationDisappear 0.3s ease forwards;
 }
@@ -44,9 +40,6 @@
     transition: 0.2s;
 }
 
-.main-navigation__button--change-text-size,
-.main-navigation__button--change-text-color,
-.main-navigation__button--set-important,
 .main-navigation__button--statistics-page,
 .main-navigation__button--todo-page,
 .main-navigation__button--home-page {
@@ -58,9 +51,6 @@
     color: white;
 }
 
-.main-navigation__button--change-text-size,
-.main-navigation__button--change-text-color,
-.main-navigation__button--set-important,
 .main-navigation__button--statistics-page,
 .main-navigation__button--todo-page,
 .main-navigation__button--home-page {
@@ -68,18 +58,12 @@
     color: #ffffff;
 }
 
-.main-navigation__button--change-text-size__vector,
-.main-navigation__button--change-text__vector,
-.main-navigation__button--set-important__vector,
 .main-navigation__button--todo-page__vector,
 .main-navigation__button--home-page__vector,
 .main-navigation__button--statistics-page__vector {
     margin: 0 0 9px 0;
 }
 
-.main-navigation__button--change-text-size__article,
-.main-navigation__button--change-text-color-article,
-.main-navigation__button--set-important__artcile,
 .main-navigation__button--todo-page__article,
 .main-navigation__button--home-page__article,
 .main-navigation__button--statistics-page__article {
@@ -92,18 +76,12 @@
     box-shadow: 0 0 500px 0 #00000075;
 }
 
-.main-navigation__button--change-text-size__vector:hover,
-.main-navigation__button--change-text-color__vector:hover,
-.main-navigation__button--set-important__vector:hover,
 .main-navigation__button--todo-page__vector:hover,
 .main-navigation__button--home-page__vector:hover,
 .main-navigation__button--statistics-page__vector:hover {
     cursor: pointer;
 }
 
-.main-navigation__button--change-text-size__vector:hover,
-.main-navigation__button--change-text-color__vector:hover,
-.main-navigation__button--set-important__vector:hover,
 .main-navigation__button--todo-page__vector:hover,
 .main-navigation__button--home-page__vector:hover,
 .main-navigation__button--statistics-page__vector:hover {
@@ -128,6 +106,12 @@
 
     .main-navigation {
         padding: 0 var(--navigation-padding-desktop);
+    }
+
+    .main-navigation__button--statistics-page,
+    .main-navigation__button--todo-page,
+    .main-navigation__button--home-page {
+        font-size: 13.7px;
     }
 }
 
