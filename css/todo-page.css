@@ -25,11 +25,11 @@
 }
 
 .vectors-container__item-appear {
-    animation: itemVectorsContainerAppear 0.3s ease forwards;
+    animation: vectorsContainerItemAppear 0.3s ease forwards;
 }
 
 .vectors-container__item-disappear {
-    animation: itemVectorsContainerDisappear 0.3s ease forwards;
+    animation: vectorsContainerItemDisappear 0.3s ease forwards;
 }
 
 .tasks__item--vectors-container-appear {
@@ -156,6 +156,15 @@
     margin: 0 23px 0 0;
 }
 
+.vectors-container__item--change-text-size,
+.vectors-container__item--delete,
+.vectors-container__item--set-important {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
 .tasks__item--field::-webkit-scrollbar,
 .add-tasks__item--field::-webkit-scrollbar {
     display: none;
@@ -222,9 +231,21 @@
     .todo-page {
         padding: 0 60px;
     }
+
+    .tasks__item--vectors-container {
+        flex-direction: row;
+    }
+
+    .tasks__item--vectors-container-appear {
+        animation: tasksItemVectorsContainerAppear-650 0.3s ease forwards;
+    }
+
+    .tasks__item--vectors-container-disappear {
+        animation: tasksItemVectorsContainerDisappear-650 0.3s ease forwards;
+    }
 }
 
-@media(min-width: 900px) {
+@media(min-width: 950px) {
     .todo-page {
         padding: 0;
     }
@@ -244,8 +265,11 @@
         margin: 0 23px 0 0;
     }
 
-    .vectors-container__item--delete,
-    .vectors-container__item--change-text-size {
+    .vectors-container__item--delete {
         margin: -2px 23px 0 0;
+    }
+
+    .vectors-container__item--change-text-size {
+        margin: -1px 23px 0 0;
     }
 }

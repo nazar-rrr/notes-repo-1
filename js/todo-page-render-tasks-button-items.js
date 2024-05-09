@@ -11,18 +11,18 @@ const manipulateTasksButtonItems = (event) => {
         const containerItemChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
         const containerItemDelete = tasksItem.querySelector('.vectors-container__item--delete');
 
-        const containerItemSetImportantArticle = tasksItem.querySelector('.item--delete__article');
-        const containerItemChangeTextSizeArticle = tasksItem.querySelector('.item--delete__article');
+        const containerItemSetImportantArticle = tasksItem.querySelector('.item--set-important__article');
+        const containerItemChangeTextSizeArticle = tasksItem.querySelector('.item--change-text-size__article');
         const containerItemDeleteArticle = tasksItem.querySelector('.item--delete__article');
 
         let theButtonBottom = theButton.style.bottom;
 
-        const itemContainerExist = containerItemSetImportant.classList.contains('hidden') && containerItemChangeTextSize.classList.contains('hidden') && containerItemDelete.classList.contains('hidden') || tasksItemVectorsContainer.classList.contains('hidden');
+        const itemContainerExist = containerItemSetImportant.classList.contains('hidden') && containerItemChangeTextSize.classList.contains('hidden') && containerItemDelete.classList.contains('hidden');
 
         const itemContainerAnimationExist = containerItemSetImportant.classList.contains('vectors-container__item-appear') && containerItemChangeTextSize.classList.contains('vectors-container__item-appear') && containerItemDelete.classList.contains('vectors-container__item-appear');
         const itemContainerAnimationUnexist = containerItemSetImportant.classList.contains('vectors-container__item-disappear') && containerItemChangeTextSize.classList.contains('vectors-container__item-disappear') && containerItemDelete.classList.contains('vectors-container__item-disappear');
 
-        const containerItemArticleUnexist = !containerItemSetImportant.classList.contains('hidden') && !containerItemChangeTextSizeArticle.classList.contains('hidden') && !containerItemDeleteArticle.classList.contains('hidden');
+        const containerItemArticleExist = containerItemSetImportant.classList.contains('hidden') && containerItemChangeTextSizeArticle.classList.contains('hidden') && containerItemDeleteArticle.classList.contains('hidden');
 
         const manipulateItemClasses = (element, action, className) => {
             element.classList[action](className);
@@ -33,9 +33,8 @@ const manipulateTasksButtonItems = (event) => {
                 theButtonBottom = '51%';
             } else {
                 theButtonBottom = '33.7%';
-            };
-        }
-
+            }
+        };
 
         const renderTasksItemVectorsContainer = () => {
             if (tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-disappear')) {
@@ -43,28 +42,21 @@ const manipulateTasksButtonItems = (event) => {
             }
 
             manipulateItemClasses(tasksItemVectorsContainer, 'remove', 'hidden');
-            manipulateItemClasses(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-appear');
             if (window.innerWidth <= 1250) {
+                manipulateItemClasses(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-appear');
                 manipulateItemClasses(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-appeared');
             }
         };
 
         const removeTasksItemVectorsContainer = () => {
-            if (tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-appear')) {
+            if (tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-appear') && tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-appeared')) {
                 manipulateItemClasses(tasksItemVectorsContainer, 'remove', 'tasks__item--vectors-container-appear');
+                manipulateItemClasses(tasksItemVectorsContainer, 'remove', 'tasks__item--vectors-container-appeared');
             }
 
-            manipulateItemClasses(tasksItemVectorsContainer, 'add', 'tasks__item--vectors-container-disappear');
-            if (tasksItemVectorsContainer.classList.contains('tasks__item--vectors-container-appeared')) {
-                setInterval(() => {
-                    manipulateItemClasses(tasksItemVectorsContainer, 'remove', 'tasks__item--vectors-container-appeared');
-                }, 300)
-            }
-            else {
-                setInterval(() => {
-                    manipulateItemClasses(tasksItemVectorsContainer, 'add', 'hidden');
-                }, 300)
-            }
+            setTimeout(() => {
+                manipulateItemClasses(tasksItemVectorsContainer, 'add', 'hidden');
+            }, 300);
         };
 
         const renderVectorContainerItems = () => {
@@ -73,7 +65,6 @@ const manipulateTasksButtonItems = (event) => {
                 manipulateItemClasses(containerItemChangeTextSize, 'remove', 'vectors-container__item-disappear');
                 manipulateItemClasses(containerItemDelete, 'remove', 'vectors-container__item-disappear');
             }
-
             manipulateItemClasses(containerItemSetImportant, 'remove', 'hidden');
             manipulateItemClasses(containerItemChangeTextSize, 'remove', 'hidden');
             manipulateItemClasses(containerItemDelete, 'remove', 'hidden');
@@ -89,16 +80,16 @@ const manipulateTasksButtonItems = (event) => {
                 manipulateItemClasses(containerItemChangeTextSize, 'remove', 'vectors-container__item-appear');
                 manipulateItemClasses(containerItemDelete, 'remove', 'vectors-container__item-appear');
             }
-
             manipulateItemClasses(containerItemSetImportant, 'add', 'vectors-container__item-disappear');
             manipulateItemClasses(containerItemChangeTextSize, 'add', 'vectors-container__item-disappear');
             manipulateItemClasses(containerItemDelete, 'add', 'vectors-container__item-disappear');
 
-            setInterval(() => {
+            setTimeout(() => {
                 manipulateItemClasses(containerItemSetImportant, 'add', 'hidden');
                 manipulateItemClasses(containerItemChangeTextSize, 'add', 'hidden');
                 manipulateItemClasses(containerItemDelete, 'add', 'hidden');
-            }, 300)
+            }, 300);
+
         };
 
         const renderVectorContainerItemArticles = () => {
@@ -113,7 +104,6 @@ const manipulateTasksButtonItems = (event) => {
             manipulateItemClasses(containerItemDeleteArticle, 'add', 'hidden');
         };
 
-
         const manipulateVectorContainerFunctions = () => {
             manipulateMainButton();
 
@@ -122,25 +112,25 @@ const manipulateTasksButtonItems = (event) => {
                 renderVectorContainerItems();
                 if (window.innerWidth <= 1250) {
                     renderVectorContainerItemArticles();
-                };
+                }
             } else {
                 removeTasksItemVectorsContainer();
                 removeVectorContainerItems();
-                if (containerItemArticleUnexist) {
+                if (containerItemArticleExist) {
                     removeVectorContainerItemArticles();
-                };
-            };
+                }
+            }
         };
-
+        
         const positioningVectorContainer = () => {
             if (window.innerWidth <= 1250) {
-                theBody.insertBefore(tasksItemVectorsContainer, theMainNav)
+                theBody.insertBefore(tasksItemVectorsContainer, theMainNav);
             }
-        }
+        };
 
         manipulateVectorContainerFunctions();
         positioningVectorContainer();
-    };
+    }
 };
 
 document.addEventListener('click', manipulateTasksButtonItems);
