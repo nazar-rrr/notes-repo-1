@@ -122,7 +122,7 @@ const manipulateTasksButtonItems = (event) => {
         const tabletWidth = window.innerWidth >= 650 && window.innerWidth >= 1250;
         const desktopDevice = window.innerWidth >= 1250;
         
-        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelectorAll('.tasks__item--vectors-container');
+        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelector('.tasks__item--vectors-container');
         const tasksIconContainerExist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
 
         manipulateContainerItems();
