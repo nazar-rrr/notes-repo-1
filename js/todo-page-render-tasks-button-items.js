@@ -116,9 +116,6 @@ const manipulateTasksButtonItems = (event) => {
         const iconDeleteArticle = tasksItem.querySelector('.item--delete__article');
 
         const tasksIconContainerExist = tasksIconContainer.classList.contains('hidden');
-        const itemContainerAnimationExist = iconSetImportant.classList.contains('vectors-container__item-appear') && iconChangeTextSize.classList.contains('vectors-container__item-appear') && iconDelete.classList.contains('vectors-container__item-appear');
-        const itemContainerAnimationUnexist = iconSetImportant.classList.contains('vectors-container__item-disappear') && iconChangeTextSize.classList.contains('vectors-container__item-disappear') && iconDelete.classList.contains('vectors-container__item-disappear');
-        const iconArticleExist = iconSetImportant.classList.contains('hidden') && iconChangeTextSizeArticle.classList.contains('hidden') && iconDeleteArticle.classList.contains('hidden');
 
         const phoneWidth = window.innerWidth <= 650;
         const tabletWidth = window.innerWidth >= 650 && window.innerWidth >= 1250;
