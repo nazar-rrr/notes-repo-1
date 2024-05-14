@@ -65,7 +65,7 @@ const addingTasks = () => {
 
 const removingTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
-        const tasksItem = event.target.closest('.tasks__item');
+        const tasksItem = document.querySelectorAll('.tasks__item');
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
         const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
@@ -77,6 +77,7 @@ const removingTasks = (event) => {
         const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
         };
+
         itemDelete.forEach(deleteItem => {
             if (deleteItem.classList.contains('item--vectors-container-appear')) {
                 renderVectorContainerItems(deleteItem, 'remove', 'item--vectors-container-appear');
@@ -122,19 +123,21 @@ const removingTasks = (event) => {
         });
 
         setTimeout(() => {
-            tasksItem.setAttribute('class', 'tasks__item-disappear');
-            setTimeout(() => {
-                tasksItem.classList.add('hidden');
-            }, 500);
+            tasksItem.forEach((itemTask) => {
+                itemTask.setAttribute('class', 'tasks__item-disappear');
+                setTimeout(() => {
+                    itemTask.classList.add('hidden');
+                }, 500);
 
-            setTimeout(() => {
-                toDoPageTasks.removeChild(tasksItem);
-            }, 500);
-        }, 300);
+                setTimeout(() => {
+                    itemTask.removeChild(itemTask);
+                }, 500);
+            }, 300);
+        })
 
         manipulateTasksHeading();
     };
 };
-
+if()
 theButton.addEventListener('click', addingTasks);
 document.addEventListener('click', removingTasks);

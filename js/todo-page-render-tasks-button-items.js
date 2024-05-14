@@ -127,6 +127,8 @@ const manipulateTasksButtonItems = (event) => {
 
         manipulateContainerItems();
         positioningContainerItems();
+
+        theNavButton.addEventListener('click', removeContainerItems);
     }
 };
 
