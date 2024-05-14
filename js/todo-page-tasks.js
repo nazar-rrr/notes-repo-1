@@ -138,6 +138,6 @@ const removingTasks = (event) => {
         manipulateTasksHeading();
     };
 };
-if()
+
 theButton.addEventListener('click', addingTasks);
 document.addEventListener('click', removingTasks);
