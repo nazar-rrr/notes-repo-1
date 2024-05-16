@@ -65,7 +65,7 @@ const addingTasks = () => {
 
 const removingTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
-        const tasksItem = document.querySelectorAll('.tasks__item');
+        const tasksItem = event.target.closest('.tasks__item');
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
         const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
@@ -123,17 +123,15 @@ const removingTasks = (event) => {
         });
 
         setTimeout(() => {
-            tasksItem.forEach((itemTask) => {
-                itemTask.setAttribute('class', 'tasks__item-disappear');
+               tasksItem.setAttribute('class', 'tasks__item-disappear');
                 setTimeout(() => {
-                    itemTask.classList.add('hidden');
+                   tasksItem.classList.add('hidden');
                 }, 500);
 
                 setTimeout(() => {
-                    itemTask.removeChild(itemTask);
+                   tasksItem.removeChild(itemTask);
                 }, 500);
             }, 300);
-        })
 
         manipulateTasksHeading();
     };
