@@ -100,10 +100,8 @@ const manipulateTasksButtonItems = (event) => {
                     theNavButton.style.bottom = '51%';
                 } else if (tabletWidth) {
                     theNavButton.style.bottom = '33.7%';
-                } else if (desktopDevice) {
-                    theNavButton.style.left = '26%';
-                }
-            } else if(!tasksIconContainer.classList.contains('hidden')) {
+                } 
+            } else {
                 theNavButton.style.bottom = '20px'
             };
         };
@@ -126,8 +124,8 @@ const manipulateTasksButtonItems = (event) => {
         const iconChangeTextSizeArticle = desktopDevice ? tasksItem.querySelector('.item--change-text-size__article') : document.querySelector('.item--change-text-size__article');
         const iconDeleteArticle = desktopDevice ? tasksItem.querySelector('.item--delete__article') : document.querySelector('.item--delete__article');
         
-        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelectorAll('.tasks__item--vectors-container');
-        const tasksIconContainerExist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
+        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelector('.tasks__item--vectors-container');
+        const tasksIconContainerExist = tasksIconContainer.classList.contains('hidden');
 
         manipulateContainerItems();
         positioningContainerItems();
