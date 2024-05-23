@@ -111,22 +111,22 @@ const manipulateTasksButtonItems = (event) => {
         const theBody = document.querySelector('body');
         const theMainNav = document.querySelector('.main-navigation');
         const theNavButton = document.querySelector('.button-navigation');
-
+        
         const tasksItem = event.target.closest('.tasks__item');
-
-        const iconSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
-        const iconChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
-        const iconDelete = tasksItem.querySelector('.vectors-container__item--delete');
-
-        const iconSetImportantArticle = tasksItem.querySelector('.item--set-important__article');
-        const iconChangeTextSizeArticle = tasksItem.querySelector('.item--change-text-size__article');
-        const iconDeleteArticle = tasksItem.querySelector('.item--delete__article');
-
+        
         const phoneWidth = window.innerWidth <= 650;
-        const tabletWidth = window.innerWidth >= 650 && window.innerWidth >= 1250;
+        const tabletWidth = window.innerWidth >= 650 && window.innerWidth < 1250;
         const desktopDevice = window.innerWidth >= 1250;
-
-        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelector('.tasks__item--vectors-container');
+        
+        const iconSetImportant = desktopDevice ? tasksItem.querySelector('.vectors-container__item--set-important') : document.querySelector('.vectors-container__item--set-important');
+        const iconChangeTextSize = desktopDevice ? tasksItem.querySelector('.vectors-container__item--change-text-size') : document.querySelector('.vectors-container__item--change-text-size');
+        const iconDelete = desktopDevice ? tasksItem.querySelector('.vectors-container__item--delete') : document.querySelector('.vectors-container__item--delete');
+        
+        const iconSetImportantArticle = desktopDevice ? tasksItem.querySelector('.item--set-important__article') : document.querySelector('.item--set-important__article');
+        const iconChangeTextSizeArticle = desktopDevice ? tasksItem.querySelector('.item--change-text-size__article') : document.querySelector('.item--change-text-size__article');
+        const iconDeleteArticle = desktopDevice ? tasksItem.querySelector('.item--delete__article') : document.querySelector('.item--delete__article');
+        
+        const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelectorAll('.tasks__item--vectors-container');
         const tasksIconContainerExist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
 
         manipulateContainerItems();
