@@ -38,7 +38,7 @@ const manipulateTasksButtonItems = (event) => {
                     manipulateVariableClasses(tasksIconContainer, 'remove', 'tasks__item--vectors-container-appeared');
                     manipulateVariableClasses(tasksIconContainer, 'add', 'hidden')
                 }, 300);
-            } else if (desktopDevice) {
+            } else {
                 setTimeout(() => manipulateVariableClasses(tasksIconContainer, 'add', 'hidden'), 300);
             };
         };

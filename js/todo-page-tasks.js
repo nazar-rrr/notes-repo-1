@@ -65,7 +65,7 @@ const addingTasks = () => {
 
 const removingTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
-        const tasksItem = event.target.closest('.tasks__item');
+        const tasksItem = document.querySelectorAll('.tasks__item');
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
         const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
@@ -123,16 +123,17 @@ const removingTasks = (event) => {
         });
 
         setTimeout(() => {
-               tasksItem.setAttribute('class', 'tasks__item-disappear');
+            tasksItem.forEach((arg) => {
+                arg.setAttribute('class', 'tasks__item-disappear');
                 setTimeout(() => {
-                   tasksItem.classList.add('hidden');
+                    arg.classList.add('hidden');
                 }, 500);
 
                 setTimeout(() => {
-                   tasksItem.removeChild(itemTask);
+                    toDoPageTasks.removeChild(arg);
                 }, 500);
             }, 300);
-
+        });
         manipulateTasksHeading();
     };
 };
