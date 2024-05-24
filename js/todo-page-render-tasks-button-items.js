@@ -88,12 +88,7 @@ const manipulateTasksButtonItems = (event) => {
             manipulateVariableClasses(iconDeleteArticle, 'add', 'hidden');
         };
 
-        const positioningContainerItems = () => {
-            if (!desktopDevice) {
-                theBody.insertBefore(tasksIconContainer, theMainNav);
-            }
-        };
-
+        
         const manipulateMainButton = () => {
             if (tasksIconContainer.classList.contains('hidden')) {
                 if (phoneWidth) {
@@ -105,7 +100,7 @@ const manipulateTasksButtonItems = (event) => {
                 theNavButton.style.bottom = '20px'
             };
         };
-
+        
         const theBody = document.querySelector('body');
         const theMainNav = document.querySelector('.main-navigation');
         const theNavButton = document.querySelector('.button-navigation');
@@ -126,10 +121,16 @@ const manipulateTasksButtonItems = (event) => {
         
         const tasksIconContainer = desktopDevice ? tasksItem.querySelector('.tasks__item--vectors-container') : document.querySelector('.tasks__item--vectors-container');
         const tasksIconContainerExist = tasksIconContainer.classList.contains('hidden');
-
+        
         manipulateContainerItems();
         positioningContainerItems();
-
+        
+        const positioningContainerItems = () => {
+            if (!desktopDevice) {
+                theBody.insertBefore(tasksIconContainer, theMainNav);
+            }
+        };
+        
         theNavButton.addEventListener('click', removeContainerItems);
     }
 };
