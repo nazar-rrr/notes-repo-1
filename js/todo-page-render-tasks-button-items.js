@@ -100,6 +100,12 @@ const manipulateTasksButtonItems = (event) => {
                 theNavButton.style.bottom = '20px'
             };
         };
+
+        const positioningContainerItems = () => {
+            if (!desktopDevice) {
+                theBody.insertBefore(tasksIconContainer, theMainNav);
+            }
+        };
         
         const theBody = document.querySelector('body');
         const theMainNav = document.querySelector('.main-navigation');
@@ -125,11 +131,6 @@ const manipulateTasksButtonItems = (event) => {
         manipulateContainerItems();
         positioningContainerItems();
         
-        const positioningContainerItems = () => {
-            if (!desktopDevice) {
-                theBody.insertBefore(tasksIconContainer, theMainNav);
-            }
-        };
         
         theNavButton.addEventListener('click', removeContainerItems);
     }
