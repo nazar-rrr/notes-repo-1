@@ -1,21 +1,21 @@
 const manipulateTasksButtonItems = (event) => {
     if (event.target.matches('.tasks__item--edit')) {
-        const manipulateVariableClasses = (element, action, className) => {
-            element.classList[action](className);
-        };
-
         const manipulateContainerItems = () => {
+            desktopDevice ? manipulateDesktopContainer() : manipulateTabletContainer();
+        }
+
+        const manipulateDesktopContainer = () => {
             tasksIconContainerUnexist ? renderContainerItems() : removeContainerItems();
         };
 
         const renderContainerItems = () => {
-            desktopDevice ? renderDesktopContainer() : renderTabletContainer();
-            desktopDevice ? renderTasksIcons() : manipulateMainButton();
+            renderDesktopContainer();
+            renderTasksIcons();
         };
 
         const removeContainerItems = () => {
-            desktopDevice ? removeDesktopContainer() : removeTabletContainer();
-            desktopDevice ? removeTasksIcons() : null;
+            removeDesktopContainer();
+            removeTasksIcons();
         };
 
         const renderDesktopContainer = () => {
@@ -56,46 +56,61 @@ const manipulateTasksButtonItems = (event) => {
             }, 300);
         }
 
-        const renderTabletContainer = () => {
-            manipulateVariableClasses(theMainNav, 'remove', 'hidden');
-            manipulateVariableClasses(theMainNav, 'remove', 'main-navigation__disappear');
-            manipulateVariableClasses(theMainNav, 'add', 'main-navigation__appear');   
-        };
-
-        const removeTabletContainer = () => {
-            manipulateVariableClasses(theMainNav, 'remove', 'main-navigation__appear');   
-            manipulateVariableClasses(theMainNav, 'add', 'main-navigation__disappear');
-            setTimeout(() => manipulateVariableClasses(theMainNav, 'add', 'hidden'), 300);
-        };
-        
-      const manipulateMainButton = () => {
-            if (tasksIconContainer.classList.contains('hidden')) {
-                if (phoneWidth) {
-                    theNavButton.style.bottom = '51%';
-                } else if (tabletWidth) {
-                    theNavButton.style.bottom = '33.7%';
-                } 
+        const manipulateTabletContainer = () => {
+            if (theMainNavUnexist) {
+                renderTabletContainer();
+                renderMainButton();
             } else {
-                theNavButton.style.bottom = '20px'
-            };
+                removeTabletContainer();
+                removeMainButton();
+            }
         };
-
-        const theMainNav = document.querySelector('.main-navigation')
-        const tasksItem = event.target.closest('.tasks__item');
-        
-        const iconSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
-        const iconChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
-        const iconDelete = tasksItem.querySelector('.vectors-container__item--delete');
-        
-        const phoneWidth = window.innerWidth <= 650;
-        const tabletWidth = window.innerWidth >= 650 && window.innerWidth >= 1250;
-        const desktopDevice = window.innerWidth >= 1250;
-        
-        const tasksIconContainer = tasksItem.querySelector('.tasks__item--vectors-container');
-        const tasksIconContainerUnexist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
-   
-        manipulateContainerItems();
     };
+
+    const removeTabletArticles = () => {
+        manipulateVariableClasses(theHomePageButton, 'remove', 'vectors-container__item--set-important');
+        manipulateVariableClasses(theToDoPageButton, 'remove', 'vectors-container__item--change-text-size');
+        manipulateVariableClasses(theStatisticsPageButton, 'remove', 'vectors-container__item--delete');
+
+        manipulateVariableClasses(theHomePageButton, 'add', 'vectors-container__item--set-important');
+        manipulateVariableClasses(theToDoPageButton, 'add', 'vectors-container__item--change-text-size');
+        manipulateVariableClasses(theStatisticsPageButton, 'add', 'vectors-container__item--delete');
+
+        theHomePageButtonArticle.value = 'Home';
+        theToDoPageButtonArticle.value = 'Your To Do';
+        theStatisticsPageButtonArticle.value = 'Your Statistics';
+    };
+
+    const renderMainButton = () => {
+        phoneWidth ? theNavButton.style.bottom = '51%' : theNavButton.style.bottom = '33.7%';
+    };
+
+    const removeMainButton = () => {
+        theNavButton.style.bottom = '20px'
+    };
+
+    const tasksItem = event.target.closest('.tasks__item');
+
+    const iconSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
+    const iconChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
+    const iconDelete = tasksItem.querySelector('.vectors-container__item--delete');
+
+    const phoneWidth = window.innerWidth <= 650;
+    const desktopDevice = window.innerWidth >= 1250;
+
+    const theMainNav = document.querySelector('.main-navigation');
+    const theNavButton = document.querySelector('.button-navigation');
+
+
+    const tasksIconContainer = tasksItem.querySelector('.tasks__item--vectors-container');
+    const tasksIconContainerUnexist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
+    const theMainNavUnexist = theMainNav.classList.contains('hidden');
+
+    const manipulateVariableClasses = (element, action, className) => {
+        element.classList[action](className);
+    };
+
+    manipulateContainerItems();
 };
 
 document.addEventListener('click', manipulateTasksButtonItems);
