@@ -77,6 +77,7 @@ const removingTasks = (event) => {
         const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
         };
+
         itemDelete.forEach(deleteItem => {
             if (deleteItem.classList.contains('item--vectors-container-appear')) {
                 renderVectorContainerItems(deleteItem, 'remove', 'item--vectors-container-appear');
@@ -122,15 +123,15 @@ const removingTasks = (event) => {
         });
 
         setTimeout(() => {
-            tasksItem.setAttribute('class', 'tasks__item-disappear');
-            setTimeout(() => {
-                tasksItem.classList.add('hidden');
-            }, 500);
+               tasksItem.setAttribute('class', 'tasks__item-disappear');
+                setTimeout(() => {
+                   tasksItem.classList.add('hidden');
+                }, 500);
 
-            setTimeout(() => {
-                toDoPageTasks.removeChild(tasksItem);
-            }, 500);
-        }, 300);
+                setTimeout(() => {
+                   toDoPageTasks.removeChild(tasksItem);
+                }, 500);
+            }, 300);
 
         manipulateTasksHeading();
     };
