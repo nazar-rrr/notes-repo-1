@@ -17,8 +17,8 @@ const removeTasksEditButtonItem = (event) => {
 
     vectorsContainerItems.forEach(item => {
         if (!item.classList.contains('hidden')) {
-            renderVectorContainerItems(item, 'remove', 'item--vectors-container-appear');
-            renderVectorContainerItems(item, 'add', 'item--vectors-container-disappear');
+            renderVectorContainerItems(item, 'remove', 'vectors-container__item-appear');
+            renderVectorContainerItems(item, 'add', 'vectors-container__item-disappear');
             setTimeout(() => {
                 item.classList.add('hidden');
             }, 300);

@@ -250,6 +250,7 @@
 
 @media(min-width: 950px) {
     .todo-page {
+        margin: 150px auto 0 auto;
         padding: 0;
     }
 }

@@ -65,77 +65,69 @@ const addingTasks = () => {
 
 const removingTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
-        const tasksItem = event.target.closest('.tasks__item');
-        const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-
-        const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
-        const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
-        const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
-
-        tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
-
+        const manipulateContainerItems = () => {
+            spliceTasks();
+            desktopDevice ? manipulateDesktopContainer() : manipulateTabletContainer();
+        };
+        
+        const manipulateDesktopContainer = () => {
+            removeTasksEditItemButton();
+            removeItemDelete();
+            removeItemSetImportant();
+            removeItemChangeTextSize();
+            setTimeout(() => removeTasksItem(), 300);
+        };
+        
+        const removeTasksEditItemButton = () => {
+            removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
+        };
+        
+        const removeItemDelete = () => {
+            removeTasksItems(itemDelete, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+        };
+        
+        const removeItemSetImportant = () => {
+            removeTasksItems(itemSetImportant, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+        };
+        
+        const removeItemChangeTextSize = () => {
+            removeTasksItems(itemChangeTextSize, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+        };
+        
+        const removeTasksItem = () => {
+            tasksItem.setAttribute('class', 'tasks__item-disappear');
+            setTimeout(() => tasksItem.classList.add('hidden'), 500);
+            setTimeout(() => toDoPageTasks.removeChild(tasksItem), 500);
+        };
+        
         const renderVectorContainerItems = (element, action, className) => {
             element.classList[action](className);
         };
-
-        itemDelete.forEach(deleteItem => {
-            if (deleteItem.classList.contains('item--vectors-container-appear')) {
-                renderVectorContainerItems(deleteItem, 'remove', 'item--vectors-container-appear');
-            }
-
-            renderVectorContainerItems(deleteItem, 'add', 'item--vectors-container-disappear');
-            setTimeout(() => {
-                renderVectorContainerItems(deleteItem, 'add', 'hidden');
-            }, 300);
-        });
-
-        itemSetImportant.forEach(setImportantItem => {
-            if (setImportantItem.classList.contains('item--vectors-container-appear')) {
-                renderVectorContainerItems(setImportantItem, 'remove', 'item--vectors-container-appear');
-            }
-
-            renderVectorContainerItems(setImportantItem, 'add', 'item--vectors-container-disappear');
-            setTimeout(() => {
-                renderVectorContainerItems(setImportantItem, 'add', 'hidden');
-            }, 300);
-        });
-
-        itemChangeTextSize.forEach(changeTextSizeItem => {
-            if (changeTextSizeItem.classList.contains('item--vectors-container-appear')) {
-                renderVectorContainerItems(changeTextSizeItem, 'remove', 'item--vectors-container-appear');
-            }
-
-            renderVectorContainerItems(changeTextSizeItem, 'add', 'item--vectors-container-disappear');
-            setTimeout(() => {
-                renderVectorContainerItems(changeTextSizeItem, 'add', 'hidden');
-            }, 300);
-        });
-
-        tasksEditItemButton.forEach(editButtonItem => {
-            if (editButtonItem.classList.contains('tasks__item--edit-appear')) {
-                editButtonItem.classList.remove('tasks__item--edit-appear');
-            }
-
-            editButtonItem.classList.add('tasks__item--edit-disappear');
-            setTimeout(() => {
-                editButtonItem.classList.add('hidden');
-            }, 300);
-        });
-
-        setTimeout(() => {
-               tasksItem.setAttribute('class', 'tasks__item-disappear');
-                setTimeout(() => {
-                   tasksItem.classList.add('hidden');
-                }, 500);
-
-                setTimeout(() => {
-                   toDoPageTasks.removeChild(tasksItem);
-                }, 500);
-            }, 300);
-
+        
+        const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
+            items.forEach(item => {
+                if (item.classList.contains(classToRemove)) renderVectorContainerItems(item, 'remove', classToRemove);
+                renderVectorContainerItems(item, 'add', classToAdd);
+                setTimeout(() => renderVectorContainerItems(item, 'add', additionalClass), 300);
+            });
+        };
+        
+        const spliceTasks = () => {
+            tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
+        };
+        
+        const desktopDevice = window.innerWidth > 1250;
+        const tasksItem = desktopDevice ? event.target.closest('.tasks__item') : document.querySelectorAll('.tasks__item');
+        const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
+        const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
+        const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
+        const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
+        
+        manipulateContainerItems();
         manipulateTasksHeading();
     };
 };
+
 
 theButton.addEventListener('click', addingTasks);
 document.addEventListener('click', removingTasks);
