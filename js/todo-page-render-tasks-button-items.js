@@ -86,7 +86,6 @@ const manipulateTasksButtonItems = (event) => {
             theNavButton.style.bottom = '20px'
         };
 
-        const theMainNav = document.querySelector('.main-navigation');
         const theButton = document.querySelector('.button-navigation')
         const tasksItem = event.target.closest('.tasks__item');
 
@@ -103,21 +102,23 @@ const manipulateTasksButtonItems = (event) => {
         const tasksIconContainer = tasksItem.querySelector('.tasks__item--vectors-container');
         const tasksIconContainerUnexist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
         const theTasksNavUnexist = theTasksNav.classList.contains('hidden');
-        const theMainNavUnexist = theMainNav.classList.contains('hidden');
 
         const manipulateVariableClasses = (element, action, className) => {
             element.classList[action](className);
         };
 
+        theButton.addEventListener('click', () => {
+            removeTabletContainer();
+          
+            if (!desktopDevice) {
+                manipulateVariableClasses(event.target, 'remove', 'tasks__item--edit-appear');
+                manipulateVariableClasses(event.target, 'add', 'tasks__item--edit-disappear');
+                setTimeout(() => manipulateVariableClasses(event.target, 'add', 'hidden'), 300);
+            };
+        });
+        
         manipulateContainerItems();
-
-        if (theMainNavUnexist) {
-            theButton.addEventListener('click', () => {
-                removeTabletContainer();
-              
-            });
-        };
-    }
+    };
 };
 
 document.addEventListener('click', manipulateTasksButtonItems);
