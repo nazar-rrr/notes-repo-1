@@ -54,10 +54,10 @@ const manipulateTasksButtonItems = (event) => {
                 manipulateVariableClasses(iconChangeTextSize, 'add', 'hidden');
                 manipulateVariableClasses(iconDelete, 'add', 'hidden');
             }, 300);
-        }
+        };
 
         const manipulateTabletContainer = () => {
-            if (theMainNavUnexist) {
+            if (theTasksNavUnexist) {
                 renderTabletContainer();
                 renderMainButton();
             } else {
@@ -65,52 +65,59 @@ const manipulateTasksButtonItems = (event) => {
                 removeMainButton();
             }
         };
-    };
 
-    const removeTabletArticles = () => {
-        manipulateVariableClasses(theHomePageButton, 'remove', 'vectors-container__item--set-important');
-        manipulateVariableClasses(theToDoPageButton, 'remove', 'vectors-container__item--change-text-size');
-        manipulateVariableClasses(theStatisticsPageButton, 'remove', 'vectors-container__item--delete');
+        const renderTabletContainer = () => {
+            manipulateVariableClasses(theTasksNav, 'remove', 'hidden');
+            theTasksNav.classList.contains('tasks__item--vectors-container-disappear') ? manipulateVariableClasses(theTasksNav, 'remove', 'tasks__item--vectors-container-disappear') : null;
+            manipulateVariableClasses(theTasksNav, 'add', 'tasks__item--vectors-container-appear');
+        };
 
-        manipulateVariableClasses(theHomePageButton, 'add', 'vectors-container__item--set-important');
-        manipulateVariableClasses(theToDoPageButton, 'add', 'vectors-container__item--change-text-size');
-        manipulateVariableClasses(theStatisticsPageButton, 'add', 'vectors-container__item--delete');
+        const removeTabletContainer = () => {
+            manipulateVariableClasses(theTasksNav, 'remove', 'tasks__item--vectors-container-appear');
+            manipulateVariableClasses(theTasksNav, 'add', 'tasks__item--vectors-container-disappear');
+            setTimeout(() => manipulateVariableClasses(theTasksNav, 'add', 'hidden'), 300);
+        };
 
-        theHomePageButtonArticle.value = 'Home';
-        theToDoPageButtonArticle.value = 'Your To Do';
-        theStatisticsPageButtonArticle.value = 'Your Statistics';
-    };
+        const renderMainButton = () => {
+            phoneWidth ? theNavButton.style.bottom = '51%' : theNavButton.style.bottom = '33.7%';
+        };
 
-    const renderMainButton = () => {
-        phoneWidth ? theNavButton.style.bottom = '51%' : theNavButton.style.bottom = '33.7%';
-    };
+        const removeMainButton = () => {
+            theNavButton.style.bottom = '20px'
+        };
 
-    const removeMainButton = () => {
-        theNavButton.style.bottom = '20px'
-    };
+        const theMainNav = document.querySelector('.main-navigation');
+        const theButton = document.querySelector('.button-navigation')
+        const tasksItem = event.target.closest('.tasks__item');
 
-    const tasksItem = event.target.closest('.tasks__item');
+        const iconSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
+        const iconChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
+        const iconDelete = tasksItem.querySelector('.vectors-container__item--delete');
 
-    const iconSetImportant = tasksItem.querySelector('.vectors-container__item--set-important');
-    const iconChangeTextSize = tasksItem.querySelector('.vectors-container__item--change-text-size');
-    const iconDelete = tasksItem.querySelector('.vectors-container__item--delete');
+        const phoneWidth = window.innerWidth <= 650;
+        const desktopDevice = window.innerWidth >= 1250;
 
-    const phoneWidth = window.innerWidth <= 650;
-    const desktopDevice = window.innerWidth >= 1250;
+        const theTasksNav = document.querySelector('.tasks__item--vectors-container-appeared');
+        const theNavButton = document.querySelector('.button-navigation');
 
-    const theMainNav = document.querySelector('.main-navigation');
-    const theNavButton = document.querySelector('.button-navigation');
+        const tasksIconContainer = tasksItem.querySelector('.tasks__item--vectors-container');
+        const tasksIconContainerUnexist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
+        const theTasksNavUnexist = theTasksNav.classList.contains('hidden');
+        const theMainNavUnexist = theMainNav.classList.contains('hidden');
 
+        const manipulateVariableClasses = (element, action, className) => {
+            element.classList[action](className);
+        };
 
-    const tasksIconContainer = tasksItem.querySelector('.tasks__item--vectors-container');
-    const tasksIconContainerUnexist = tasksIconContainer && tasksIconContainer.classList.contains('hidden');
-    const theMainNavUnexist = theMainNav.classList.contains('hidden');
+        manipulateContainerItems();
 
-    const manipulateVariableClasses = (element, action, className) => {
-        element.classList[action](className);
-    };
-
-    manipulateContainerItems();
+        if (theMainNavUnexist) {
+            theButton.addEventListener('click', () => {
+                removeTabletContainer();
+              
+            });
+        };
+    }
 };
 
 document.addEventListener('click', manipulateTasksButtonItems);
