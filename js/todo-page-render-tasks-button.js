@@ -1,5 +1,4 @@
 const renderVectorContainerItems = (element, action, className) => {
-const renderVectorContainerItems = (element, action, className) => {
     element.classList[action](className);
 };
 

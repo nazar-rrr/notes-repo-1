@@ -81,13 +81,6 @@ const removeTasks = (event) => {
             setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
         };
 
-        const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
-            items.forEach(item => {
-                if (item.classList.contains(classToRemove)) manipulateVariableClasses(item, 'remove', classToRemove);
-                manipulateVariableClasses(item, 'add', classToAdd);
-                setTimeout(() => manipulateVariableClasses(item, 'add', additionalClass), 300);
-            });
-        };
 
         const spliceTasks = () => {
             tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
@@ -106,7 +99,7 @@ const removeTasks = (event) => {
 };
 
 const removeTabletTasks = (event) => {
-    if (event.target.matches('.item--tablet-delete__button')) {
+    if (event.target.matches('.item--tablet-delete__button')) {  
         const manipulateTabletContainer = () => {
             const theTasksContainerArray = [...theTasksContainer.children];
             const theLocalTaskIndex = theTasksContainerArray.findIndex(item => item.id === tabletDeleteId);
@@ -117,13 +110,17 @@ const removeTabletTasks = (event) => {
                 theLocalTask.setAttribute('class', 'tasks__item-disappear');
                 setTimeout(() => {
                     theLocalTask.classList.add('hidden'), 500;
-                    theTasksContainer.removeChild(theLocalTask);    
-                });
+                    theTasksContainer.removeChild(theLocalTask);
+                }, 500);
             };
             
             tasksArray.splice(tasksArray.indexOf(tabletDeleteId), 1);
         };
         
+        const removeTasksEditItemButton = () => {
+            removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
+        };
+
         const removeTasksNavigation = () => {
             manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
             setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
@@ -132,15 +129,17 @@ const removeTabletTasks = (event) => {
         const removeTheButton = () => {
             theNavButton.style.bottom = '20px';
         };
-        
+
         const theTasksContainer = document.querySelector('.todo-page__tasks');
         const tabletDelete = event.target;
         const tabletDeleteId = tabletDelete.id;
+        const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
-        manipulateTabletContainer();
+        removeTasksEditItemButton();
+        setTimeout(() => manipulateTabletContainer(), 300);
         removeTasksNavigation();
         removeTheButton();
-        manipulateTasksHeading();
+        setTimeout(() => manipulateTasksHeading(), 500);
     };
 };
 
@@ -159,6 +158,14 @@ const removeTasksHeading = () => {
     manipulateVariableClasses(theTasksHeading, 'remove', 'todo-page__tasks--heading-disappear');
     theTasksHeading.setAttribute('class', 'todo-page__tasks--heading-disappear');
     setTimeout(() => manipulateVariableClasses(theTasksHeading, 'add', 'hidden'), 700);
+};
+
+const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
+    items.forEach(item => {
+        if (item.classList.contains(classToRemove)) manipulateVariableClasses(item, 'remove', classToRemove);
+        manipulateVariableClasses(item, 'add', classToAdd);
+        setTimeout(() => manipulateVariableClasses(item, 'add', additionalClass), 300);
+    });
 };
 
 const manipulateVariableClasses = (element, action, className) => {

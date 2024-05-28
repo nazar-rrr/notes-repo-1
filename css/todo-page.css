@@ -20,8 +20,12 @@
     animation: tasksItemDisappear 0.5s ease forwards;
 }
 
+.todo-page__tasks--heading-appear {
+    animation: pageAppear 0.7s ease forwards;
+}
+
 .todo-page__tasks--heading-disappear {
-    animation: pageDisappear 0.7s ease forwards;
+    animation: headingDisappear 0.7s ease forwards;
 }
 
 .vectors-container__item-appear {
@@ -41,7 +45,7 @@
 }
 
 .todo-page {
-    margin: 180px auto 0 auto;
+    margin: 150px auto 0 auto;
     padding: 0 40px;
 }
 
@@ -235,6 +239,7 @@
         padding: 0 60px;
     }
 
+    .tasks__item--vectors-container-appeared,
     .tasks__item--vectors-container {
         flex-direction: row;
     }
@@ -250,6 +255,7 @@
 
 @media(min-width: 950px) {
     .todo-page {
+        margin: 180px auto 0 auto;
         padding: 0;
     }
 }
