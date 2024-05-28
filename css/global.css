@@ -33,6 +33,24 @@
         transform: translateX(-75%);
     }
 }
+@keyframes headingDisappear {
+    0% {
+        font-size: 29px;
+        color: white;
+        scale: 1;
+        transform: translateX(0);
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        scale: 0.3;
+        opacity: 0;
+        transform: translateX(-75%);
+    }
+}
 
 @keyframes mainNavigationAppear {
     0% {

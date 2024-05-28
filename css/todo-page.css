@@ -20,8 +20,12 @@
     animation: tasksItemDisappear 0.5s ease forwards;
 }
 
+.todo-page__tasks--heading-appear {
+    animation: pageAppear 0.7s ease forwards;
+}
+
 .todo-page__tasks--heading-disappear {
-    animation: pageDisappear 0.7s ease forwards;
+    animation: headingDisappear 0.7s ease forwards;
 }
 
 .vectors-container__item-appear {
