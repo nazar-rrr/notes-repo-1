@@ -1,11 +1,13 @@
 const renderVectorContainerItems = (element, action, className) => {
+const renderVectorContainerItems = (element, action, className) => {
     element.classList[action](className);
 };
 
 const renderTasksEditButtonItem = (event) => {
     if (event.target.matches('.tasks__item')) {
         const tasksEditButtonItem = event.target.querySelector('.tasks__item--edit');
-        tasksEditButtonItem.classList.remove('hidden');
+        tasksEditButtonItem.setAttribute('id', `${event.target.id}`)
+        renderVectorContainerItems(tasksEditButtonItem, 'remove', 'hidden');
         renderVectorContainerItems(tasksEditButtonItem, 'remove', 'tasks__item--edit-disappear');
         renderVectorContainerItems(tasksEditButtonItem, 'add', 'tasks__item--edit-appear');
     }
@@ -17,8 +19,8 @@ const removeTasksEditButtonItem = (event) => {
 
     vectorsContainerItems.forEach(item => {
         if (!item.classList.contains('hidden')) {
-            renderVectorContainerItems(item, 'remove', 'item--vectors-container-appear');
-            renderVectorContainerItems(item, 'add', 'item--vectors-container-disappear');
+            renderVectorContainerItems(item, 'remove', 'vectors-container__item-appear');
+            renderVectorContainerItems(item, 'add', 'vectors-container__item-disappear');
             setTimeout(() => {
                 item.classList.add('hidden');
             }, 300);
