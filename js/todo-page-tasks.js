@@ -34,12 +34,12 @@ const addTasks = () => {
         theTasksContainer.appendChild(tasksItem);
         tasksItem.setAttribute('id', `${itemNumber}`)
         itemNumber++;
+        tasksArray.push(tasksItem);
     };
 
     renderTask();
     pushTask();
 
-    tasksArray.push(tasksItem);
     addTasksField.value = '';
     manipulateTasksHeading();
 };
@@ -48,7 +48,7 @@ const removeTasks = (event) => {
     if (event.target.matches('.item--delete__button')) {
         const manipulateContainerItems = () => {
             spliceTasks();
-            desktopDevice ? manipulateDesktopContainer() : manipulateTabletContainer();
+            manipulateDesktopContainer();
         };
 
         const manipulateDesktopContainer = () => {
@@ -81,10 +81,6 @@ const removeTasks = (event) => {
             setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
         };
 
-        const manipulateTabletContainer = () => {
-
-        };
-
         const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
             items.forEach(item => {
                 if (item.classList.contains(classToRemove)) manipulateVariableClasses(item, 'remove', classToRemove);
@@ -97,20 +93,59 @@ const removeTasks = (event) => {
             tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
         };
 
-        const desktopDevice = window.innerWidth > 1250;
-        const tasksItem = desktopDevice ? event.target.closest('.tasks__item') : document.querySelectorAll('.tasks__item');
+        const tasksItem = event.target.closest('.tasks__item');
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
         const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
         const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
         const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
+        const theTasksContainer = document.querySelector('.todo-page__tasks');
 
         manipulateContainerItems();
         manipulateTasksHeading();
     };
 };
 
+const removeTabletTasks = (event) => {
+    if (event.target.matches('.item--tablet-delete__button')) {
+        const manipulateTabletContainer = () => {
+            const theTasksContainerArray = [...theTasksContainer.children];
+            const theLocalTaskIndex = theTasksContainerArray.findIndex(item => item.id === tabletDeleteId);
+            
+            if (theLocalTaskIndex !== -1) {
+                const theLocalTask = theTasksContainerArray[theLocalTaskIndex];
+                theTasksContainerArray.splice(theLocalTaskIndex, 1);
+                theLocalTask.setAttribute('class', 'tasks__item-disappear');
+                setTimeout(() => {
+                    theLocalTask.classList.add('hidden'), 500;
+                    theTasksContainer.removeChild(theLocalTask);    
+                });
+            };
+            
+            tasksArray.splice(tasksArray.indexOf(tabletDeleteId), 1);
+        };
+        
+        const removeTasksNavigation = () => {
+            manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
+            setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
+        };
+
+        const removeTheButton = () => {
+            theNavButton.style.bottom = '20px';
+        };
+        
+        const theTasksContainer = document.querySelector('.todo-page__tasks');
+        const tabletDelete = event.target;
+        const tabletDeleteId = tabletDelete.id;
+
+        manipulateTabletContainer();
+        removeTasksNavigation();
+        removeTheButton();
+        manipulateTasksHeading();
+    };
+};
+
 const manipulateTasksHeading = () => {
-    tasksArray.length === 0 ? setTimeout(() => removeTasksHeading(), 600) : renderTasksHeading();
+    tasksArray.length === 0 ? removeTasksHeading() : renderTasksHeading();
 };
 
 const renderTasksHeading = () => {
@@ -130,9 +165,12 @@ const manipulateVariableClasses = (element, action, className) => {
     element.classList[action](className);
 };
 
+const desktopDevice = window.innerWidth >= 1250;
 const theButton = document.querySelector('.add-tasks__item--vector');
+const theNavButton = document.querySelector('.button-navigation');
 const theTasksHeading = document.querySelector('.todo-page__tasks--heading');
 const theTasksContainer = document.querySelector('.todo-page__tasks');
+const theTasksNavigation = document.querySelector('.tasks__item--vectors-container-appeared');
 const addTasksField = document.querySelector('.add-tasks__item--field');
 
 const tasksArray = [];
@@ -141,4 +179,6 @@ let itemNumber = 1;
 let addTasksFieldContent = '';
 
 theButton.addEventListener('click', addTasks);
-document.addEventListener('click', removeTasks);
+document.addEventListener('click', (event) => {
+    desktopDevice ? removeTasks(event) : removeTabletTasks(event);
+});
