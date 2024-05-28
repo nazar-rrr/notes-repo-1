@@ -40,6 +40,7 @@ const addTasks = () => {
     pushTask();
 
     tasksArray.push(tasksItem);
+    addTasksField.value = '';
     manipulateTasksHeading();
 };
 

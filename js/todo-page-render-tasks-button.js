@@ -5,9 +5,11 @@ const renderVectorContainerItems = (element, action, className) => {
 const renderTasksEditButtonItem = (event) => {
     if (event.target.matches('.tasks__item')) {
         const tasksEditButtonItem = event.target.querySelector('.tasks__item--edit');
-        tasksEditButtonItem.classList.remove('hidden');
+        tasksEditButtonItem.setAttribute('id', `${editNumber}`)
+        renderVectorContainerItems(tasksEditButtonItem, 'remove', 'hidden');
         renderVectorContainerItems(tasksEditButtonItem, 'remove', 'tasks__item--edit-disappear');
         renderVectorContainerItems(tasksEditButtonItem, 'add', 'tasks__item--edit-appear');
+        editNumber++;
     }
 };
 
@@ -34,5 +36,6 @@ const removeTasksEditButtonItem = (event) => {
     });
 };
 
+let editNumber = 1;
 document.addEventListener('mouseover', renderTasksEditButtonItem);
 document.addEventListener('mouseleave', removeTasksEditButtonItem);

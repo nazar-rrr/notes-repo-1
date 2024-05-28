@@ -109,7 +109,6 @@ const manipulateTasksButtonItems = (event) => {
 
         theButton.addEventListener('click', () => {
             removeTabletContainer();
-          
             if (!desktopDevice) {
                 manipulateVariableClasses(event.target, 'remove', 'tasks__item--edit-appear');
                 manipulateVariableClasses(event.target, 'add', 'tasks__item--edit-disappear');
