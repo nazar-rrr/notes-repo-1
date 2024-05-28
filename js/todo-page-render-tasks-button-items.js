@@ -1,4 +1,4 @@
-onst manipulateTasksButtonItems = (event) => {
+const manipulateTasksButtonItems = (event) => {
     if (event.target.matches('.tasks__item--edit')) {
         const manipulateContainerItems = () => {
             desktopDevice ? manipulateDesktopContainer() : manipulateTabletContainer();
