@@ -96,7 +96,7 @@ const removeTasks = (event) => {
         const theTasksContainer = document.querySelector('.todo-page__tasks');
 
         manipulateContainerItems();
-        manipulateTasksHeading();
+        setTimeout(() => manipulateTasksHeading(), 500);
     };
 };
 
