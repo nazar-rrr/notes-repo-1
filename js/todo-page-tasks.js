@@ -1,6 +1,6 @@
 const addTasks = () => {
-    const tasksItem = document.createElement('div');
     addTasksFieldContent = addTasksField.value.trim();
+    const tasksItem = document.createElement('div');
     const taskContent = `
     <div class="tasks__item--edit hidden">Edit</div>
     <textarea class="tasks__item--field">${addTasksFieldContent}</textarea>
@@ -81,7 +81,6 @@ const removeTasks = (event) => {
             setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
         };
 
-
         const spliceTasks = () => {
             tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
         };
@@ -99,11 +98,19 @@ const removeTasks = (event) => {
 };
 
 const removeTabletTasks = (event) => {
-    if (event.target.matches('.item--tablet-delete__button')) {  
+    if (event.target.matches('.item--tablet-delete__button')) {
         const manipulateTabletContainer = () => {
+            removeTasksEditItemButton();
+            setTimeout(() => removeTasksItem(), 300);
+            removeTasksNavigation();
+            removeTheButton();
+            setTimeout(() => manipulateTasksHeading(), 500);
+        };
+
+        const removeTasksItem = () => {
             const theTasksContainerArray = [...theTasksContainer.children];
             const theLocalTaskIndex = theTasksContainerArray.findIndex(item => item.id === tabletDeleteId);
-            
+
             if (theLocalTaskIndex !== -1) {
                 const theLocalTask = theTasksContainerArray[theLocalTaskIndex];
                 theTasksContainerArray.splice(theLocalTaskIndex, 1);
@@ -113,10 +120,10 @@ const removeTabletTasks = (event) => {
                     theTasksContainer.removeChild(theLocalTask);
                 }, 500);
             };
-            
+
             tasksArray.splice(tasksArray.indexOf(tabletDeleteId), 1);
         };
-        
+
         const removeTasksEditItemButton = () => {
             removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
         };
@@ -135,11 +142,7 @@ const removeTabletTasks = (event) => {
         const tabletDeleteId = tabletDelete.id;
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
-        removeTasksEditItemButton();
-        setTimeout(() => manipulateTabletContainer(), 300);
-        removeTasksNavigation();
-        removeTheButton();
-        setTimeout(() => manipulateTasksHeading(), 500);
+        manipulateTabletContainer();
     };
 };
 
