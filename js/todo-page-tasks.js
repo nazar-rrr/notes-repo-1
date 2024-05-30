@@ -3,9 +3,10 @@ const addTasks = () => {
         renderTask();
         pushTask();
         manipulateTasksHeading();
+        moveToTheLocalStorage();
         addTasksField.value = '';
     };
-
+    
     const renderTask = () => {    
         manipulateVariableClasses(tasksItem, 'add', 'tasks__item')
         tasksItem.innerHTML = taskContent;
@@ -17,7 +18,11 @@ const addTasks = () => {
         itemNumber++;
         tasksArray.push(tasksItem);
     };
-
+    
+    const moveToTheLocalStorage = () => {
+        localStorage.setItem(`Task ${tasksArray.indexOf(tasksItem)}`, addTasksFieldContent);
+    };
+    
     const tasksItem = document.createElement('div');
     const addTasksFieldContent = addTasksField.value.trim();
     const taskContent = `
@@ -43,7 +48,7 @@ const addTasks = () => {
          <p class="item--delete__article hidden">Delete</p> 
          </div>
          </div>`
-    
+         
     manipulateTasksValues();
 };
 
@@ -77,13 +82,13 @@ const removeTasks = (event) => {
         const removeItemChangeTextSize = () => {
             removeTasksItems(itemChangeTextSize, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
         };
-
+        
         const removeTasksItem = () => {
             tasksItem.setAttribute('class', 'tasks__item-disappear');
             setTimeout(() => tasksItem.classList.add('hidden'), 500);
             setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
         };
-
+        
         const spliceTasks = () => {
             tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
         };
@@ -94,7 +99,7 @@ const removeTasks = (event) => {
         const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
         const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
         const theTasksContainer = document.querySelector('.todo-page__tasks');
-
+        
         manipulateContainerItems();
         setTimeout(() => manipulateTasksHeading(), 500);
     };
@@ -111,46 +116,43 @@ const removeTabletTasks = (event) => {
         };
 
         const removeTasksItem = () => {
-            const theTasksContainerArray = [...theTasksContainer.children];
-            const theLocalTaskIndex = theTasksContainerArray.findIndex(item => item.id === tabletDeleteId);
-
+            const theLocalTaskIndex = tasksArray.findIndex(item => item.id === tabletDeleteId);
+            
             if (theLocalTaskIndex !== -1) {
-                const theLocalTask = theTasksContainerArray[theLocalTaskIndex];
-                theTasksContainerArray.splice(theLocalTaskIndex, 1);
+                const theLocalTask = tasksArray[theLocalTaskIndex];
+                tasksArray.splice(tasksArray[theLocalTaskIndex], 1);
                 theLocalTask.setAttribute('class', 'tasks__item-disappear');
                 setTimeout(() => {
                     theLocalTask.classList.add('hidden'), 500;
                     theTasksContainer.removeChild(theLocalTask);
                 }, 500);
             };
-
-            tasksArray.splice(tasksArray.indexOf(tabletDeleteId), 1);
         };
-
+        
         const removeTasksEditItemButton = () => {
             removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
         };
-
+        
         const removeTasksNavigation = () => {
             manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
             setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
         };
-
+        
         const removeTheButton = () => {
             theNavButton.style.bottom = '20px';
         };
-
+        
         const theTasksContainer = document.querySelector('.todo-page__tasks');
         const tabletDelete = event.target;
         const tabletDeleteId = tabletDelete.id;
         const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-
+        
         manipulateTabletContainer();
     };
 };
 
 const manipulateTasksHeading = () => {
-    tasksArray.length === 0 ? removeTasksHeading() : renderTasksHeading();
+    tasksArray.length === 1 ? removeTasksHeading() : renderTasksHeading();
 };
 
 const renderTasksHeading = () => {
@@ -186,7 +188,7 @@ const theTasksContainer = document.querySelector('.todo-page__tasks');
 const theTasksNavigation = document.querySelector('.tasks__item--vectors-container-appeared');
 const addTasksField = document.querySelector('.add-tasks__item--field');
 
-const tasksArray = [];
+const tasksArray = [...theTasksContainer.children];
 
 let itemNumber = 1;
 let addTasksFieldContent = '';
