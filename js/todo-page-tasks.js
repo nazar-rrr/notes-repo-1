@@ -1,7 +1,31 @@
 const addTasks = () => {
-    const tasksItem = document.createElement('div');
-    addTasksFieldContent = addTasksField.value.trim();
-    const taskContent = `
+    const manipulateTasksValues = () => {
+        renderTask();
+        pushTask();
+        manipulateTasksHeading();
+        moveToLocalStorage();
+        addTasksField.value = '';
+    };
+
+    const renderTask = () => {
+        manipulateVariableClasses(tasksItem.body, 'add', 'tasks__item');
+        tasksItem.body.innerHTML =  tasksItem.inner;
+    };
+
+    const pushTask = () => {
+        theTasksContainer.appendChild(tasksItem.body);
+        tasksItem.body.setAttribute('id', `${itemNumber}`);
+        itemNumber++;
+        tasksArray.push(tasksItem);
+    };
+
+    const moveToLocalStorage = () => {
+        localStorage.setItem(`Task ${tasksArray.indexOf(tasksItem)}`, tasksItem);
+    };
+
+    const tasksBody = document.createElement('div');
+    const addTasksFieldContent = addTasksField.value.trim();
+    const tasksContent = `
     <div class="tasks__item--edit hidden">Edit</div>
     <textarea class="tasks__item--field">${addTasksFieldContent}</textarea>
     <div class="tasks__item--vectors-container hidden"> 
@@ -23,129 +47,134 @@ const addTasks = () => {
     </svg>
     <p class="item--delete__article hidden">Delete</p> 
     </div>
-    </div>`
-
-    const renderTask = () => {
-        manipulateVariableClasses(tasksItem, 'add', 'tasks__item')
-        tasksItem.innerHTML = taskContent;
+    </div>`;
+    const tasksItem = {
+        body: tasksBody,
+        inner: tasksContent,
+        content: addTasksFieldContent,
     };
-
-    const pushTask = () => {
-        theTasksContainer.appendChild(tasksItem);
-        tasksItem.setAttribute('id', `${itemNumber}`)
-        itemNumber++;
-        tasksArray.push(tasksItem);
-    };
-
-    renderTask();
-    pushTask();
-
-    addTasksField.value = '';
-    manipulateTasksHeading();
+    
+    manipulateTasksValues();
 };
 
 const removeTasks = (event) => {
-    if (event.target.matches('.item--delete__button')) {
-        const manipulateContainerItems = () => {
-            spliceTasks();
-            manipulateDesktopContainer();
-        };
-
-        const manipulateDesktopContainer = () => {
-            removeTasksEditItemButton();
-            removeItemDelete();
-            removeItemSetImportant();
-            removeItemChangeTextSize();
-            setTimeout(() => removeTasksItem(), 300);
-        };
-
-        const removeTasksEditItemButton = () => {
-            removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
-        };
-
-        const removeItemDelete = () => {
-            removeTasksItems(itemDelete, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
-        };
-
-        const removeItemSetImportant = () => {
-            removeTasksItems(itemSetImportant, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
-        };
-
-        const removeItemChangeTextSize = () => {
-            removeTasksItems(itemChangeTextSize, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
-        };
-
-        const removeTasksItem = () => {
-            tasksItem.setAttribute('class', 'tasks__item-disappear');
-            setTimeout(() => tasksItem.classList.add('hidden'), 500);
-            setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
-        };
-
-        const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
-            items.forEach(item => {
-                if (item.classList.contains(classToRemove)) manipulateVariableClasses(item, 'remove', classToRemove);
-                manipulateVariableClasses(item, 'add', classToAdd);
-                setTimeout(() => manipulateVariableClasses(item, 'add', additionalClass), 300);
-            });
-        };
-
-        const spliceTasks = () => {
-            tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
-        };
-
-        const tasksItem = event.target.closest('.tasks__item');
-        const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-        const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
-        const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
-        const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
-        const theTasksContainer = document.querySelector('.todo-page__tasks');
-
-        manipulateContainerItems();
-        manipulateTasksHeading();
+    const manipulateDesktopTasksContainer = () => {
+        manipulateDesktopContainer();
+        setTimeout(() => manipulateTasksHeading(), 500);
+        spliceTasks();
+        removeFromLocalStorage();
     };
+
+    const manipulateDesktopContainer = () => {
+        removeTasksEditItemButton();
+        setTimeout(() => manipulateDesktopContainerItems(), 150);
+        setTimeout(() => removeTasksItem(), 450);
+    };
+
+    const manipulateDesktopContainerItems = () => {
+        removeItemDelete();
+        removeItemSetImportant();
+        removeItemChangeTextSize();
+    };
+
+    const removeTasksEditItemButton = () => {
+        removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
+    };
+
+    const removeItemDelete = () => {
+        removeTasksItems(itemDelete, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+    };
+
+    const removeItemSetImportant = () => {
+        removeTasksItems(itemSetImportant, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+    };
+
+    const removeItemChangeTextSize = () => {
+        removeTasksItems(itemChangeTextSize, 'vectors-container__item-appear', 'vectors-container__item-disappear', 'hidden');
+    };
+
+    const removeTasksItem = () => {
+        tasksItem.setAttribute('class', 'tasks__item-disappear');
+        setTimeout(() => tasksItem.classList.add('hidden'), 500);
+        setTimeout(() => theTasksContainer.removeChild(tasksItem), 500);
+    };
+
+    const spliceTasks = () => {
+        tasksArray.splice(tasksArray.indexOf(tasksItem), 1);
+    };
+
+    const removeFromLocalStorage = () => {
+        localStorage.removeItem(`Task ${tasksArray.indexOf(tasksItem)}`);
+    };
+
+    const tasksItem = event.target.closest('.tasks__item');
+    const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
+    const itemDelete = document.querySelectorAll('.vectors-container__item--delete');
+    const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
+    const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
+    const theTasksContainer = document.querySelector('.todo-page__tasks');
+
+    event.target.matches('.item--delete__button') ? manipulateDesktopTasksContainer() : null;
 };
 
 const removeTabletTasks = (event) => {
-    if (event.target.matches('.item--tablet-delete__button')) {
-        const manipulateTabletContainer = () => {
-            const theTasksContainerArray = [...theTasksContainer.children];
-            const theLocalTaskIndex = theTasksContainerArray.findIndex(item => item.id === tabletDeleteId);
-            
-            if (theLocalTaskIndex !== -1) {
-                const theLocalTask = theTasksContainerArray[theLocalTaskIndex];
-                theTasksContainerArray.splice(theLocalTaskIndex, 1);
-                theLocalTask.setAttribute('class', 'tasks__item-disappear');
-                setTimeout(() => {
-                    theLocalTask.classList.add('hidden'), 500;
-                    theTasksContainer.removeChild(theLocalTask);    
-                });
-            };
-            
-            tasksArray.splice(tasksArray.indexOf(tabletDeleteId), 1);
-        };
-        
-        const removeTasksNavigation = () => {
-            manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
-            setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
-        };
-
-        const removeTheButton = () => {
-            theNavButton.style.bottom = '20px';
-        };
-        
-        const theTasksContainer = document.querySelector('.todo-page__tasks');
-        const tabletDelete = event.target;
-        const tabletDeleteId = tabletDelete.id;
-
-        manipulateTabletContainer();
+    const manipulateTabletTasksContainer = () => {
+        removeTasksEditItemButton();
+        setTimeout(() => manipulateTasksItem(), 300);
         removeTasksNavigation();
         removeTheButton();
-        manipulateTasksHeading();
+        setTimeout(() => manipulateTasksHeading(), 500);
+        removeFromLocalStorage();
     };
+
+    const manipulateTasksItem = () => {
+        theLocalTaskIndex !== -1 ? removeTasksItem() : null;
+    };
+
+    const removeTasksItem = () => {
+        removeItemAnimation();
+        removeItemFromTheTasksArray();
+    };
+
+    const removeItemAnimation = () => {
+        theLocalTask.setAttribute('class', 'tasks__item-disappear');
+        setTimeout(() => theLocalTask.classList.add('hidden'), 500);
+    };
+
+    const removeItemFromTheTasksArray = () => {
+        tasksArray.splice(tasksArray[theLocalTaskIndex], 1);
+        setTimeout(() => theTasksContainer.removeChild(theLocalTask), 500);
+    };
+
+    const removeTasksEditItemButton = () => {
+        removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
+    };
+
+    const removeTasksNavigation = () => {
+        manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear');
+        setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
+    };
+
+    const removeTheButton = () => {
+        theNavButton.style.bottom = '20px';
+    };
+
+    const removeFromLocalStorage = () => {
+        localStorage.removeItem(`Task ${tasksArray.indexOf(theLocalTask)}`);
+    };
+
+    const tabletDelete = event.target;
+    const tabletDeleteId = tabletDelete.id;
+    const theLocalTaskIndex = tasksArray.findIndex(item => item.id === tabletDeleteId);
+    const theLocalTask = tasksArray[theLocalTaskIndex];
+    const theTasksContainer = document.querySelector('.todo-page__tasks');
+    const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
+
+    event.target.matches('.item--tablet-delete__button') ? manipulateTabletTasksContainer() : null;
 };
 
 const manipulateTasksHeading = () => {
-    tasksArray.length === 0 ? removeTasksHeading() : renderTasksHeading();
+    tasksArray.length === 1 ? removeTasksHeading() : renderTasksHeading();
 };
 
 const renderTasksHeading = () => {
@@ -156,9 +185,17 @@ const renderTasksHeading = () => {
 };
 
 const removeTasksHeading = () => {
-    manipulateVariableClasses(theTasksHeading, 'remove', 'todo-page__tasks--heading-disappear');
+    manipulateVariableClasses(theTasksHeading, 'remove', 'todo-page__tasks--heading-appear');
     theTasksHeading.setAttribute('class', 'todo-page__tasks--heading-disappear');
-    setTimeout(() => manipulateVariableClasses(theTasksHeading, 'add', 'hidden'), 700);
+    setTimeout(() => manipulateVariableClasses(theTasksHeading, 'add', 'hidden'), 600);
+};
+
+const removeTasksItems = (items, classToRemove, classToAdd, additionalClass) => {
+    items.forEach(item => {
+        if (item.classList.contains(classToRemove)) manipulateVariableClasses(item, 'remove', classToRemove);
+        manipulateVariableClasses(item, 'add', classToAdd);
+        setTimeout(() => manipulateVariableClasses(item, 'add', additionalClass), 300);
+    });
 };
 
 const manipulateVariableClasses = (element, action, className) => {
@@ -173,7 +210,7 @@ const theTasksContainer = document.querySelector('.todo-page__tasks');
 const theTasksNavigation = document.querySelector('.tasks__item--vectors-container-appeared');
 const addTasksField = document.querySelector('.add-tasks__item--field');
 
-const tasksArray = [];
+const tasksArray = [...theTasksContainer.children];
 
 let itemNumber = 1;
 let addTasksFieldContent = '';
