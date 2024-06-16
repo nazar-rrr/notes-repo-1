@@ -4,30 +4,30 @@ const addTasks = () => {
         pushTask();
         manipulateTasksHeading();
         moveToLocalStorage();
-        addTasksField.value = '';
+        tasksAdd.value = '';
     };
 
     const renderTask = () => {
-        manipulateVariableClasses(tasksItem, 'add', 'tasks__item')
-        tasksItem.innerHTML = taskContent;
+        manipulateVariableClasses(taskBody, 'add', 'tasks__item')
+        taskBody.innerHTML = taskInner;
     };
 
     const pushTask = () => {
-        theTasksContainer.appendChild(tasksItem);
-        tasksItem.setAttribute('id', `${itemNumber}`)
+        theTasksContainer.appendChild(taskBody);
+        taskBody.setAttribute('id', `${itemNumber}`)
         itemNumber++;
         tasksArray.push(tasksItem);
     };
 
     const moveToLocalStorage = () => {
-        localStorage.setItem(`Task ${tasksArray.indexOf(tasksItem)}`, addTasksFieldContent);
+        localStorage.setItem(`Tasks:`, JSON.stringify(tasksArray));
     };
 
-    const tasksItem = document.createElement('div');
-    const addTasksFieldContent = addTasksField.value.trim();
-    const taskContent = `
+    const taskBody = document.createElement('div');
+    const taskContent = tasksAdd.value.trim();
+    const taskInner = `
     <div class="tasks__item--edit hidden">Edit</div>
-    <textarea class="tasks__item--field">${addTasksFieldContent}</textarea>
+    <textarea class="tasks__item--field">${taskContent}</textarea>
     <div class="tasks__item--vectors-container hidden"> 
     <div class="vectors-container__item--set-important hidden">
     <svg class="item--set-important" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,11 @@ const addTasks = () => {
     <p class="item--delete__article hidden">Delete</p> 
     </div>
     </div>`
-
+    const tasksItem = {
+        id: `${itemNumber}`,
+        content: taskContent,
+    };
+    
     manipulateTasksValues();
 };
 
@@ -130,7 +134,7 @@ const removeTabletTasks = (event) => {
         removeItemAnimation();
         removeItemFromTheTasksArray();
     };
-
+    
     const removeItemAnimation = () => {
         theLocalTask.setAttribute('class', 'tasks__item-disappear');
         setTimeout(() => theLocalTask.classList.add('hidden'), 500);
@@ -161,7 +165,7 @@ const removeTabletTasks = (event) => {
     const tabletDelete = event.target;
     const tabletDeleteId = tabletDelete.id;
     const theLocalTaskIndex = tasksArray.findIndex(item => item.id === tabletDeleteId);
-    const theLocalTask = tasksArray[theLocalTaskIndex];
+    const theLocalTask = document.querySelector(`.tasks__item[id='${tabletDeleteId}']`);
     const theTasksContainer = document.querySelector('.todo-page__tasks');
     const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
 
@@ -203,12 +207,12 @@ const theNavButton = document.querySelector('.button-navigation');
 const theTasksHeading = document.querySelector('.todo-page__tasks--heading');
 const theTasksContainer = document.querySelector('.todo-page__tasks');
 const theTasksNavigation = document.querySelector('.tasks__item--vectors-container-appeared');
-const addTasksField = document.querySelector('.add-tasks__item--field');
+const tasksAdd = document.querySelector('.add-tasks__item--field');
 
 const tasksArray = [...theTasksContainer.children];
 
 let itemNumber = 1;
-let addTasksFieldContent = '';
+let tasksAddContent = '';
 
 theButton.addEventListener('click', addTasks);
 document.addEventListener('click', (event) => {
