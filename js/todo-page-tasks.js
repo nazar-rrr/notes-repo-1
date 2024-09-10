@@ -6,25 +6,24 @@ const addTasks = () => {
         moveToLocalStorage();
 
         tasksAdd.value = '';
-        console.log(tasksArray);
     };
-    
-    const renderTask = () => {
-        manipulateVariableClasses(taskBody, 'add', 'tasks__item')
-        taskBody.innerHTML = taskInner;
-    };
-    
+
     const pushTask = () => {
         tasksArray.push(tasksItem);
         theTasksContainer.appendChild(taskBody);
         taskBody.setAttribute('id', `${itemNumber}`)
         itemNumber++;
     };
-    
+
+    const renderTask = () => {
+        manipulateVariableClasses(taskBody, 'add', 'tasks__item')
+        taskBody.innerHTML = taskInner;
+    };
+
     const moveToLocalStorage = () => {
         localStorage.setItem(`Tasks:`, JSON.stringify(tasksArray));
     };
-    
+
     const taskBody = document.createElement('div');
     const taskContent = tasksAdd.value.trim();
     const taskInner = `
@@ -54,7 +53,7 @@ const addTasks = () => {
         id: `${itemNumber}`,
         content: taskContent,
     };
-    
+
     manipulateTasksValues();
 };
 
@@ -64,7 +63,7 @@ const removeTasks = (event) => {
         setTimeout(() => manipulateTasksHeading(), 500);
         spliceTasks();
     };
-    
+
     const manipulateDesktopContainer = () => {
         removeTasksEditItemButton();
         setTimeout(() => manipulateDesktopContainerItems(), 150);
@@ -109,7 +108,7 @@ const removeTasks = (event) => {
     const itemSetImportant = document.querySelectorAll('.vectors-container__item--set-important');
     const itemChangeTextSize = document.querySelectorAll('.vectors-container__item--change-text-size');
     const theTasksContainer = document.querySelector('.todo-page__tasks');
-    
+
     event.target.matches('.item--delete__button') ? manipulateDesktopTasksContainer() : null
 };
 
@@ -121,51 +120,50 @@ const removeTabletTasks = (event) => {
         removeTheButton();
         setTimeout(() => manipulateTasksHeading(), 500);
         removeFromLocalStorage();
-        console.log(tasksArray);
     };
 
     const manipulateTasksItem = () => {
         theLocalTaskIndex !== -2 ? removeTasksItem() : null;
     };
-    
+
     const removeTasksItem = () => {
         removeItemAnimation();
         removeItemFromTheTasksArray();
     };
-    
+
     const removeItemAnimation = () => {
         theLocalTask.setAttribute('class', 'tasks__item-disappear');
         setTimeout(() => theLocalTask.classList.add('hidden'), 500);
     };
-    
+
     const removeItemFromTheTasksArray = () => {
-        tasksArray.splice(tasksArray[theLocalTaskIndex], 1);
+        tasksArray.splice(theLocalTaskIndex - 1, 1);
         setTimeout(() => theTasksContainer.removeChild(theLocalTask), 500);
     };
-    
+
     const removeTasksEditItemButton = () => {
         removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
     };
-    
+
     const removeTasksNavigation = () => {
         manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
         setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
     };
-    
+
     const removeTheButton = () => {
         theNavButton.style.bottom = '20px';
     };
-    
+
     const removeFromLocalStorage = () => {
         localStorage.setItem(`Tasks:`, JSON.stringify(tasksArray));
     };
-    
+
     const tabletDeleteId = event.target.id;
     const theLocalTaskIndex = tasksArray.findIndex(item => item.id === tabletDeleteId);
     const theLocalTask = document.querySelector(`.tasks__item[id='${tabletDeleteId}']`);
     const theTasksContainer = document.querySelector('.todo-page__tasks');
     const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-    
+
     event.target.matches('.item--tablet-delete__button') ? manipulateTabletTasksContainer() : null;
 };
 
