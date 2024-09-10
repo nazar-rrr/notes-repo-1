@@ -4,19 +4,20 @@ const addTasks = () => {
         pushTask();
         manipulateTasksHeading();
         moveToLocalStorage();
+
         tasksAdd.value = '';
+    };
+
+    const pushTask = () => {
+        tasksArray.push(tasksItem);
+        theTasksContainer.appendChild(taskBody);
+        taskBody.setAttribute('id', `${itemNumber}`)
+        itemNumber++;
     };
 
     const renderTask = () => {
         manipulateVariableClasses(taskBody, 'add', 'tasks__item')
         taskBody.innerHTML = taskInner;
-    };
-
-    const pushTask = () => {
-        theTasksContainer.appendChild(taskBody);
-        taskBody.setAttribute('id', `${itemNumber}`)
-        itemNumber++;
-        tasksArray.push(tasksItem);
     };
 
     const moveToLocalStorage = () => {
@@ -122,7 +123,7 @@ const removeTabletTasks = (event) => {
     };
 
     const manipulateTasksItem = () => {
-        theLocalTaskIndex !== -1 ? removeTasksItem() : null;
+        theLocalTaskIndex !== -2 ? removeTasksItem() : null;
     };
 
     const removeTasksItem = () => {
@@ -136,34 +137,33 @@ const removeTabletTasks = (event) => {
     };
 
     const removeItemFromTheTasksArray = () => {
-        tasksArray.splice(tasksArray[theLocalTaskIndex], 1);
+        tasksArray.splice(theLocalTaskIndex - 1, 1);
         setTimeout(() => theTasksContainer.removeChild(theLocalTask), 500);
     };
-    
+
     const removeTasksEditItemButton = () => {
         removeTasksItems(tasksEditItemButton, 'tasks__item--edit-appear', 'tasks__item--edit-disappear', 'hidden');
     };
-    
+
     const removeTasksNavigation = () => {
         manipulateVariableClasses(theTasksNavigation, 'add', 'tasks__item--vectors-container-disappear')
         setTimeout(() => manipulateVariableClasses(theTasksNavigation, 'add', 'hidden'), 300);
     };
-    
+
     const removeTheButton = () => {
         theNavButton.style.bottom = '20px';
     };
-    
+
     const removeFromLocalStorage = () => {
         localStorage.setItem(`Tasks:`, JSON.stringify(tasksArray));
     };
-    
-    const tabletDelete = event.target;
-    const tabletDeleteId = tabletDelete.id;
+
+    const tabletDeleteId = event.target.id;
     const theLocalTaskIndex = tasksArray.findIndex(item => item.id === tabletDeleteId);
     const theLocalTask = document.querySelector(`.tasks__item[id='${tabletDeleteId}']`);
     const theTasksContainer = document.querySelector('.todo-page__tasks');
     const tasksEditItemButton = document.querySelectorAll('.tasks__item--edit');
-    
+
     event.target.matches('.item--tablet-delete__button') ? manipulateTabletTasksContainer() : null;
 };
 
